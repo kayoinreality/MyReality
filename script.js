@@ -255,11 +255,13 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     else resumeAutoplay();
   });
 
-  const resizeObserver = new ResizeObserver(() => fitMiniatures());
-  miniatureFrames.forEach(frame => {
-    const wrap = frame.closest('.website-miniature-wrap');
-    if (wrap) resizeObserver.observe(wrap);
-  });
+  if (typeof ResizeObserver !== 'undefined') {
+    const resizeObserver = new ResizeObserver(() => fitMiniatures());
+    miniatureFrames.forEach(frame => {
+      const wrap = frame.closest('.website-miniature-wrap');
+      if (wrap) resizeObserver.observe(wrap);
+    });
+  }
   window.addEventListener('resize', fitMiniatures, { passive: true });
 
   fitMiniatures();
