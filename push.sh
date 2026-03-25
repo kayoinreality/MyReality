@@ -4,7 +4,7 @@
 # Usage: bash push.sh
 # ============================================================
 
-REPO_URL="https://github.com/kayoinreality/Portifolio.git"
+REPO_URL="https://github.com/kayoinreality/MyReality.git"
 BRANCH="main"
 COMMIT_MSG="feat: separate CSS/JS, fix GitHub API with cache & fallback"
 
@@ -23,7 +23,7 @@ else
 fi
 
 echo "📦 Staging files..."
-git add index.html styles.css script.js CNAME
+git add index.html styles.css script.js CNAME .nojekyll package.json
 
 echo "✍️  Committing..."
 git commit -m "$COMMIT_MSG"
