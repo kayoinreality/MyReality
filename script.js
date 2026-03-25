@@ -204,12 +204,17 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     card.classList.add('is-active');
   }
 
+  function scrollCardInsideRoulette(card, smooth = true) {
+    const targetLeft = Math.max(card.offsetLeft - 8, 0);
+    list.scrollTo({ left: targetLeft, behavior: smooth ? 'smooth' : 'auto' });
+  }
+
   function activateByIndex(index, smooth = true) {
     const safeIndex = (index + cards.length) % cards.length;
     activeIndex = safeIndex;
     const card = cards[activeIndex];
     markActive(card);
-    card.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'nearest', inline: 'start' });
+    scrollCardInsideRoulette(card, smooth);
   }
 
   function tickAutoplay() {
