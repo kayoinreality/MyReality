@@ -163,6 +163,111 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 })();
 
 /* ============================================================
+   WEBSITES ROULETTE + NATIVE PREVIEW
+============================================================ */
+(function initWebsiteRoulette() {
+  const list  = document.getElementById('website-roulette');
+  const cards = Array.from(document.querySelectorAll('#website-roulette .website-card'));
+  const miniatureFrames = Array.from(document.querySelectorAll('#website-roulette .website-miniature'));
+  const prev  = document.getElementById('website-roulette-prev');
+  const next  = document.getElementById('website-roulette-next');
+
+  if (!list || !cards.length || !prev || !next) return;
+
+  let activeIndex = cards.findIndex(card => card.classList.contains('is-active'));
+  if (activeIndex < 0) activeIndex = 0;
+  let autoplayId = null;
+  let isPaused = false;
+  const AUTOPLAY_MS = 3800;
+  const MINI_VIEWPORT_WIDTH = 1366;
+  const MINI_VIEWPORT_HEIGHT = 768;
+
+  function fitMiniatures() {
+    miniatureFrames.forEach(frame => {
+      const wrap = frame.closest('.website-miniature-wrap');
+      if (!wrap) return;
+
+      const wrapWidth = wrap.clientWidth;
+      const wrapHeight = wrap.clientHeight;
+      if (!wrapWidth || !wrapHeight) return;
+
+      const scale = Math.min(wrapWidth / MINI_VIEWPORT_WIDTH, wrapHeight / MINI_VIEWPORT_HEIGHT);
+
+      frame.style.width = `${MINI_VIEWPORT_WIDTH}px`;
+      frame.style.height = `${MINI_VIEWPORT_HEIGHT}px`;
+      frame.style.transform = `scale(${scale})`;
+    });
+  }
+
+  function markActive(card) {
+    cards.forEach(c => c.classList.remove('is-active'));
+    card.classList.add('is-active');
+  }
+
+  function activateByIndex(index, smooth = true) {
+    const safeIndex = (index + cards.length) % cards.length;
+    activeIndex = safeIndex;
+    const card = cards[activeIndex];
+    markActive(card);
+    card.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'nearest', inline: 'start' });
+  }
+
+  function tickAutoplay() {
+    if (isPaused || cards.length < 2) return;
+    activateByIndex(activeIndex + 1);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayId = window.setInterval(tickAutoplay, AUTOPLAY_MS);
+  }
+
+  function stopAutoplay() {
+    if (!autoplayId) return;
+    window.clearInterval(autoplayId);
+    autoplayId = null;
+  }
+
+  function pauseAutoplay() {
+    isPaused = true;
+  }
+
+  function resumeAutoplay() {
+    isPaused = false;
+  }
+
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', () => activateByIndex(idx));
+    card.addEventListener('focusin', pauseAutoplay);
+    card.addEventListener('focusout', resumeAutoplay);
+  });
+
+  prev.addEventListener('click', () => activateByIndex(activeIndex - 1));
+  next.addEventListener('click', () => activateByIndex(activeIndex + 1));
+
+  list.addEventListener('mouseenter', pauseAutoplay);
+  list.addEventListener('mouseleave', resumeAutoplay);
+  list.addEventListener('touchstart', pauseAutoplay, { passive: true });
+  list.addEventListener('touchend', resumeAutoplay, { passive: true });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) pauseAutoplay();
+    else resumeAutoplay();
+  });
+
+  const resizeObserver = new ResizeObserver(() => fitMiniatures());
+  miniatureFrames.forEach(frame => {
+    const wrap = frame.closest('.website-miniature-wrap');
+    if (wrap) resizeObserver.observe(wrap);
+  });
+  window.addEventListener('resize', fitMiniatures, { passive: true });
+
+  fitMiniatures();
+  activateByIndex(activeIndex, false);
+  startAutoplay();
+})();
+
+/* ============================================================
    ANIMATED STAT COUNTERS
 ============================================================ */
 function animateCount(el, target, duration = 1500) {
