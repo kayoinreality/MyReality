@@ -133,10 +133,10 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   if (!el) return;
 
   const phrases = [
-    'Bridging Code and Insights.',
-    'Logistics Analyst & Developer.',
-    'Building AI-powered data systems.',
-    'Available for new projects.',
+    'Conectando codigo e insights.',
+    'Analista de Logistica e Desenvolvedor.',
+    'Construindo sistemas de dados com IA.',
+    'Disponivel para novos projetos.',
   ];
 
   let phraseIdx = 0, charIdx = 0, isDeleting = false;
@@ -294,7 +294,7 @@ function renderProjects(repos) {
   grid.innerHTML = repos.map((repo, i) => {
     const lang      = repo.language || 'N/A';
     const langClass = getLangClass(repo.language);
-    const desc      = repo.description || 'No description provided.';
+    const desc      = repo.description || 'Sem descricao disponivel.';
     const updatedAt = new Date(repo.updated_at).toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
 
     return `

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html class="dark" lang="pt-BR">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>MyReality | Software Developer & Data Analyst</title>
+  <title>MyReality | Desenvolvedor de Software e Analista de Dados</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -46,7 +46,7 @@
   <div id="scroll-progress"></div>
 
   <!-- ── BACK TO TOP ───────────────────────────────────────── -->
-  <button id="back-to-top" aria-label="Back to top" title="Voltar ao topo">↑</button>
+  <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
 
   <!-- ── TOAST NOTIFICATION ────────────────────────────────── -->
   <div id="toast">
@@ -71,10 +71,11 @@
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-10">
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#about"    data-section="about">About</a>
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#skills"   data-section="skills">Skills</a>
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#projects" data-section="projects">Projects</a>
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#contact"  data-section="contact">Contact</a>
+        <a class="text-sm font-medium hover:text-primary nav-link" href="#about"    data-section="about">Sobre</a>
+        <a class="text-sm font-medium hover:text-primary nav-link" href="#skills"   data-section="skills">Habilidades</a>
+        <a class="text-sm font-medium hover:text-primary nav-link" href="#websites" data-section="websites">Sites</a>
+        <a class="text-sm font-medium hover:text-primary nav-link" href="#projects" data-section="projects">Projetos</a>
+        <a class="text-sm font-medium hover:text-primary nav-link" href="#contact"  data-section="contact">Contato</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -88,7 +89,7 @@
         </a>
 
         <!-- Mobile Hamburger -->
-        <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+        <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none" aria-label="Abrir menu" aria-expanded="false">
           <span class="hamburger-line w-6 h-0.5 bg-white transition-all duration-300"></span>
           <span class="hamburger-line w-6 h-0.5 bg-white transition-all duration-300"></span>
           <span class="hamburger-line w-6 h-0.5 bg-white transition-all duration-300"></span>
@@ -99,10 +100,11 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden">
       <nav class="flex flex-col gap-1 px-2 pt-3 pb-4 border-t border-primary/10 mt-4">
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#about">About</a>
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#skills">Skills</a>
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#projects">Projects</a>
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#contact">Contact</a>
+        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#about">Sobre</a>
+        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#skills">Habilidades</a>
+        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#websites">Sites</a>
+        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#projects">Projetos</a>
+        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#contact">Contato</a>
         <a href="https://github.com/kayoinreality" target="_blank" rel="noopener"
            class="mt-2 bg-primary text-background-dark px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 w-fit">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -127,7 +129,7 @@
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
         </span>
-        Available for new projects
+        Disponivel para novos projetos
       </div>
 
       <!-- Main headline -->
@@ -142,14 +144,14 @@
 
       <!-- CTA buttons -->
       <div class="flex flex-col sm:flex-row gap-4 reveal reveal-delay-3">
-        <a href="#projects"
+        <a href="#websites"
            class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
-          View Work
+          Ver trabalhos
           <span class="material-symbols-outlined">arrow_forward</span>
         </a>
         <a href="#contact"
            class="bg-white/5 border border-white/10 backdrop-blur-sm px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-colors">
-          Get In Touch
+          Entrar em contato
         </a>
       </div>
 
@@ -157,25 +159,18 @@
       <div class="mt-16 flex flex-wrap justify-center gap-8 md:gap-16 reveal reveal-delay-4">
         <div class="text-center">
           <div class="text-4xl font-black text-primary stat-number" data-count="3">0</div>
-          <div class="text-sm text-slate-500 mt-1">Years Experience</div>
+          <div class="text-sm text-slate-500 mt-1">Anos de experiencia</div>
         </div>
         <div class="text-center">
           <div class="text-4xl font-black text-primary stat-number" id="repo-count">0</div>
-          <div class="text-sm text-slate-500 mt-1">GitHub Repos</div>
+          <div class="text-sm text-slate-500 mt-1">Repositorios no GitHub</div>
         </div>
         <div class="text-center">
           <div class="text-4xl font-black text-primary stat-number" data-count="20">0</div>
-          <div class="text-sm text-slate-500 mt-1">% Cost Reduction (BRF)</div>
+          <div class="text-sm text-slate-500 mt-1">% de reducao de custo (BRF)</div>
         </div>
       </div>
 
-      <!-- Hero image -->
-      <div class="mt-16 w-full max-w-5xl aspect-video rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 relative reveal">
-        <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10"></div>
-        <img class="w-full h-full object-cover opacity-60"
-             alt="Futuristic digital data visualization"
-             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw8hLU5VYcIpObOnZI5yUf60QVkpx7ojNQ6Pu6or0oTumPmTccBasYsgPjFE_3Okw5Vjv-IXvq9IOIFUlldrMTlQzEmMWMup5ZkjrUGZJR7uH8ADmUk3cKuGtj2mNvRLi2fLLBQE-yiannw3MIWg4uteZ0p4zuATXwKDo2a6JfKJlishT_bkspRjCGqFnIVYIgRmoE6V54Zq7v2d6k7oXQlL7T6y-31_jPXx_Hq2Ya-1LAtwG12dteaUMg6Yj-9PgO_0ACaClHoMyE"/>
-      </div>
     </div>
   </section>
 
@@ -187,26 +182,26 @@
 
       <div class="reveal">
         <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-          <span class="text-primary">01.</span> About Me
+          <span class="text-primary">01.</span> Sobre Mim
         </h2>
         <div class="space-y-6 text-slate-400 leading-relaxed text-lg">
           <p>
-            I'm a software developer and data analyst based in
+            Sou um desenvolvedor de software e analista de dados baseado em
             <span class="text-white font-medium">Goiânia, GO</span>.
-            My journey began in <span class="text-white font-medium">Logistics Analysis</span>, where I learned
-            the critical importance of efficiency and data-driven decision making.
+            Minha jornada comecou em <span class="text-white font-medium">Analise Logistica</span>, onde aprendi
+            a importancia critica da eficiencia e da tomada de decisao orientada por dados.
           </p>
           <p>
-            Today, I blend efficient code with deep data insights to create reality from complex datasets.
-            I don't just build applications — I build systems that transform raw information into
-            <span class="text-primary font-medium">actionable business intelligence</span>.
+            Hoje, eu uno codigo eficiente com analise profunda de dados para transformar conjuntos complexos em resultados reais.
+            Nao construo apenas aplicacoes; construo sistemas que transformam informacao bruta em
+            <span class="text-primary font-medium">inteligencia de negocios acionavel</span>.
           </p>
           <p>
-            Currently finishing my degree in
+            Atualmente estou finalizando minha graduacao em
             <span class="text-white font-medium">Análise e Desenvolvimento de Sistemas</span>
-            at PUC Goiás (2026), while working as a Logistics Analyst at Br Render — where I'm building
-            a proprietary data pipeline to power a future
-            <span class="text-primary font-medium">AI solution</span>.
+            na PUC Goias (2026), enquanto atuo como Analista de Logistica na Br Render, onde estou construindo
+            um pipeline proprietario de dados para viabilizar uma futura
+            <span class="text-primary font-medium">solucao de IA</span>.
           </p>
         </div>
         <div class="mt-8 flex flex-wrap gap-3">
@@ -220,13 +215,13 @@
       <div class="grid grid-cols-2 gap-4">
         <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all reveal reveal-delay-1">
           <span class="material-symbols-outlined text-primary mb-4 text-4xl">terminal</span>
-          <h3 class="font-bold text-xl mb-2">Development</h3>
-          <p class="text-sm text-slate-500">Scalable architectures and clean, maintainable codebases.</p>
+          <h3 class="font-bold text-xl mb-2">Desenvolvimento</h3>
+          <p class="text-sm text-slate-500">Arquiteturas escalaveis e codigo limpo, organizado e sustentavel.</p>
         </div>
         <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all reveal reveal-delay-2">
           <span class="material-symbols-outlined text-primary mb-4 text-4xl">query_stats</span>
-          <h3 class="font-bold text-xl mb-2">Analytics</h3>
-          <p class="text-sm text-slate-500">Deep dive into data to find patterns and drive growth.</p>
+          <h3 class="font-bold text-xl mb-2">Analise</h3>
+          <p class="text-sm text-slate-500">Leitura profunda de dados para encontrar padroes e impulsionar crescimento.</p>
         </div>
         <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all reveal reveal-delay-3">
           <span class="material-symbols-outlined text-primary mb-4 text-4xl">inventory_2</span>
@@ -236,7 +231,7 @@
         <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all reveal reveal-delay-4">
           <span class="material-symbols-outlined text-primary mb-4 text-4xl">auto_awesome</span>
           <h3 class="font-bold text-xl mb-2">Insights</h3>
-          <p class="text-sm text-slate-500">Bridging the gap between engineering and business.</p>
+          <p class="text-sm text-slate-500">Conexao entre engenharia, operacao e estrategia de negocio.</p>
         </div>
       </div>
     </div>
@@ -248,7 +243,7 @@
   <section class="py-24 px-6" id="skills">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-3xl font-bold mb-12 flex items-center gap-3 reveal">
-        <span class="text-primary">02.</span> Technical Stack
+        <span class="text-primary">02.</span> Stack Tecnica
       </h2>
       <div class="grid md:grid-cols-2 gap-8">
 
@@ -256,7 +251,7 @@
         <div class="group p-8 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-md hover:border-primary/40 transition-all reveal">
           <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
             <span class="material-symbols-outlined text-primary">code_blocks</span>
-            Software Development
+            Desenvolvimento de Software
           </h3>
           <div class="flex flex-wrap gap-3">
             <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Python</span>
@@ -273,7 +268,7 @@
         <div class="group p-8 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-md hover:border-primary/40 transition-all reveal reveal-delay-1">
           <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
             <span class="material-symbols-outlined text-primary">database</span>
-            Data & Analytics
+            Dados e Analise
           </h3>
           <div class="flex flex-wrap gap-3">
             <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Power BI</span>
@@ -290,6 +285,44 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
+       WEBSITES SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section class="py-24 px-6 bg-slate-900/30" id="websites">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12 reveal">
+        <h2 class="text-3xl font-bold mb-3 flex items-center gap-3">
+          <span class="text-primary">03.</span> Websites Criados
+        </h2>
+        <p class="text-slate-500">Uma seleção dos sites que você já publicou, com espaço para adicionar os próximos.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="https://kayoinreality.github.io/Adminstra-o-Judicial/" target="_blank" rel="noopener"
+           class="group rounded-2xl border border-primary/30 bg-white/5 p-6 backdrop-blur-sm hover:border-primary hover:-translate-y-1 transition-all reveal">
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors">Adminstra-o Judicial</h3>
+            <span class="material-symbols-outlined text-primary">open_in_new</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed">Projeto publicado no GitHub Pages. Clique para abrir o website.</p>
+          <div class="mt-5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+            GitHub Pages
+          </div>
+        </a>
+
+        <div class="rounded-2xl border border-dashed border-white/20 bg-white/5 p-6 reveal reveal-delay-1">
+          <h3 class="text-xl font-bold text-slate-200 mb-3">Próximo website</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Reserve este card para o próximo projeto. Basta duplicar e trocar título, descrição e link.</p>
+        </div>
+
+        <div class="rounded-2xl border border-dashed border-white/20 bg-white/5 p-6 reveal reveal-delay-2">
+          <h3 class="text-xl font-bold text-slate-200 mb-3">Próximo website</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Mais um espaço pronto para novos sites, landing pages ou dashboards publicados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
        PROJECTS SECTION (GitHub API)
   ══════════════════════════════════════════════════════════ -->
   <section class="py-24 px-6 bg-slate-900/30" id="projects">
@@ -298,19 +331,19 @@
       <div class="flex justify-between items-end mb-12 reveal">
         <div>
           <h2 class="text-3xl font-bold mb-2 flex items-center gap-3">
-            <span class="text-primary">03.</span> GitHub Projects
+            <span class="text-primary">04.</span> Projetos no GitHub
           </h2>
           <p class="text-slate-500">Repositórios carregados em tempo real via GitHub API.</p>
         </div>
         <a class="text-primary font-bold hover:underline flex items-center gap-1"
            href="https://github.com/kayoinreality" target="_blank" rel="noopener">
-          View All <span class="material-symbols-outlined text-sm">open_in_new</span>
+          Ver todos <span class="material-symbols-outlined text-sm">open_in_new</span>
         </a>
       </div>
 
       <!-- Filter buttons -->
       <div class="flex flex-wrap gap-3 mb-8 reveal">
-        <button class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold border border-primary bg-primary/10 text-primary transition-all"     data-filter="all">All</button>
+        <button class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold border border-primary bg-primary/10 text-primary transition-all"     data-filter="all">Todos</button>
         <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-white/10 text-slate-400 hover:border-primary/40 hover:text-primary transition-all" data-filter="Python">Python</button>
         <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-white/10 text-slate-400 hover:border-primary/40 hover:text-primary transition-all" data-filter="JavaScript">JavaScript</button>
         <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-white/10 text-slate-400 hover:border-primary/40 hover:text-primary transition-all" data-filter="Java">Java</button>
@@ -357,7 +390,7 @@
   ══════════════════════════════════════════════════════════ -->
   <section class="py-24 px-6" id="contact">
     <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-4xl font-black mb-6 reveal">Get In Touch</h2>
+      <h2 class="text-4xl font-black mb-6 reveal">Entre em Contato</h2>
       <p class="text-slate-400 mb-12 reveal reveal-delay-1">
         Aberto a novas oportunidades e colaborações. Manda uma mensagem!
       </p>
@@ -423,7 +456,7 @@
   ══════════════════════════════════════════════════════════ -->
   <footer class="py-10 border-t border-white/5 text-center">
     <p class="text-slate-500 text-sm">
-      © 2026 <span class="text-primary font-semibold">Kayo Santos</span> · myreality.tech · Built with focus and data.
+      © 2026 <span class="text-primary font-semibold">Kayo Santos</span> · myreality.tech · Feito com foco e dados.
     </p>
   </footer>
 
