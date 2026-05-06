@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>MyReality | Desenvolvedor de Software e Analista de Dados</title>
+  <title>Kayo Santos | Desenvolvedor Full-Stack &amp; Analista de Dados</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -11,33 +11,28 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-  <!-- Tailwind config — must run before stylesheet -->
+  <!-- Tailwind config -->
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            'primary':          '#25c0f4',
-            'background-light': '#f5f8f8',
-            'background-dark':  '#101e22',
+            'primary':          '#8b5cf6',
+            'primary-light':    '#a78bfa',
+            'primary-dark':     '#6d28d9',
+            'background-light': '#f5f4ff',
+            'background-dark':  '#09090f',
           },
           fontFamily: { 'display': ['Inter'] },
-          borderRadius: {
-            'DEFAULT': '0.5rem',
-            'lg':      '1rem',
-            'xl':      '1.5rem',
-            'full':    '9999px',
-          },
         },
       },
     };
   </script>
 
   <!-- Portfolio stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=20260325-3"/>
+  <link rel="stylesheet" href="styles.css?v=20260506"/>
 </head>
 
 <body class="bg-background-dark font-display text-slate-100 transition-colors duration-300">
@@ -60,28 +55,30 @@
   <!-- ══════════════════════════════════════════════════════════
        NAVIGATION
   ══════════════════════════════════════════════════════════ -->
-  <header class="fixed top-0 z-50 w-full border-b border-primary/10 bg-background-dark/80 backdrop-blur-md px-6 md:px-20 py-4">
+  <header class="fixed top-0 z-50 w-full border-b border-white/5 bg-background-dark/90 backdrop-blur-md px-6 md:px-20 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
 
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 text-primary group">
-        <span class="material-symbols-outlined text-3xl group-hover:rotate-12 transition-transform duration-300">deployed_code</span>
-        <h2 class="text-xl font-black tracking-tight">MyReality</h2>
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+          <span class="material-symbols-outlined text-primary text-lg">deployed_code</span>
+        </div>
+        <span class="text-lg font-black tracking-tight text-white group-hover:text-primary-light transition-colors">MyReality</span>
       </a>
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-10">
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#about"    data-section="about">Sobre</a>
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#skills"   data-section="skills">Habilidades</a>
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#websites" data-section="websites">Sites</a>
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#projects" data-section="projects">Projetos</a>
-        <a class="text-sm font-medium hover:text-primary nav-link" href="#contact"  data-section="contact">Contato</a>
+        <a class="text-sm font-medium text-slate-500 hover:text-white nav-link transition-colors" href="#about"    data-section="about">Sobre</a>
+        <a class="text-sm font-medium text-slate-500 hover:text-white nav-link transition-colors" href="#skills"   data-section="skills">Habilidades</a>
+        <a class="text-sm font-medium text-slate-500 hover:text-white nav-link transition-colors" href="#websites" data-section="websites">Sites</a>
+        <a class="text-sm font-medium text-slate-500 hover:text-white nav-link transition-colors" href="#projects" data-section="projects">Projetos</a>
+        <a class="text-sm font-medium text-slate-500 hover:text-white nav-link transition-colors" href="#contact"  data-section="contact">Contato</a>
       </nav>
 
       <div class="flex items-center gap-3">
         <!-- GitHub button (desktop) -->
         <a href="https://github.com/kayoinreality" target="_blank" rel="noopener"
-           class="hidden md:flex bg-primary hover:bg-primary/90 text-background-dark px-6 py-2 rounded-lg text-sm font-bold transition-all shadow-lg shadow-primary/20 items-center gap-2">
+           class="hidden md:flex items-center gap-2 px-5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/30 text-sm font-semibold transition-all text-slate-300 hover:text-white">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 6.797a11.52 11.52 0 0 1 3.006.404c2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
           </svg>
@@ -99,14 +96,14 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden">
-      <nav class="flex flex-col gap-1 px-2 pt-3 pb-4 border-t border-primary/10 mt-4">
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#about">Sobre</a>
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#skills">Habilidades</a>
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#websites">Sites</a>
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#projects">Projetos</a>
-        <a class="text-sm font-medium hover:text-primary py-2 px-3 rounded-lg hover:bg-primary/5 nav-link" href="#contact">Contato</a>
+      <nav class="flex flex-col gap-1 px-2 pt-3 pb-4 border-t border-white/5 mt-4">
+        <a class="text-sm font-medium text-slate-400 hover:text-white py-2 px-3 rounded-lg hover:bg-white/5 nav-link transition-colors" href="#about">Sobre</a>
+        <a class="text-sm font-medium text-slate-400 hover:text-white py-2 px-3 rounded-lg hover:bg-white/5 nav-link transition-colors" href="#skills">Habilidades</a>
+        <a class="text-sm font-medium text-slate-400 hover:text-white py-2 px-3 rounded-lg hover:bg-white/5 nav-link transition-colors" href="#websites">Sites</a>
+        <a class="text-sm font-medium text-slate-400 hover:text-white py-2 px-3 rounded-lg hover:bg-white/5 nav-link transition-colors" href="#projects">Projetos</a>
+        <a class="text-sm font-medium text-slate-400 hover:text-white py-2 px-3 rounded-lg hover:bg-white/5 nav-link transition-colors" href="#contact">Contato</a>
         <a href="https://github.com/kayoinreality" target="_blank" rel="noopener"
-           class="mt-2 bg-primary text-background-dark px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 w-fit">
+           class="mt-2 bg-white/5 border border-white/10 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 w-fit">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 6.797a11.52 11.52 0 0 1 3.006.404c2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
           </svg>
@@ -119,55 +116,73 @@
   <!-- ══════════════════════════════════════════════════════════
        HERO SECTION
   ══════════════════════════════════════════════════════════ -->
-  <section class="relative pt-32 pb-20 px-6 overflow-hidden" id="hero">
-    <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(37,192,244,0.1),transparent_70%)]"></div>
+  <section class="relative pt-36 pb-28 px-6 overflow-hidden" id="hero">
+
+    <!-- Ambient glow -->
+    <div class="absolute inset-0 -z-10 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full bg-primary/8 blur-3xl"></div>
+      <div class="absolute top-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-primary/5 blur-3xl"></div>
+    </div>
+
     <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
 
       <!-- Available badge -->
-      <div class="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest reveal">
+      <div class="mb-10 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary-light text-xs font-bold uppercase tracking-widest reveal">
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
         </span>
-        Disponivel para novos projetos
+        Disponível para novos projetos
       </div>
 
-      <!-- Main headline -->
-      <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-4 bg-gradient-to-b from-white to-slate-500 bg-clip-text text-transparent reveal reveal-delay-1">
-        MyReality
+      <!-- Main name -->
+      <h1 class="reveal reveal-delay-1 leading-none tracking-tighter mb-4">
+        <span class="block text-6xl md:text-8xl lg:text-9xl font-black bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
+          Kayo
+        </span>
+        <span class="block text-6xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent">
+          Santos
+        </span>
       </h1>
 
+      <!-- Role subtitle -->
+      <p class="text-base md:text-lg font-medium text-slate-500 mt-6 mb-2 reveal reveal-delay-2">
+        Desenvolvedor Full-Stack <span class="text-primary/50 mx-1">&amp;</span> Analista de Dados
+      </p>
+
       <!-- Typed text -->
-      <p class="text-xl md:text-2xl font-light text-slate-400 max-w-2xl mb-10 min-h-[2em] reveal reveal-delay-2">
+      <p class="text-sm text-slate-600 max-w-lg mb-10 min-h-[1.75rem] reveal reveal-delay-2">
         <span id="typed-text"></span><span id="typed-cursor"></span>
       </p>
 
       <!-- CTA buttons -->
       <div class="flex flex-col sm:flex-row gap-4 reveal reveal-delay-3">
         <a href="#websites"
-           class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
+           class="bg-primary hover:bg-primary-dark text-white px-8 py-3.5 rounded-xl font-bold text-base transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 flex items-center gap-2">
           Ver trabalhos
-          <span class="material-symbols-outlined">arrow_forward</span>
+          <span class="material-symbols-outlined text-lg">arrow_forward</span>
         </a>
         <a href="#contact"
-           class="bg-white/5 border border-white/10 backdrop-blur-sm px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-colors">
+           class="border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/8 px-8 py-3.5 rounded-xl font-bold text-base transition-all">
           Entrar em contato
         </a>
       </div>
 
       <!-- Stats row -->
-      <div class="mt-16 flex flex-wrap justify-center gap-8 md:gap-16 reveal reveal-delay-4">
-        <div class="text-center">
-          <div class="text-4xl font-black text-primary stat-number" data-count="3">0</div>
-          <div class="text-sm text-slate-500 mt-1">Anos de experiencia</div>
+      <div class="mt-24 flex flex-wrap justify-center items-stretch gap-12 md:gap-0 reveal reveal-delay-4">
+        <div class="text-center md:px-16">
+          <div class="text-5xl md:text-6xl font-black text-white stat-number" data-count="3">0</div>
+          <div class="text-xs text-slate-600 mt-2 uppercase tracking-widest font-semibold">Anos de experiência</div>
         </div>
-        <div class="text-center">
-          <div class="text-4xl font-black text-primary stat-number" id="repo-count">0</div>
-          <div class="text-sm text-slate-500 mt-1">Repositorios no GitHub</div>
+        <div class="hidden md:block w-px bg-white/8 self-stretch"></div>
+        <div class="text-center md:px-16">
+          <div class="text-5xl md:text-6xl font-black text-white stat-number" id="repo-count">0</div>
+          <div class="text-xs text-slate-600 mt-2 uppercase tracking-widest font-semibold">Repositórios no GitHub</div>
         </div>
-        <div class="text-center">
-          <div class="text-4xl font-black text-primary stat-number" data-count="20">0</div>
-          <div class="text-sm text-slate-500 mt-1">% de reducao de custo (BRF)</div>
+        <div class="hidden md:block w-px bg-white/8 self-stretch"></div>
+        <div class="text-center md:px-16">
+          <div class="text-5xl md:text-6xl font-black text-white stat-number" data-count="20">0</div>
+          <div class="text-xs text-slate-600 mt-2 uppercase tracking-widest font-semibold">% de redução de custo</div>
         </div>
       </div>
 
@@ -177,61 +192,81 @@
   <!-- ══════════════════════════════════════════════════════════
        ABOUT SECTION
   ══════════════════════════════════════════════════════════ -->
-  <section class="py-24 px-6 bg-slate-900/30" id="about">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+  <section class="py-28 px-6 section-alt" id="about">
+    <div class="max-w-7xl mx-auto">
 
-      <div class="reveal">
-        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-          <span class="text-primary">01.</span> Sobre Mim
-        </h2>
-        <div class="space-y-6 text-slate-400 leading-relaxed text-lg">
-          <p>
-            Sou um desenvolvedor de software e analista de dados baseado em
-            <span class="text-white font-medium">Goiânia, GO</span>.
-            Minha jornada comecou em <span class="text-white font-medium">Analise Logistica</span>, onde aprendi
-            a importancia critica da eficiencia e da tomada de decisao orientada por dados.
-          </p>
-          <p>
-            Hoje, eu uno codigo eficiente com analise profunda de dados para transformar conjuntos complexos em resultados reais.
-            Nao construo apenas aplicacoes; construo sistemas que transformam informacao bruta em
-            <span class="text-primary font-medium">inteligencia de negocios acionavel</span>.
-          </p>
-          <p>
-            Atualmente estou finalizando minha graduacao em
-            <span class="text-white font-medium">Análise e Desenvolvimento de Sistemas</span>
-            na PUC Goias (2026), enquanto atuo como Analista de Logistica na Br Render, onde estou construindo
-            um pipeline proprietario de dados para viabilizar uma futura
-            <span class="text-primary font-medium">solucao de IA</span>.
-          </p>
+      <!-- Section label -->
+      <div class="mb-14 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="font-mono text-primary text-sm font-bold tracking-widest">01</span>
+          <span class="h-px w-12 bg-primary/40"></span>
         </div>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm">🇧🇷 Goiânia, GO</span>
-          <span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm">🎓 ADS — PUC Goiás</span>
-          <span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm">🚗 CNH Categoria B</span>
-          <span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm">🌎 Disponível para mudança</span>
-        </div>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Sobre Mim</h2>
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all reveal reveal-delay-1">
-          <span class="material-symbols-outlined text-primary mb-4 text-4xl">terminal</span>
-          <h3 class="font-bold text-xl mb-2">Desenvolvimento</h3>
-          <p class="text-sm text-slate-500">Arquiteturas escalaveis e codigo limpo, organizado e sustentavel.</p>
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: bio text -->
+        <div class="space-y-5 reveal">
+          <p class="text-lg text-slate-300 leading-relaxed">
+            Sou desenvolvedor de software e analista de dados baseado em
+            <span class="text-white font-semibold">Goiânia, GO</span>.
+            Minha jornada começou na <span class="text-white font-semibold">Análise Logística</span>, onde aprendi
+            a importância crítica da eficiência e da tomada de decisão orientada por dados.
+          </p>
+          <p class="text-lg text-slate-400 leading-relaxed">
+            Hoje, uno código eficiente com análise profunda de dados para transformar conjuntos
+            complexos em resultados reais. Não construo apenas aplicações — construo sistemas que
+            transformam informação bruta em
+            <span class="text-primary-light font-medium">inteligência de negócios acionável</span>.
+          </p>
+          <p class="text-lg text-slate-400 leading-relaxed">
+            Finalizando minha graduação em
+            <span class="text-white font-semibold">Análise e Desenvolvimento de Sistemas</span>
+            na PUC Goiás (2026), enquanto atuo como Analista de Logística na Br Render, construindo
+            um pipeline de dados proprietário para uma futura
+            <span class="text-primary-light font-medium">solução de IA</span>.
+          </p>
+
+          <!-- Info badges -->
+          <div class="flex flex-wrap gap-2 pt-3">
+            <span class="info-badge">🇧🇷 Goiânia, GO</span>
+            <span class="info-badge">🎓 ADS — PUC Goiás</span>
+            <span class="info-badge">🚗 CNH Categoria B</span>
+            <span class="info-badge">🌎 Disponível para mudança</span>
+          </div>
         </div>
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all reveal reveal-delay-2">
-          <span class="material-symbols-outlined text-primary mb-4 text-4xl">query_stats</span>
-          <h3 class="font-bold text-xl mb-2">Analise</h3>
-          <p class="text-sm text-slate-500">Leitura profunda de dados para encontrar padroes e impulsionar crescimento.</p>
-        </div>
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all reveal reveal-delay-3">
-          <span class="material-symbols-outlined text-primary mb-4 text-4xl">inventory_2</span>
-          <h3 class="font-bold text-xl mb-2">Logistics</h3>
-          <p class="text-sm text-slate-500">Optimizing workflows through technical integration.</p>
-        </div>
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all reveal reveal-delay-4">
-          <span class="material-symbols-outlined text-primary mb-4 text-4xl">auto_awesome</span>
-          <h3 class="font-bold text-xl mb-2">Insights</h3>
-          <p class="text-sm text-slate-500">Conexao entre engenharia, operacao e estrategia de negocio.</p>
+
+        <!-- Right: capability cards -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="cap-card reveal reveal-delay-1">
+            <div class="cap-card-icon">
+              <span class="material-symbols-outlined text-primary text-xl">terminal</span>
+            </div>
+            <h3 class="font-bold text-white mb-1 text-base">Desenvolvimento</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">Arquiteturas escaláveis e código limpo, organizado e sustentável.</p>
+          </div>
+          <div class="cap-card reveal reveal-delay-2">
+            <div class="cap-card-icon">
+              <span class="material-symbols-outlined text-primary text-xl">query_stats</span>
+            </div>
+            <h3 class="font-bold text-white mb-1 text-base">Análise</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">Leitura profunda de dados para encontrar padrões e impulsionar crescimento.</p>
+          </div>
+          <div class="cap-card reveal reveal-delay-3">
+            <div class="cap-card-icon">
+              <span class="material-symbols-outlined text-primary text-xl">inventory_2</span>
+            </div>
+            <h3 class="font-bold text-white mb-1 text-base">Logística</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">Otimização de fluxos operacionais através de integração técnica.</p>
+          </div>
+          <div class="cap-card reveal reveal-delay-4">
+            <div class="cap-card-icon">
+              <span class="material-symbols-outlined text-primary text-xl">auto_awesome</span>
+            </div>
+            <h3 class="font-bold text-white mb-1 text-base">Insights</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">Conexão entre engenharia, operação e estratégia de negócio.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -240,44 +275,57 @@
   <!-- ══════════════════════════════════════════════════════════
        SKILLS SECTION
   ══════════════════════════════════════════════════════════ -->
-  <section class="py-24 px-6" id="skills">
+  <section class="py-28 px-6" id="skills">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl font-bold mb-12 flex items-center gap-3 reveal">
-        <span class="text-primary">02.</span> Stack Tecnica
-      </h2>
-      <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Section label -->
+      <div class="mb-14 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="font-mono text-primary text-sm font-bold tracking-widest">02</span>
+          <span class="h-px w-12 bg-primary/40"></span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Stack Técnica</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
 
         <!-- Development -->
-        <div class="group p-8 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-md hover:border-primary/40 transition-all reveal">
-          <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary">code_blocks</span>
-            Desenvolvimento de Software
-          </h3>
-          <div class="flex flex-wrap gap-3">
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Python</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">JavaScript (ES6+)</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">React.js</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Node.js</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">TypeScript</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Java</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Docker</span>
+        <div class="skill-panel reveal">
+          <div class="flex items-center gap-3 mb-7">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary text-xl">code_blocks</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Desenvolvimento de Software</h3>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript (ES6+)</span>
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">HTML5 / CSS3</span>
+            <span class="skill-tag">Tailwind CSS</span>
           </div>
         </div>
 
         <!-- Data & Analytics -->
-        <div class="group p-8 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-md hover:border-primary/40 transition-all reveal reveal-delay-1">
-          <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary">database</span>
-            Dados e Analise
-          </h3>
-          <div class="flex flex-wrap gap-3">
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Power BI</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">SQL (PostgreSQL)</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Excel Avançado</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Pandas & NumPy</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">ETL Pipelines</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">SAP</span>
-            <span class="skill-tag px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">Roadnet</span>
+        <div class="skill-panel reveal reveal-delay-1">
+          <div class="flex items-center gap-3 mb-7">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary text-xl">database</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Dados &amp; Análise</h3>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">SQL (PostgreSQL)</span>
+            <span class="skill-tag">Excel Avançado</span>
+            <span class="skill-tag">Pandas &amp; NumPy</span>
+            <span class="skill-tag">ETL Pipelines</span>
+            <span class="skill-tag">SAP</span>
+            <span class="skill-tag">Roadnet</span>
           </div>
         </div>
       </div>
@@ -287,27 +335,31 @@
   <!-- ══════════════════════════════════════════════════════════
        WEBSITES SECTION
   ══════════════════════════════════════════════════════════ -->
-  <section class="py-24 px-6 bg-slate-900/30" id="websites">
+  <section class="py-28 px-6 section-alt" id="websites">
     <div class="max-w-7xl mx-auto">
-      <div class="mb-12 reveal">
-        <h2 class="text-3xl font-bold mb-3 flex items-center gap-3">
-          <span class="text-primary">03.</span> Websites Criados
-        </h2>
-        <p class="text-slate-500">Miniaturas nativas dos websites dentro de cada card, em roleta horizontal com autoplay.</p>
+
+      <!-- Section label -->
+      <div class="mb-14 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="font-mono text-primary text-sm font-bold tracking-widest">03</span>
+          <span class="h-px w-12 bg-primary/40"></span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Websites Criados</h2>
+        <p class="text-slate-500 mt-3 text-sm">Miniaturas nativas dos websites em roleta horizontal com autoplay.</p>
       </div>
 
       <div class="reveal reveal-delay-1">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-lg font-bold text-white flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary">view_carousel</span>
-            Roleta de projetos web
-          </h3>
+        <div class="flex items-center justify-between mb-5">
+          <span class="text-sm text-slate-500 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-base">view_carousel</span>
+            Projetos web
+          </span>
           <div class="flex items-center gap-2">
             <button id="website-roulette-prev" class="roulette-control" type="button" aria-label="Projeto anterior">
-              <span class="material-symbols-outlined text-lg">arrow_back_ios_new</span>
+              <span class="material-symbols-outlined text-base">arrow_back_ios_new</span>
             </button>
             <button id="website-roulette-next" class="roulette-control" type="button" aria-label="Próximo projeto">
-              <span class="material-symbols-outlined text-lg">arrow_forward_ios</span>
+              <span class="material-symbols-outlined text-base">arrow_forward_ios</span>
             </button>
           </div>
         </div>
@@ -328,7 +380,7 @@
                 <span class="material-symbols-outlined text-base">open_in_new</span>
               </a>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed">Projeto publicado no GitHub Pages com foco em apresentação institucional.</p>
+            <p class="text-slate-500 text-sm leading-relaxed">Projeto publicado no GitHub Pages com foco em apresentação institucional.</p>
             <span class="website-chip">GitHub Pages</span>
           </article>
 
@@ -337,14 +389,14 @@
             <div class="website-miniature-wrap website-miniature-placeholder">
               <div class="website-miniature-fallback">
                 <span class="material-symbols-outlined text-primary text-3xl">deployed_code</span>
-                <p class="text-sm text-slate-400 mt-2">Miniatura do próximo projeto</p>
+                <p class="text-sm text-slate-500 mt-2">Próximo projeto</p>
               </div>
             </div>
             <div class="website-card-head">
-              <h4 class="text-base font-bold text-slate-200">Próximo website</h4>
-              <span class="material-symbols-outlined text-slate-500 text-base">deployed_code</span>
+              <h4 class="text-base font-bold text-slate-300">Próximo website</h4>
+              <span class="material-symbols-outlined text-slate-600 text-base">hourglass_empty</span>
             </div>
-            <p class="text-slate-500 text-sm leading-relaxed">Reserve este card para o próximo projeto. Duplique e troque o link quando publicar.</p>
+            <p class="text-slate-600 text-sm leading-relaxed">Espaço reservado para o próximo projeto web.</p>
             <span class="website-chip">Em breve</span>
           </article>
 
@@ -353,14 +405,14 @@
             <div class="website-miniature-wrap website-miniature-placeholder">
               <div class="website-miniature-fallback">
                 <span class="material-symbols-outlined text-primary text-3xl">deployed_code</span>
-                <p class="text-sm text-slate-400 mt-2">Miniatura do próximo projeto</p>
+                <p class="text-sm text-slate-500 mt-2">Próximo projeto</p>
               </div>
             </div>
             <div class="website-card-head">
-              <h4 class="text-base font-bold text-slate-200">Próximo website</h4>
-              <span class="material-symbols-outlined text-slate-500 text-base">deployed_code</span>
+              <h4 class="text-base font-bold text-slate-300">Próximo website</h4>
+              <span class="material-symbols-outlined text-slate-600 text-base">hourglass_empty</span>
             </div>
-            <p class="text-slate-500 text-sm leading-relaxed">Mais um espaço pronto para landing pages, dashboards ou produtos web.</p>
+            <p class="text-slate-600 text-sm leading-relaxed">Mais um espaço para landing pages, dashboards ou produtos web.</p>
             <span class="website-chip">Em breve</span>
           </article>
         </div>
@@ -371,54 +423,58 @@
   <!-- ══════════════════════════════════════════════════════════
        PROJECTS SECTION (GitHub API)
   ══════════════════════════════════════════════════════════ -->
-  <section class="py-24 px-6 bg-slate-900/30" id="projects">
+  <section class="py-28 px-6" id="projects">
     <div class="max-w-7xl mx-auto">
 
-      <div class="flex justify-between items-end mb-12 reveal">
-        <div>
-          <h2 class="text-3xl font-bold mb-2 flex items-center gap-3">
-            <span class="text-primary">04.</span> Projetos no GitHub
-          </h2>
-          <p class="text-slate-500">Repositórios carregados em tempo real via GitHub API.</p>
+      <!-- Section label -->
+      <div class="mb-12 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="font-mono text-primary text-sm font-bold tracking-widest">04</span>
+          <span class="h-px w-12 bg-primary/40"></span>
         </div>
-        <a class="text-primary font-bold hover:underline flex items-center gap-1"
-           href="https://github.com/kayoinreality" target="_blank" rel="noopener">
-          Ver todos <span class="material-symbols-outlined text-sm">open_in_new</span>
-        </a>
+        <div class="flex items-end justify-between gap-4 flex-wrap">
+          <div>
+            <h2 class="text-4xl md:text-5xl font-black text-white">Projetos</h2>
+            <p class="text-slate-500 mt-3 text-sm">Repositórios carregados em tempo real via GitHub API.</p>
+          </div>
+          <a class="text-primary-light hover:text-white font-semibold flex items-center gap-1.5 text-sm transition-colors"
+             href="https://github.com/kayoinreality" target="_blank" rel="noopener">
+            Ver todos <span class="material-symbols-outlined text-sm">open_in_new</span>
+          </a>
+        </div>
       </div>
 
       <!-- Filter buttons -->
-      <div class="flex flex-wrap gap-3 mb-8 reveal">
-        <button class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold border border-primary bg-primary/10 text-primary transition-all"     data-filter="all">Todos</button>
-        <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-white/10 text-slate-400 hover:border-primary/40 hover:text-primary transition-all" data-filter="Python">Python</button>
-        <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-white/10 text-slate-400 hover:border-primary/40 hover:text-primary transition-all" data-filter="JavaScript">JavaScript</button>
-        <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-white/10 text-slate-400 hover:border-primary/40 hover:text-primary transition-all" data-filter="Java">Java</button>
+      <div class="flex flex-wrap gap-2 mb-8 reveal">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="Python">Python</button>
+        <button class="filter-btn" data-filter="JavaScript">JavaScript</button>
+        <button class="filter-btn" data-filter="Java">Java</button>
       </div>
 
       <!-- Projects grid (populated by script.js) -->
-      <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Skeleton loaders -->
-        <div class="rounded-2xl bg-white/5 border border-white/10 p-6 space-y-4">
-          <div class="skeleton h-6 w-3/4"></div>
-          <div class="skeleton h-4 w-full"></div>
-          <div class="skeleton h-4 w-2/3"></div>
+      <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="rounded-2xl bg-white/3 border border-white/6 p-6 space-y-4">
+          <div class="skeleton h-5 w-3/4 rounded-lg"></div>
+          <div class="skeleton h-4 w-full rounded-lg"></div>
+          <div class="skeleton h-4 w-2/3 rounded-lg"></div>
           <div class="flex gap-2 mt-4">
             <div class="skeleton h-6 w-16 rounded-full"></div>
             <div class="skeleton h-6 w-20 rounded-full"></div>
           </div>
         </div>
-        <div class="rounded-2xl bg-white/5 border border-white/10 p-6 space-y-4">
-          <div class="skeleton h-6 w-1/2"></div>
-          <div class="skeleton h-4 w-full"></div>
-          <div class="skeleton h-4 w-3/4"></div>
+        <div class="rounded-2xl bg-white/3 border border-white/6 p-6 space-y-4">
+          <div class="skeleton h-5 w-1/2 rounded-lg"></div>
+          <div class="skeleton h-4 w-full rounded-lg"></div>
+          <div class="skeleton h-4 w-3/4 rounded-lg"></div>
           <div class="flex gap-2 mt-4">
             <div class="skeleton h-6 w-14 rounded-full"></div>
           </div>
         </div>
-        <div class="rounded-2xl bg-white/5 border border-white/10 p-6 space-y-4">
-          <div class="skeleton h-6 w-2/3"></div>
-          <div class="skeleton h-4 w-full"></div>
-          <div class="skeleton h-4 w-1/2"></div>
+        <div class="rounded-2xl bg-white/3 border border-white/6 p-6 space-y-4">
+          <div class="skeleton h-5 w-2/3 rounded-lg"></div>
+          <div class="skeleton h-4 w-full rounded-lg"></div>
+          <div class="skeleton h-4 w-1/2 rounded-lg"></div>
           <div class="flex gap-2 mt-4">
             <div class="skeleton h-6 w-18 rounded-full"></div>
             <div class="skeleton h-6 w-12 rounded-full"></div>
@@ -426,7 +482,6 @@
         </div>
       </div>
 
-      <!-- Fallback / rate-limit warning (shown by script.js when needed) -->
       <div id="github-error" class="hidden"></div>
     </div>
   </section>
@@ -434,64 +489,70 @@
   <!-- ══════════════════════════════════════════════════════════
        CONTACT SECTION
   ══════════════════════════════════════════════════════════ -->
-  <section class="py-24 px-6" id="contact">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-4xl font-black mb-6 reveal">Entre em Contato</h2>
-      <p class="text-slate-400 mb-12 reveal reveal-delay-1">
-        Aberto a novas oportunidades e colaborações. Manda uma mensagem!
-      </p>
+  <section class="py-28 px-6 section-alt" id="contact">
+    <div class="max-w-2xl mx-auto">
 
-      <div class="space-y-4 text-left reveal reveal-delay-2">
+      <!-- Section label -->
+      <div class="mb-12 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="font-mono text-primary text-sm font-bold tracking-widest">05</span>
+          <span class="h-px w-12 bg-primary/40"></span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Entre em Contato</h2>
+        <p class="text-slate-400 mt-3 text-base leading-relaxed">Aberto a novas oportunidades e colaborações. Manda uma mensagem!</p>
+      </div>
+
+      <div class="space-y-4 reveal reveal-delay-1">
         <div class="grid md:grid-cols-2 gap-4">
           <div class="flex flex-col gap-2">
-            <label class="text-sm font-bold text-slate-300 ml-1" for="contact-name">Nome</label>
+            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider" for="contact-name">Nome</label>
             <input id="contact-name"
-                   class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:outline-none focus:border-primary transition-colors placeholder:text-slate-600"
+                   class="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3.5 focus:outline-none focus:border-primary/50 focus:bg-white/6 transition-all placeholder:text-slate-700 text-white text-sm"
                    placeholder="Seu nome" type="text" autocomplete="name"/>
           </div>
           <div class="flex flex-col gap-2">
-            <label class="text-sm font-bold text-slate-300 ml-1" for="contact-email">Email</label>
+            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider" for="contact-email">Email</label>
             <input id="contact-email"
-                   class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:outline-none focus:border-primary transition-colors placeholder:text-slate-600"
+                   class="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3.5 focus:outline-none focus:border-primary/50 focus:bg-white/6 transition-all placeholder:text-slate-700 text-white text-sm"
                    placeholder="email@exemplo.com" type="email" autocomplete="email"/>
           </div>
         </div>
 
         <div class="flex flex-col gap-2">
-          <label class="text-sm font-bold text-slate-300 ml-1" for="contact-message">Mensagem</label>
+          <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider" for="contact-message">Mensagem</label>
           <textarea id="contact-message"
-                    class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:outline-none focus:border-primary transition-colors placeholder:text-slate-600"
+                    class="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3.5 focus:outline-none focus:border-primary/50 focus:bg-white/6 transition-all placeholder:text-slate-700 text-white text-sm resize-none"
                     placeholder="Me conta sobre o projeto..." rows="5"></textarea>
         </div>
 
         <button id="send-btn" onclick="handleContactForm()"
-                class="w-full bg-primary text-background-dark font-black py-5 rounded-xl text-lg hover:shadow-xl hover:shadow-primary/20 transition-all flex items-center justify-center gap-2">
+                class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-xl text-base transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 flex items-center justify-center gap-2">
           <span id="send-btn-text">Enviar Mensagem</span>
-          <span id="send-btn-icon" class="material-symbols-outlined">send</span>
+          <span id="send-btn-icon" class="material-symbols-outlined text-xl">send</span>
         </button>
       </div>
 
       <!-- Social links -->
-      <div class="mt-16 flex justify-center gap-8 reveal reveal-delay-3">
-        <a class="text-slate-400 hover:text-primary transition-colors hover:scale-110 transform"
+      <div class="mt-14 pt-10 border-t border-white/5 flex justify-center gap-8 reveal reveal-delay-2">
+        <a class="text-slate-600 hover:text-white transition-colors hover:scale-110 transform duration-200"
            href="https://github.com/kayoinreality" target="_blank" rel="noopener" title="GitHub">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 6.797a11.52 11.52 0 0 1 3.006.404c2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
           </svg>
         </a>
-        <a class="text-slate-400 hover:text-primary transition-colors hover:scale-110 transform"
+        <a class="text-slate-600 hover:text-white transition-colors hover:scale-110 transform duration-200"
            href="https://www.linkedin.com/in/kayo-santos/" target="_blank" rel="noopener" title="LinkedIn">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
         </a>
-        <a class="text-slate-400 hover:text-primary transition-colors hover:scale-110 transform"
+        <a class="text-slate-600 hover:text-white transition-colors hover:scale-110 transform duration-200"
            href="mailto:kayorodrigodzn@gmail.com" title="Email">
-          <span class="material-symbols-outlined text-3xl">alternate_email</span>
+          <span class="material-symbols-outlined text-2xl">alternate_email</span>
         </a>
-        <a class="text-slate-400 hover:text-primary transition-colors hover:scale-110 transform"
+        <a class="text-slate-600 hover:text-white transition-colors hover:scale-110 transform duration-200"
            href="https://www.instagram.com/kayordgs/" target="_blank" rel="noopener" title="Instagram">
-          <span class="material-symbols-outlined text-3xl">photo_camera</span>
+          <span class="material-symbols-outlined text-2xl">photo_camera</span>
         </a>
       </div>
     </div>
@@ -500,14 +561,14 @@
   <!-- ══════════════════════════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════════════════════ -->
-  <footer class="py-10 border-t border-white/5 text-center">
-    <p class="text-slate-500 text-sm">
-      © 2026 <span class="text-primary font-semibold">Kayo Santos</span> · myreality.tech · Feito com foco e dados.
+  <footer class="py-8 border-t border-white/5 text-center">
+    <p class="text-slate-700 text-sm">
+      © 2026 <span class="text-slate-500 font-semibold">Kayo Santos</span> · myreality.tech · Feito com foco e dados.
     </p>
   </footer>
 
-  <!-- Portfolio script (deferred for performance) -->
-  <script src="script.js?v=20260325-3" defer></script>
+  <!-- Portfolio script -->
+  <script src="script.js?v=20260506" defer></script>
 
 </body>
 </html>
