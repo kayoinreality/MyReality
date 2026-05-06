@@ -126,43 +126,6 @@ const revealObserver = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* ============================================================
-   TYPED TEXT EFFECT
-============================================================ */
-(function initTypedText() {
-  const el = document.getElementById('typed-text');
-  if (!el) return;
-
-  const phrases = [
-    'Conectando codigo e insights.',
-    'Analista de Logistica e Desenvolvedor.',
-    'Construindo sistemas de dados com IA.',
-    'Disponivel para novos projetos.',
-  ];
-
-  let phraseIdx = 0, charIdx = 0, isDeleting = false;
-
-  function loop() {
-    const current = phrases[phraseIdx];
-    if (isDeleting) {
-      el.textContent = current.substring(0, --charIdx);
-    } else {
-      el.textContent = current.substring(0, ++charIdx);
-    }
-
-    let delay = isDeleting ? 40 : 80;
-    if (!isDeleting && charIdx === current.length) {
-      delay = 2200; isDeleting = true;
-    } else if (isDeleting && charIdx === 0) {
-      isDeleting = false;
-      phraseIdx  = (phraseIdx + 1) % phrases.length;
-      delay      = 300;
-    }
-    setTimeout(loop, delay);
-  }
-  loop();
-})();
-
-/* ============================================================
    WEBSITES ROULETTE + NATIVE PREVIEW
 ============================================================ */
 (function initWebsiteRoulette() {
@@ -272,37 +235,6 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   fitMiniatures();
   activateByIndex(activeIndex, false);
   startAutoplay();
-})();
-
-/* ============================================================
-   ANIMATED STAT COUNTERS
-============================================================ */
-function animateCount(el, target, duration = 1500) {
-  let startTime = null;
-  function step(ts) {
-    if (!startTime) startTime = ts;
-    const progress = Math.min((ts - startTime) / duration, 1);
-    el.textContent = Math.floor(progress * target);
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(step);
-}
-
-(function initCounters() {
-  const firstCounter = document.querySelector('[data-count]');
-  if (!firstCounter) return;
-
-  const observer = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      document.querySelectorAll('[data-count]').forEach(el => {
-        animateCount(el, parseInt(el.dataset.count, 10));
-      });
-      observer.disconnect();
-    }
-  }, { threshold: 0.5 });
-
-  observer.observe(firstCounter.closest('section') || firstCounter);
 })();
 
 /* ============================================================
@@ -461,7 +393,6 @@ async function fetchGitHubRepos() {
   const cached = getCachedRepos();
   if (cached) {
     allRepos = cached.filter(r => r.name !== GITHUB_USERNAME);
-    animateCount(document.getElementById('repo-count'), cached.length);
     renderProjects(allRepos);
     setupFilterButtons();
     return;
@@ -495,7 +426,6 @@ async function fetchGitHubRepos() {
     setCachedRepos(repos); // salva no cache
 
     allRepos = repos.filter(r => r.name !== GITHUB_USERNAME);
-    animateCount(document.getElementById('repo-count'), repos.length);
     renderProjects(allRepos);
 
   } catch (err) {
@@ -503,7 +433,6 @@ async function fetchGitHubRepos() {
 
     // 3️⃣  Fallback: exibe repos hardcoded mas indica que é cache
     allRepos = FALLBACK_REPOS;
-    animateCount(document.getElementById('repo-count'), FALLBACK_REPOS.length);
     renderProjects(allRepos);
 
     // Mostra banner suave de aviso (não tira o conteúdo da tela)
@@ -589,23 +518,3 @@ function handleContactForm() {
   }, 800);
 }
 
-/* ============================================================
-   FLOATING PARTICLES
-============================================================ */
-(function createParticles() {
-  const container = document.getElementById('particles');
-  if (!container) return;
-  for (let i = 0; i < 12; i++) {
-    const p    = document.createElement('div');
-    p.className = 'particle';
-    const size  = Math.random() * 6 + 2;
-    p.style.cssText = `
-      width:${size}px;
-      height:${size}px;
-      left:${Math.random() * 100}%;
-      animation-duration:${Math.random() * 20 + 15}s;
-      animation-delay:${Math.random() * -20}s;
-    `;
-    container.appendChild(p);
-  }
-})();

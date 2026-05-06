@@ -1,5 +1,5 @@
 /* ============================================================
-   MYREALITY PORTFOLIO — styles.css (redesign v2)
+   MYREALITY PORTFOLIO — styles.css (v3 — redesign estrutural)
    ============================================================ */
 
 /* === SCROLL PROGRESS BAR === */
@@ -9,7 +9,6 @@
   left: 0;
   height: 2px;
   background: linear-gradient(90deg, #6d28d9, #a78bfa, #6d28d9);
-  background-size: 200% 100%;
   z-index: 9999;
   width: 0%;
   transition: width 0.1s linear;
@@ -46,11 +45,11 @@
   transform: translateY(-4px);
 }
 
-/* === SCROLL REVEAL ANIMATIONS === */
+/* === SCROLL REVEAL === */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -61,21 +60,7 @@
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
-/* === TYPED TEXT CURSOR === */
-#typed-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: #8b5cf6;
-  margin-left: 2px;
-  vertical-align: middle;
-  animation: blink 0.8s step-end infinite;
-}
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-/* === TOAST NOTIFICATION === */
+/* === TOAST === */
 #toast {
   position: fixed;
   bottom: 2rem;
@@ -84,7 +69,7 @@
   background: #0f1019;
   border: 1px solid rgba(139, 92, 246, 0.4);
   color: #fff;
-  padding: 1rem 1.5rem;
+  padding: 0.875rem 1.5rem;
   border-radius: 14px;
   font-weight: 600;
   font-size: 0.875rem;
@@ -111,19 +96,98 @@
 }
 
 /* === ACTIVE NAV LINK === */
-.nav-link {
-  transition: color 0.2s;
-}
-.nav-link.active {
-  color: #fff !important;
-}
+.nav-link { transition: color 0.2s; }
+.nav-link.active { color: #fff !important; }
 
 /* === SECTION ALTERNATE BACKGROUND === */
 .section-alt {
   background: rgba(255, 255, 255, 0.018);
 }
 
-/* === INFO BADGES (about section) === */
+/* === SECTION LABEL === */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8b5cf6;
+}
+
+/* ============================================================
+   HERO — PHOTO PLACEHOLDER
+   ============================================================ */
+.photo-placeholder {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 2px dashed rgba(139, 92, 246, 0.35);
+  background: rgba(139, 92, 246, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+.photo-placeholder:hover {
+  border-color: rgba(139, 92, 246, 0.6);
+  background: rgba(139, 92, 246, 0.08);
+}
+.photo-initials {
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(139, 92, 246, 0.4);
+  letter-spacing: -0.03em;
+  user-select: none;
+}
+.photo-hint {
+  margin-top: 0.75rem;
+  font-size: 0.7rem;
+  color: #334155;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   SOBRE — BIO FACTS
+   ============================================================ */
+.bio-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.bio-facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.bio-facts li:last-child {
+  border-bottom: none;
+}
+.bio-fact-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #475569;
+}
+.bio-fact-value {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+/* ============================================================
+   INFO BADGES
+   ============================================================ */
 .info-badge {
   display: inline-flex;
   align-items: center;
@@ -141,44 +205,9 @@
   background: rgba(139, 92, 246, 0.12);
 }
 
-/* === CAPABILITY CARDS === */
-.cap-card {
-  padding: 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
-}
-.cap-card:hover {
-  border-color: rgba(139, 92, 246, 0.25);
-  background: rgba(139, 92, 246, 0.04);
-  transform: translateY(-3px);
-}
-.cap-card-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.75rem;
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.85rem;
-}
-
-/* === SKILL PANEL === */
-.skill-panel {
-  padding: 2rem;
-  border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.3s ease;
-}
-.skill-panel:hover {
-  border-color: rgba(139, 92, 246, 0.2);
-}
-
-/* === SKILL TAGS === */
+/* ============================================================
+   SKILL TAGS
+   ============================================================ */
 .skill-tag {
   display: inline-flex;
   padding: 0.4rem 1rem;
@@ -196,7 +225,32 @@
   border-color: rgba(139, 92, 246, 0.4);
 }
 
-/* === FILTER BUTTONS === */
+/* ============================================================
+   CONTACT PILLS
+   ============================================================ */
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.contact-pill:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+/* ============================================================
+   FILTER BUTTONS
+   ============================================================ */
 .filter-btn {
   padding: 0.4rem 1.1rem;
   border-radius: 9999px;
@@ -218,7 +272,9 @@
   color: #a78bfa;
 }
 
-/* === GITHUB CARD SKELETON LOADER === */
+/* ============================================================
+   GITHUB CARD SKELETON
+   ============================================================ */
 .skeleton {
   background: linear-gradient(
     90deg,
@@ -235,27 +291,9 @@
   100% { background-position:  200% 0; }
 }
 
-/* === FLOATING PARTICLES === */
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(139, 92, 246, 0.1);
-  animation: float-up linear infinite;
-  pointer-events: none;
-}
-@keyframes float-up {
-  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 0.3; }
-  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-}
-
-/* === STAT COUNTERS === */
-.stat-number {
-  font-variant-numeric: tabular-nums;
-}
-
-/* === LANGUAGE COLOR DOTS === */
+/* ============================================================
+   LANGUAGE DOTS
+   ============================================================ */
 .lang-python     { background: #3572a5; }
 .lang-javascript { background: #f1e05a; }
 .lang-java       { background: #b07219; }
@@ -265,17 +303,21 @@
 .lang-jupyter    { background: #da5b0b; }
 .lang-default    { background: #6e7681; }
 
-/* === GITHUB CARD HOVER === */
+/* ============================================================
+   GITHUB CARD
+   ============================================================ */
 .github-card {
   transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 .github-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: rgba(139, 92, 246, 0.3) !important;
   background: rgba(139, 92, 246, 0.04) !important;
 }
 
-/* === WEBSITE MINIATURE ROULETTE === */
+/* ============================================================
+   WEBSITE ROULETTE
+   ============================================================ */
 .website-roulette {
   display: grid;
   grid-auto-flow: column;
@@ -287,26 +329,24 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(139, 92, 246, 0.35) rgba(255, 255, 255, 0.04);
 }
-.website-roulette::-webkit-scrollbar {
-  height: 5px;
-}
+.website-roulette::-webkit-scrollbar { height: 4px; }
 .website-roulette::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 999px;
 }
 .website-roulette::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.45);
+  background: rgba(139, 92, 246, 0.4);
   border-radius: 999px;
 }
 
 .website-card {
   scroll-snap-align: start;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.02);
   border-radius: 1rem;
   padding: 0.85rem;
   text-align: left;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .website-card:hover {
   transform: translateY(-2px);
@@ -314,12 +354,10 @@
 }
 .website-card.is-active {
   border-color: rgba(139, 92, 246, 0.65);
-  background: rgba(139, 92, 246, 0.06);
+  background: rgba(139, 92, 246, 0.05);
   box-shadow: 0 8px 24px rgba(139, 92, 246, 0.1);
 }
-.website-card--placeholder {
-  border-style: dashed;
-}
+.website-card--placeholder { border-style: dashed; }
 .website-card:focus-visible {
   outline: 2px solid #8b5cf6;
   outline-offset: 3px;
@@ -329,7 +367,7 @@
   width: 100%;
   position: relative;
   border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   overflow: hidden;
   background: #0b0c14;
   aspect-ratio: 16 / 10;
@@ -337,8 +375,7 @@
 }
 .website-miniature {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   border: 0;
   width: 1366px;
   height: 768px;
@@ -349,12 +386,9 @@
 .website-miniature-placeholder {
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.08), transparent 60%), #0b0c14;
+  background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.07), transparent 60%), #0b0c14;
 }
-.website-miniature-fallback {
-  text-align: center;
-  padding: 1.2rem;
-}
+.website-miniature-fallback { text-align: center; padding: 1.2rem; }
 
 .website-card-head {
   display: flex;
@@ -378,11 +412,10 @@
   background: rgba(139, 92, 246, 0.15);
   border-color: rgba(139, 92, 246, 0.5);
 }
-
 .website-chip {
   display: inline-flex;
   margin-top: 0.85rem;
-  padding: 0.28rem 0.75rem;
+  padding: 0.25rem 0.7rem;
   border-radius: 999px;
   border: 1px solid rgba(139, 92, 246, 0.2);
   color: #a78bfa;
@@ -413,5 +446,12 @@
 @media (max-width: 768px) {
   .website-roulette {
     grid-auto-columns: minmax(88%, 1fr);
+  }
+  .photo-placeholder {
+    width: 200px;
+    height: 200px;
+  }
+  .photo-initials {
+    font-size: 3rem;
   }
 }
