@@ -296,8 +296,8 @@ function Contact({ t }) {
     <section id="contact" className="section contact">
       <SectionHead idx="05" title={t.sections.contact} sub={t.sections.contactSub} />
       <div className="contact-cta" data-reveal>
-        <a className="huge-mail" href="mailto:kayorodrigodzn@gmail.com" data-cursor="hover">
-          kayorodrigodzn<span className="at">@</span>gmail.com
+        <a className="huge-mail" href="mailto:kayo@myreality.tech" data-cursor="hover">
+          kayo<span className="at">@</span>myreality.tech
         </a>
       </div>
       <div className="contact-rows">
