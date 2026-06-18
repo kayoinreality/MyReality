@@ -266,7 +266,7 @@ const STACK = [
 ];
 
 const SOCIAL = [
-  { id: "email", label: "Email", value: "kayo@myreality.tech", href: "mailto:kayo@myreality.tech", copyable: true },
+  { id: "email", label: "Email", value: "kayorodrigodzn@gmail.com", href: "mailto:kayorodrigodzn@gmail.com", copyable: true },
   { id: "linkedin", label: "LinkedIn", value: "/in/kayo-santos", href: "https://www.linkedin.com/in/kayo-santos/", copyable: false },
   { id: "github", label: "GitHub", value: "@kayoinreality", href: "https://github.com/kayoinreality", copyable: false }
 ];
