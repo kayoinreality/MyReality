@@ -177,8 +177,8 @@ function About({ t }) {
         </div>
         <aside className="about-side">
           <div className="about-photo" data-reveal>
-            <div className="photo-stripe" aria-hidden="true"></div>
-            <div className="photo-caption">photo: kayo · drop yours here</div>
+            <img className="photo-img" src="assets/kayo.webp" alt="Kayo" loading="lazy" />
+            <div className="photo-caption">photo: kayo</div>
           </div>
           <div className="stack-block" data-reveal style={{"--d":"60ms"}}>
             <div className="stack-label">{t.stack}</div>
@@ -296,8 +296,8 @@ function Contact({ t }) {
     <section id="contact" className="section contact">
       <SectionHead idx="05" title={t.sections.contact} sub={t.sections.contactSub} />
       <div className="contact-cta" data-reveal>
-        <a className="huge-mail" href="mailto:kayo@myreality.tech" data-cursor="hover">
-          kayo<span className="at">@</span>myreality.tech
+        <a className="huge-mail" href="mailto:kayorodrigodzn@gmail.com" data-cursor="hover">
+          kayorodrigodzn<span className="at">@</span>gmail.com
         </a>
       </div>
       <div className="contact-rows">
