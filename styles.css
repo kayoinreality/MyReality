@@ -101,7 +101,15 @@ img { max-width: 100%; display: block; }
 .nav a:hover::after { right: 0; }
 @media (max-width: 760px) { .nav { display: none; } }
 
-.header-actions { display: flex; gap: 10px; }
+.header-actions { display: flex; gap: 10px; align-items: center; }
+.theme-toggle {
+  display: grid; place-items: center;
+  width: 34px; height: 34px;
+  border: 1px solid var(--line); border-radius: 999px;
+  font-size: 15px; line-height: 1; color: var(--fg);
+  transition: border-color .2s var(--easing), color .2s var(--easing), transform .3s var(--easing);
+}
+.theme-toggle:hover { border-color: var(--fg); color: var(--accent); transform: rotate(-15deg); }
 .lang-toggle {
   display: flex; gap: 6px; align-items: center; font-family: var(--mono); font-size: 12px;
   border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;

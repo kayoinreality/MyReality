@@ -1,7 +1,7 @@
 const { useState, useEffect, useRef, useMemo, useCallback, Fragment } = React;
 
 // ---------- Header ----------
-function Header({ lang, setLang, t, onTweaks, hasTweaksToggle }) {
+function Header({ lang, setLang, t, dark, onToggleDark, onTweaks, hasTweaksToggle }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -23,6 +23,15 @@ function Header({ lang, setLang, t, onTweaks, hasTweaksToggle }) {
         <a href="#contact">{t.nav.contact}</a>
       </nav>
       <div className="header-actions">
+        <button
+          className="theme-toggle"
+          onClick={onToggleDark}
+          aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+          aria-pressed={dark}
+          data-cursor="hover"
+        >
+          {dark ? "☀" : "☾"}
+        </button>
         <button className="lang-toggle" onClick={() => setLang(lang === "pt" ? "en" : "pt")} aria-label="Toggle language">
           <span className={lang === "pt" ? "is-active" : ""}>PT</span>
           <span className="sep">/</span>
@@ -345,6 +354,18 @@ const DARK_PALETTES = {
   mono:   { bg: "#0A0A0A", fg: "#FAFAFA", muted: "#9A9A9A", line: "#1F1F1F", accent: "#FAFAFA" }
 };
 
+// Decide o tema inicial: 1º a escolha salva do visitante, 2º a preferência
+// do sistema operacional (prefers-color-scheme), 3º o default do site.
+function getInitialDark(fallback) {
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") return true;
+    if (saved === "light") return false;
+  } catch (e) { /* localStorage bloqueado — ignora */ }
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) return true;
+  return fallback;
+}
+
 function App() {
   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
     "palette": "ink",
@@ -352,14 +373,20 @@ function App() {
   }/*EDITMODE-END*/;
 
   const [lang, setLang] = useState("pt");
-  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  // Resolve o tema inicial uma única vez (salvo > sistema > default).
+  const initialTweaks = useMemo(
+    () => ({ ...TWEAK_DEFAULTS, dark: getInitialDark(TWEAK_DEFAULTS.dark) }),
+    []
+  );
+  const [tweaks, setTweak] = useTweaks(initialTweaks);
   const [konamiOn, setKonamiOn] = useState(false);
   const [jediOn, setJediOn] = useState(false);
 
   const t = STRINGS[lang];
 
-  // Apply palette + theme to root
-  useEffect(() => {
+  // Apply palette + theme to root. useLayoutEffect roda antes do paint,
+  // então no primeiro carregamento já aplicamos as cores certas sem flash.
+  React.useLayoutEffect(() => {
     const root = document.documentElement;
     const pal = (tweaks.dark ? DARK_PALETTES : PALETTES)[tweaks.palette] || PALETTES.ink;
     root.style.setProperty("--bg", pal.bg);
@@ -370,6 +397,11 @@ function App() {
     root.dataset.theme = tweaks.dark ? "dark" : "light";
     root.dataset.palette = tweaks.palette;
   }, [tweaks.palette, tweaks.dark]);
+
+  // Lembra a escolha do visitante entre visitas.
+  useEffect(() => {
+    try { localStorage.setItem("theme", tweaks.dark ? "dark" : "light"); } catch (e) { /* ignora */ }
+  }, [tweaks.dark]);
 
   useReveal();
   useKonami(useCallback(() => {
@@ -398,7 +430,7 @@ function App() {
       <div className={"app " + (konamiOn ? "konami" : "") + (jediOn ? " jedi" : "")}>
         {konamiOn && <KonamiOverlay onClose={() => setKonamiOn(false)} />}
         {jediOn && <JediOverlay onClose={() => setJediOn(false)} lang={lang} />}
-        <Header lang={lang} setLang={setLang} t={t} />
+        <Header lang={lang} setLang={setLang} t={t} dark={tweaks.dark} onToggleDark={() => setTweak("dark", !tweaks.dark)} />
         <main>
           <Hero t={t} lang={lang} />
           <Marquee items={STACK} />
