@@ -213,32 +213,64 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
 
 /* ── Work ────────────────────────────────────────────────── */
 .project-list { display: flex; flex-direction: column; }
-.project-row {
-  display: grid; grid-template-columns: 80px 1fr 80px;
+.project-row { border-top: 1px solid var(--line); }
+.project-row:last-child { border-bottom: 1px solid var(--line); }
+
+/* O cabeçalho é o botão que abre o case study. Reset do <button> primeiro,
+   depois o mesmo grid que a linha tinha antes. */
+.project-head {
+  appearance: none; background: none; border: 0; font: inherit; color: inherit;
+  width: 100%; text-align: left; cursor: pointer;
+  display: grid; grid-template-columns: 80px 1fr 140px;
   gap: clamp(20px, 4vw, 60px);
   padding: clamp(28px, 4vw, 48px) 0;
-  border-top: 1px solid var(--line);
   position: relative; isolation: isolate;
   transition: padding-left .6s var(--easing), color .3s var(--easing);
 }
-.project-row::before {
+.project-head::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background: var(--accent); transform-origin: left;
   transform: scaleX(0); transition: transform .55s var(--easing);
 }
-.project-row:hover { padding-left: 24px; color: var(--bg); }
-.project-row:hover::before { transform: scaleX(1); }
-.project-row:hover .project-n,
-.project-row:hover .project-year,
-.project-row:hover .project-meta,
-.project-row:hover .project-blurb,
-.project-row:hover .meta-dot { color: color-mix(in srgb, var(--bg) 80%, transparent); }
-.project-row:hover .tag { border-color: color-mix(in srgb, var(--bg) 60%, transparent); color: var(--bg); }
-.project-row:last-child { border-bottom: 1px solid var(--line); }
+.project-head:hover, .project-head:focus-visible { padding-left: 24px; color: var(--bg); }
+.project-head:hover::before, .project-head:focus-visible::before { transform: scaleX(1); }
+.project-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.project-head:hover .project-n,
+.project-head:hover .project-year,
+.project-head:hover .project-meta,
+.project-head:hover .project-blurb,
+.project-head:hover .project-toggle,
+.project-head:hover .meta-dot,
+.project-head:focus-visible .project-n,
+.project-head:focus-visible .project-year,
+.project-head:focus-visible .project-meta,
+.project-head:focus-visible .project-blurb,
+.project-head:focus-visible .project-toggle,
+.project-head:focus-visible .meta-dot { color: color-mix(in srgb, var(--bg) 80%, transparent); }
+.project-head:hover .tag,
+.project-head:focus-visible .tag { border-color: color-mix(in srgb, var(--bg) 60%, transparent); color: var(--bg); }
+
+/* Aberto: em vez do preenchimento, uma barra de acento à esquerda — o painel
+   embaixo precisa do fundo normal para continuar legível. */
+.project-row.is-open .project-head { padding-left: 24px; color: var(--fg); }
+.project-row.is-open .project-head::before { transform: scaleX(0); }
+.project-row.is-open .project-head::after {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--accent);
+}
+.project-row.is-open .project-head:hover .project-n,
+.project-row.is-open .project-head:hover .project-year,
+.project-row.is-open .project-head:hover .project-meta,
+.project-row.is-open .project-head:hover .project-blurb,
+.project-row.is-open .project-head:hover .meta-dot { color: var(--muted); }
+.project-row.is-open .project-head:hover .tag { border-color: var(--line); color: var(--muted); }
+.project-row.is-open .project-head:hover .project-toggle { color: var(--accent); }
 
 .project-n {
+  display: block;
   font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 6px;
 }
+.project-main { display: block; min-width: 0; }
 .project-title-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .project-title {
   margin: 0; font-weight: 500; font-size: clamp(28px, 4vw, 56px);
@@ -253,6 +285,7 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
 .meta-dot { color: var(--line); }
 .project-metric { color: var(--fg); opacity: 0.7; }
 .project-blurb {
+  display: block;
   margin: 18px 0 0; max-width: 70ch; font-size: clamp(15px, 1.2vw, 17px);
   line-height: 1.5; color: var(--muted);
 }
@@ -263,19 +296,85 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
   color: var(--muted);
   transition: border-color .25s var(--easing), color .25s var(--easing);
 }
-.project-arrow {
-  align-self: center; justify-self: end; color: var(--muted);
-  transition: transform .5s var(--easing), color .3s var(--easing);
+
+/* Indicador abrir/fechar — o "+" vira "−" quando o case study está aberto. */
+.project-toggle {
+  align-self: center; justify-self: end;
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
+  color: var(--muted); transition: color .3s var(--easing);
 }
-.project-row:hover .project-arrow {
-  transform: translate(8px, -8px) rotate(0deg);
-  color: var(--bg);
+.project-row.is-open .project-toggle { color: var(--accent); }
+.project-toggle-text { text-transform: lowercase; white-space: nowrap; }
+.project-toggle-icon { position: relative; display: block; width: 18px; height: 18px; flex: none; }
+.project-toggle-icon::before,
+.project-toggle-icon::after {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 14px; height: 1.5px; background: currentColor;
+  transform: translate(-50%, -50%);
+  transition: transform .45s var(--easing);
+}
+.project-toggle-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+.project-row.is-open .project-toggle-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+/* ── Case study ──────────────────────────────────────────── */
+.project-detail[hidden] { display: none; }
+.project-detail-inner {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: clamp(20px, 4vw, 60px);
+  padding: 0 0 clamp(32px, 4vw, 56px) 24px;
+  animation: detailIn .5s var(--easing) both;
+}
+.project-detail-inner > * { grid-column: 2; }
+@keyframes detailIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+.study-block + .study-block { margin-top: 30px; }
+.study-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+}
+.study-problem, .study-status {
+  margin: 0; max-width: 72ch; font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.65; color: var(--fg);
+}
+.study-status { color: var(--muted); }
+.study-list { margin: 0; padding: 0; list-style: none; max-width: 72ch; }
+.study-list li {
+  position: relative; padding-left: 22px; margin-bottom: 10px;
+  font-size: clamp(14.5px, 1.15vw, 16px); line-height: 1.6; color: var(--muted);
+}
+.study-list li::before {
+  content: ""; position: absolute; left: 0; top: 0.7em;
+  width: 10px; height: 1px; background: var(--accent); opacity: 0.7;
+}
+.study-list li:last-child { margin-bottom: 0; }
+
+.study-links { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 34px; }
+.study-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em;
+  padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px;
+  color: var(--fg); text-decoration: none;
+  transition: background .3s var(--easing), color .3s var(--easing), border-color .3s var(--easing);
+}
+.study-link:hover { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.study-link.is-live { border-color: var(--accent); color: var(--accent); }
+.study-link.is-live:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.study-private {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted);
 }
 
 @media (max-width: 760px) {
-  .project-row { grid-template-columns: 60px 1fr; padding: 24px 0; }
-  .project-arrow { display: none; }
+  .project-head { grid-template-columns: 60px 1fr; padding: 24px 0; }
   .project-title { font-size: 32px; }
+  .project-toggle {
+    grid-column: 2; justify-self: start; margin-top: 22px;
+  }
+  .project-detail-inner { grid-template-columns: 1fr; padding-left: 16px; padding-bottom: 32px; }
+  .project-detail-inner > * { grid-column: 1; }
 }
 
 /* ── About ───────────────────────────────────────────────── */
@@ -435,7 +534,9 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
   display: block;
   font-size: clamp(36px, 7vw, 110px);
   line-height: 1; letter-spacing: -0.04em; font-weight: 500;
-  word-break: break-word;
+  /* "anywhere" em vez do alias legado break-word: o e-mail é um token único e
+     longo, e em telas bem estreitas precisa poder quebrar em qualquer ponto. */
+  overflow-wrap: anywhere;
   transition: color .3s var(--easing);
 }
 .huge-mail:hover { color: var(--accent); }
@@ -456,6 +557,18 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
   padding: 5px 12px; transition: all .2s var(--easing);
 }
 .copy-btn:hover { border-color: var(--fg); }
+
+/* No celular a grade de 3 colunas não cabe: o rótulo de 120px mais o e-mail
+   empurravam o botão "copiar" para fora da viewport e a página rolava na
+   horizontal. Empilha rótulo e valor, e o botão vai para a coluna da direita. */
+@media (max-width: 560px) {
+  .contact-row {
+    grid-template-columns: 1fr auto; gap: 6px 16px; align-items: center;
+  }
+  .contact-label { grid-column: 1; grid-row: 1; }
+  .contact-value { grid-column: 1; grid-row: 2; overflow-wrap: anywhere; }
+  .copy-btn { grid-column: 2; grid-row: 1 / span 2; justify-self: end; }
+}
 
 /* ── Footer ──────────────────────────────────────────────── */
 .site-footer {

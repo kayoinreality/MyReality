@@ -116,58 +116,124 @@ function SectionHead({ idx, title, sub }) {
 }
 
 // ---------- Work / Projects ----------
-function ProjectRow({ p, lang, i }) {
-  const [hover, setHover] = useState(false);
-  const title = typeof p.title === "string" ? p.title : p.title[lang];
-  const type = p.type[lang];
-  const role = p.role[lang];
-  const blurb = p.blurb[lang];
-  const metric = p.metric[lang];
+// Bloco de lista do case study — só renderiza se a seção existir naquele idioma.
+function StudyBlock({ label, items }) {
+  if (!items || !items.length) return null;
   return (
-    <a
-      className={"project-row swatch-" + p.swatch}
-      href={p.href}
-      target="_blank"
-      rel="noreferrer"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      data-cursor="hover"
+    <div className="study-block">
+      <div className="study-label">{label}</div>
+      <ul className="study-list">
+        {items.map((line, i) => <li key={i}>{line}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+const ArrowOut = () => (
+  <svg width="14" height="14" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <path d="M7 21 L21 7 M11 7 H21 V17" stroke="currentColor" strokeWidth="2" strokeLinecap="square"/>
+  </svg>
+);
+
+function ProjectRow({ p, lang, t, i, open, onToggle }) {
+  const title = typeof p.title === "string" ? p.title : p.title[lang];
+  const study = p.study;
+  const panelId = "case-" + p.id;
+  const links = p.links || [];
+
+  return (
+    <article
+      className={"project-row swatch-" + p.swatch + (open ? " is-open" : "")}
       data-reveal
       style={{"--d": (i*40) + "ms"}}
     >
-      <div className="project-n">{p.n}</div>
-      <div className="project-main">
-        <div className="project-title-row">
-          <h3 className="project-title">{title}</h3>
-          <span className="project-year">{p.year}</span>
-        </div>
-        <div className="project-meta">
-          <span>{type}</span>
-          <span className="meta-dot">·</span>
-          <span>{role}</span>
-          <span className="meta-dot">·</span>
-          <span className="project-metric">{metric}</span>
-        </div>
-        <p className="project-blurb">{blurb}</p>
-        <div className="project-tags">
-          {p.tags.map((t) => <span className="tag" key={t}>{t}</span>)}
+      <button
+        type="button"
+        className="project-head"
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls={panelId}
+        data-cursor="hover"
+      >
+        <span className="project-n">{p.n}</span>
+        <span className="project-main">
+          <span className="project-title-row">
+            <span className="project-title">{title}</span>
+            <span className="project-year">{p.year}</span>
+          </span>
+          <span className="project-meta">
+            <span>{p.type[lang]}</span>
+            <span className="meta-dot">·</span>
+            <span>{p.role[lang]}</span>
+            <span className="meta-dot">·</span>
+            <span className="project-metric">{p.metric[lang]}</span>
+          </span>
+          <span className="project-blurb">{p.blurb[lang]}</span>
+          <span className="project-tags">
+            {p.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
+          </span>
+        </span>
+        <span className="project-toggle">
+          <span className="project-toggle-text">{open ? t.project.close : t.project.open}</span>
+          <span className="project-toggle-icon" aria-hidden="true"></span>
+        </span>
+      </button>
+
+      <div className="project-detail" id={panelId} hidden={!open}>
+        <div className="project-detail-inner">
+          {study && study.problem && (
+            <div className="study-block">
+              <div className="study-label">{t.project.problem}</div>
+              <p className="study-problem">{study.problem[lang]}</p>
+            </div>
+          )}
+          {study && study.build && <StudyBlock label={t.project.build} items={study.build[lang]} />}
+          {study && study.decisions && <StudyBlock label={t.project.decisions} items={study.decisions[lang]} />}
+          {study && study.status && (
+            <div className="study-block">
+              <div className="study-label">{t.project.status}</div>
+              <p className="study-status">{study.status[lang]}</p>
+            </div>
+          )}
+          <div className="study-links">
+            {links.map((l) => (
+              <a
+                className={"study-link is-" + l.kind}
+                key={l.href}
+                href={l.href}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="hover"
+              >
+                {l.label[lang]}
+                <ArrowOut />
+              </a>
+            ))}
+            {p.privateRepo && <span className="study-private">{t.project.privateCode}</span>}
+          </div>
         </div>
       </div>
-      <div className="project-arrow" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M7 21 L21 7 M11 7 H21 V17" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square"/>
-        </svg>
-      </div>
-    </a>
+    </article>
   );
 }
 
 function Work({ t, lang }) {
+  const [openId, setOpenId] = useState(null);
   return (
     <section id="work" className="section work">
       <SectionHead idx="01" title={t.sections.selected} sub={t.sections.selectedSub} />
       <div className="project-list">
-        {PROJECTS.map((p, i) => <ProjectRow key={p.id} p={p} lang={lang} i={i} />)}
+        {PROJECTS.map((p, i) => (
+          <ProjectRow
+            key={p.id}
+            p={p}
+            lang={lang}
+            t={t}
+            i={i}
+            open={openId === p.id}
+            onToggle={() => setOpenId(openId === p.id ? null : p.id)}
+          />
+        ))}
       </div>
     </section>
   );
@@ -240,9 +306,7 @@ function Now({ t, lang }) {
           <h3 className="now-status-title">{t.now.status}</h3>
           <p className="now-status-sub">{t.now.statusSub}</p>
           <div className="now-tags">
-            <span className="tag">Next.js 15</span>
-            <span className="tag">Drizzle</span>
-            <span className="tag">Cloud Run</span>
+            {(t.now.statusTags || []).map((tag) => <span className="tag" key={tag}>{tag}</span>)}
           </div>
         </div>
 
