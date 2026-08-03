@@ -37,9 +37,9 @@ const STRINGS = {
     stack: "Stack principal",
     experience: [
       {
-        period: "2023 — agora",
+        period: "2026 — agora",
         role: "Analista de Logística",
-        company: "Operação de última milha",
+        company: "BR Render · Operação de última milha",
         bullets: [
           "Rastreamento ao vivo de frota via plataforma mytracking; auditoria de SLA porta-a-porta.",
           "Desenho e implantação de KPIs operacionais (OTD, OTIF, ocorrências/100 entregas, tempo de fila).",
@@ -58,8 +58,8 @@ const STRINGS = {
         ]
       },
       {
-        period: "2022 — 2024",
-        role: "Bacharelado em Sistemas de Informação",
+        period: "2023 — 2026",
+        role: "Análise e Desenvolvimento de Sistemas",
         company: "PUC Goiás",
         bullets: [
           "Projeto Integrador: Agenda Aura — protótipo navegável + backlog Jira + Figma.",
@@ -127,9 +127,9 @@ const STRINGS = {
     stack: "Main stack",
     experience: [
       {
-        period: "2023 — now",
+        period: "2026 — now",
         role: "Logistics Analyst",
-        company: "Last-mile operations",
+        company: "BR Render · Last-mile operations",
         bullets: [
           "Live fleet tracking via mytracking platform; door-to-door SLA audit.",
           "Design and rollout of operational KPIs (OTD, OTIF, incidents/100 deliveries, queue time).",
@@ -148,8 +148,8 @@ const STRINGS = {
         ]
       },
       {
-        period: "2022 — 2024",
-        role: "BS in Information Systems",
+        period: "2023 — 2026",
+        role: "Systems Analysis and Development",
         company: "PUC Goiás",
         bullets: [
           "Capstone: Agenda Aura — clickable prototype + Jira backlog + Figma.",
@@ -248,9 +248,9 @@ const PROJECTS = [
     id: "aura",
     n: "02",
     title: "Aura Educacional",
-    year: "2025",
+    year: "2026",
     type: { pt: "LMS multi-tenant", en: "Multi-tenant LMS" },
-    role: { pt: "Solo · Full-stack", en: "Solo · Full-stack" },
+    role: { pt: "Cofundador · Full-stack", en: "Co-founder · Full-stack" },
     blurb: {
       pt: "Plataforma de cursos livres com assinatura e venda avulsa, certificados de horas verificáveis e CMS administrativo. Monorepo com 4 apps (web, learn, admin, api).",
       en: "Online-courses platform with subscription, one-off sales, verifiable hour certificates and admin CMS. Monorepo with 4 apps (web, learn, admin, api)."
