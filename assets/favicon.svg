@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <title>Sabre de luz</title>
+
+  <!-- Halo vermelho: quatro linhas contra duas de núcleo, para o ícone ler
+       como vermelho mesmo a 16px. A ponta afina em dois degraus. -->
+  <g fill="#FF2A16">
+    <rect x="6" y="5" width="8" height="1"/>
+    <rect x="6" y="6" width="9" height="1"/>
+    <rect x="6" y="9" width="9" height="1"/>
+    <rect x="6" y="10" width="8" height="1"/>
+  </g>
+
+  <!-- Núcleo incandescente -->
+  <g fill="#FFF1EC">
+    <rect x="6" y="7" width="10" height="1"/>
+    <rect x="6" y="8" width="10" height="1"/>
+  </g>
+
+  <!-- Cabo -->
+  <rect x="1" y="5" width="1" height="6" fill="#26262A"/>
+  <rect x="2" y="5" width="1" height="6" fill="#4A4A50"/>
+  <rect x="3" y="5" width="1" height="6" fill="#2E2E33"/>
+  <rect x="4" y="5" width="1" height="6" fill="#4A4A50"/>
+  <rect x="5" y="5" width="1" height="6" fill="#9A9AA2"/>
+  <!-- Botão de acionamento -->
+  <rect x="3" y="7" width="1" height="2" fill="#D93A24"/>
+</svg>

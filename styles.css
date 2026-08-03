@@ -252,19 +252,19 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
 
 /* Aberto: em vez do preenchimento, uma barra de acento à esquerda — o painel
    embaixo precisa do fundo normal para continuar legível. */
-.project-row.is-open .project-head { padding-left: 24px; color: var(--fg); }
-.project-row.is-open .project-head::before { transform: scaleX(0); }
-.project-row.is-open .project-head::after {
+.project-row[data-open] .project-head { padding-left: 24px; color: var(--fg); }
+.project-row[data-open] .project-head::before { transform: scaleX(0); }
+.project-row[data-open] .project-head::after {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
   background: var(--accent);
 }
-.project-row.is-open .project-head:hover .project-n,
-.project-row.is-open .project-head:hover .project-year,
-.project-row.is-open .project-head:hover .project-meta,
-.project-row.is-open .project-head:hover .project-blurb,
-.project-row.is-open .project-head:hover .meta-dot { color: var(--muted); }
-.project-row.is-open .project-head:hover .tag { border-color: var(--line); color: var(--muted); }
-.project-row.is-open .project-head:hover .project-toggle { color: var(--accent); }
+.project-row[data-open] .project-head:hover .project-n,
+.project-row[data-open] .project-head:hover .project-year,
+.project-row[data-open] .project-head:hover .project-meta,
+.project-row[data-open] .project-head:hover .project-blurb,
+.project-row[data-open] .project-head:hover .meta-dot { color: var(--muted); }
+.project-row[data-open] .project-head:hover .tag { border-color: var(--line); color: var(--muted); }
+.project-row[data-open] .project-head:hover .project-toggle { color: var(--accent); }
 
 .project-n {
   display: block;
@@ -304,7 +304,7 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
   color: var(--muted); transition: color .3s var(--easing);
 }
-.project-row.is-open .project-toggle { color: var(--accent); }
+.project-row[data-open] .project-toggle { color: var(--accent); }
 .project-toggle-text { text-transform: lowercase; white-space: nowrap; }
 .project-toggle-icon { position: relative; display: block; width: 18px; height: 18px; flex: none; }
 .project-toggle-icon::before,
@@ -315,7 +315,7 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
   transition: transform .45s var(--easing);
 }
 .project-toggle-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
-.project-row.is-open .project-toggle-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+.project-row[data-open] .project-toggle-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
 
 /* ── Case study ──────────────────────────────────────────── */
 .project-detail[hidden] { display: none; }

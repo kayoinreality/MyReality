@@ -142,8 +142,13 @@ function ProjectRow({ p, lang, t, i, open, onToggle }) {
   const links = p.links || [];
 
   return (
+    // O estado aberto vai num atributo próprio, não no className: useReveal
+    // adiciona "is-revealed" com classList.add, e o className aqui é do React —
+    // montar a classe com o estado faria cada clique reescrever o atributo
+    // class inteiro e apagar o is-revealed, deixando a linha em opacity 0.
     <article
-      className={"project-row swatch-" + p.swatch + (open ? " is-open" : "")}
+      className={"project-row swatch-" + p.swatch}
+      data-open={open ? "" : undefined}
       data-reveal
       style={{"--d": (i*40) + "ms"}}
     >
@@ -468,6 +473,7 @@ function App() {
   }, [tweaks.dark]);
 
   useReveal();
+  useLightsaberFavicon();
   useKonami(useCallback(() => {
     setKonamiOn((v) => !v);
   }, []));
