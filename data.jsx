@@ -3,10 +3,10 @@ const STRINGS = {
   pt: {
     nav: { work: "Projetos", about: "Sobre", experience: "Experiência", now: "Agora", contact: "Contato" },
     hero: {
-      role: "Analista de Logística & Desenvolvedor",
+      role: "Desenvolvedor full-stack",
       location: "Goiânia, BR",
       available: "Disponível para freelas",
-      lead1: "Construo software com a mesma disciplina que aplico em rastreamento de frota:",
+      lead1: "Construo produto de ponta a ponta com o rigor de quem responde por operação real:",
       lead2: " observabilidade, métricas e processo.",
       scroll: "rolar"
     },
@@ -30,16 +30,16 @@ const STRINGS = {
       contactSub: "Aberto a freelas, colaborações e conversas técnicas"
     },
     about: {
-      p1: "Sou Kayo, analista de logística focado em rastreamento de frota e construção de KPIs para operações de última milha. Trabalho com Power BI, SQL, Python (pandas) e dashboards customizados que conectam telemetria, planejamento e execução.",
-      p2: "Fora do CLT, escrevo software com a mesma obsessão por instrumentação. Meus dois projetos maiores estão no ar: o Fluxo, um app de finanças com web em Next.js e mobile em Flutter nativo sobre Firebase, e a Aura Educacional, uma LMS multi-tenant em Next.js + Hono no Cloud Run. Também publico bibliotecas open source — um motor de rate limiting de janela deslizante sobre Redis, com pacotes para Express e Fastify.",
-      p3: "Acredito que produto bom é produto medido. Não escrevo linha sem perguntar como vou observá-la em produção."
+      p1: "Sou Kayo, desenvolvedor full-stack. Construo produto de ponta a ponta — interface, API, banco e o que precisa continuar de pé em produção depois. TypeScript e Next.js no web, Flutter no mobile, Postgres e Firebase atrás, e biblioteca open source quando o problema merece ser resolvido uma vez só.",
+      p2: "Meus dois projetos maiores estão no ar: o Fluxo, um app de finanças com web em Next.js e mobile em Flutter nativo sobre Firebase, e a Aura Educacional, uma LMS multi-tenant em Next.js + Hono no Cloud Run. Também publico bibliotecas open source — um motor de rate limiting de janela deslizante sobre Redis, com pacotes para Express e Fastify.",
+      p3: "Em paralelo, respondo por uma operação de última milha como analista: rastreamento de frota ao vivo, KPIs e o fechamento que a gerência usa para decidir. É um trabalho que cobra confiabilidade antes de cobrar técnica — tem gente esperando entrega, e prazo perdido não volta atrás. Saí de lá com um hábito que levo para o código: não escrevo linha sem perguntar como vou observá-la em produção."
     },
     stack: "Stack principal",
     experience: [
       {
-        period: "2023 — agora",
+        period: "2026 — agora",
         role: "Analista de Logística",
-        company: "Operação de última milha",
+        company: "BR Render · Operação de última milha",
         bullets: [
           "Rastreamento ao vivo de frota via plataforma mytracking; auditoria de SLA porta-a-porta.",
           "Desenho e implantação de KPIs operacionais (OTD, OTIF, ocorrências/100 entregas, tempo de fila).",
@@ -58,8 +58,8 @@ const STRINGS = {
         ]
       },
       {
-        period: "2022 — 2024",
-        role: "Bacharelado em Sistemas de Informação",
+        period: "2023 — 2026",
+        role: "Análise e Desenvolvimento de Sistemas",
         company: "PUC Goiás",
         bullets: [
           "Projeto Integrador: Agenda Aura — protótipo navegável + backlog Jira + Figma.",
@@ -93,10 +93,10 @@ const STRINGS = {
   en: {
     nav: { work: "Work", about: "About", experience: "Experience", now: "Now", contact: "Contact" },
     hero: {
-      role: "Logistics Analyst & Developer",
+      role: "Full-stack Developer",
       location: "Goiânia, BR",
       available: "Available for freelance",
-      lead1: "I build software with the same discipline I apply to fleet tracking:",
+      lead1: "I build product end to end, with the rigor of someone accountable for a real operation:",
       lead2: " observability, metrics, and process.",
       scroll: "scroll"
     },
@@ -120,16 +120,16 @@ const STRINGS = {
       contactSub: "Open to freelance, collaborations and technical chats"
     },
     about: {
-      p1: "I'm Kayo, a logistics analyst focused on fleet tracking and KPI design for last-mile operations. I work with Power BI, SQL, Python (pandas) and custom dashboards connecting telemetry, planning and execution.",
-      p2: "Off the clock I write software with the same instrumentation obsession. My two largest projects are live: Fluxo, a personal finance app with a Next.js web app and a native Flutter mobile app on Firebase, and Aura Educacional, a multi-tenant LMS in Next.js + Hono on Cloud Run. I also publish open-source libraries — a sliding-window rate limiting engine on Redis, with packages for Express and Fastify.",
-      p3: "I believe good product is measured product. I don't ship a line without asking how I'll observe it in production."
+      p1: "I'm Kayo, a full-stack developer. I build product end to end — interface, API, database and whatever has to stay standing in production afterwards. TypeScript and Next.js on the web, Flutter on mobile, Postgres and Firebase behind them, and an open-source library when a problem deserves to be solved once.",
+      p2: "My two largest projects are live: Fluxo, a personal finance app with a Next.js web app and a native Flutter mobile app on Firebase, and Aura Educacional, a multi-tenant LMS in Next.js + Hono on Cloud Run. I also publish open-source libraries — a sliding-window rate limiting engine on Redis, with packages for Express and Fastify.",
+      p3: "Alongside that, I'm accountable for a last-mile operation as an analyst: live fleet tracking, operational KPIs and the management close decisions are made on. It's work that demands reliability before it demands technique — people are waiting on deliveries, and a missed window doesn't come back. I brought one habit from it into code: I don't ship a line without asking how I'll observe it in production."
     },
     stack: "Main stack",
     experience: [
       {
-        period: "2023 — now",
+        period: "2026 — now",
         role: "Logistics Analyst",
-        company: "Last-mile operations",
+        company: "BR Render · Last-mile operations",
         bullets: [
           "Live fleet tracking via mytracking platform; door-to-door SLA audit.",
           "Design and rollout of operational KPIs (OTD, OTIF, incidents/100 deliveries, queue time).",
@@ -148,8 +148,8 @@ const STRINGS = {
         ]
       },
       {
-        period: "2022 — 2024",
-        role: "BS in Information Systems",
+        period: "2023 — 2026",
+        role: "Systems Analysis and Development",
         company: "PUC Goiás",
         bullets: [
           "Capstone: Agenda Aura — clickable prototype + Jira backlog + Figma.",
@@ -210,14 +210,14 @@ const PROJECTS = [
           "Monorepo Turborepo com 5 aplicações: web em Next.js (App Router, export estático, PWA instalável), mobile em Flutter nativo para Android e iOS, painel admin, landing e um servidor MCP.",
           "Motor da jornada em packages/core (TypeScript), portado para Dart no app Flutter — os dois lados compartilham o mesmo modelo de domínio, não uma WebView.",
           "12 telas no web: Visão geral, Jornada, Transações, Cartões e contas, Investimentos, Dívidas, Previsão, Relatórios, Orçamentos e metas, Perfil, Onboarding e o chat 'Falar com o Fluxo'.",
-          "23 Cloud Functions: Checkout e Customer Portal da Stripe, webhook de assinatura, chat com LLM, Google Play Billing, exclusão de conta exigida pela Play Store, taxas do Banco Central e e-mails transacionais.",
+          "18 Cloud Functions: Checkout e Customer Portal da Stripe, webhook de assinatura, chat com LLM, Google Play Billing, exclusão de conta exigida pela Play Store, taxas do Banco Central e e-mails transacionais.",
           "Firebase Auth e Cloud Firestore com regras de segurança por usuário."
         ],
         en: [
           "Turborepo monorepo with 5 apps: a Next.js web app (App Router, static export, installable PWA), a native Flutter app for Android and iOS, an admin panel, a landing page and an MCP server.",
           "The journey engine lives in packages/core (TypeScript) and is ported to Dart in the Flutter app — both sides share the same domain model, not a WebView.",
           "12 web screens: Overview, Journey, Transactions, Cards and accounts, Investments, Debts, Forecast, Reports, Budgets and goals, Profile, Onboarding and the 'Talk to Fluxo' chat.",
-          "23 Cloud Functions: Stripe Checkout and Customer Portal, subscription webhook, LLM chat, Google Play Billing, the account deletion the Play Store requires, Central Bank rates and transactional email.",
+          "18 Cloud Functions: Stripe Checkout and Customer Portal, subscription webhook, LLM chat, Google Play Billing, the account deletion the Play Store requires, Central Bank rates and transactional email.",
           "Firebase Auth and Cloud Firestore with per-user security rules."
         ]
       },
@@ -248,9 +248,9 @@ const PROJECTS = [
     id: "aura",
     n: "02",
     title: "Aura Educacional",
-    year: "2025",
+    year: "2026",
     type: { pt: "LMS multi-tenant", en: "Multi-tenant LMS" },
-    role: { pt: "Solo · Full-stack", en: "Solo · Full-stack" },
+    role: { pt: "Cofundador · Full-stack", en: "Co-founder · Full-stack" },
     blurb: {
       pt: "Plataforma de cursos livres com assinatura e venda avulsa, certificados de horas verificáveis e CMS administrativo. Monorepo com 4 apps (web, learn, admin, api).",
       en: "Online-courses platform with subscription, one-off sales, verifiable hour certificates and admin CMS. Monorepo with 4 apps (web, learn, admin, api)."
