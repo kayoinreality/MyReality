@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kayo Santos — Desenvolvedor full-stack</title>
   <meta name="description" content="Desenvolvedor full-stack. Construindo o Fluxo e a Aura Educacional, e publicando bibliotecas open source." />
+  <meta name="author" content="Kayo Santos" />
+  <link rel="canonical" href="https://myreality.tech/" />
+
+  <link rel="alternate" hreflang="pt-BR" href="https://myreality.tech/" />
+  <link rel="alternate" hreflang="en" href="https://myreality.tech/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://myreality.tech/" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Kayo Santos" />
+  <meta property="og:title" content="Kayo Santos — Desenvolvedor full-stack" />
+  <meta property="og:description" content="Construo produto de ponta a ponta com o rigor de quem responde por operação real: observabilidade, métricas e processo." />
+  <meta property="og:url" content="https://myreality.tech/" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://myreality.tech/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Kayo Santos — Desenvolvedor full-stack" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kayo Santos — Desenvolvedor full-stack" />
+  <meta name="twitter:description" content="Construo produto de ponta a ponta com o rigor de quem responde por operação real: observabilidade, métricas e processo." />
+  <meta name="twitter:image" content="https://myreality.tech/assets/og.png" />
+
+  <meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
@@ -14,16 +40,41 @@
 
   <link rel="stylesheet" href="styles.css" />
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "url": "https://myreality.tech/",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Kayo Santos",
+      "url": "https://myreality.tech/",
+      "email": "kayorodrigodzn@gmail.com",
+      "jobTitle": "Desenvolvedor full-stack",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Goiânia",
+        "addressRegion": "GO",
+        "addressCountry": "BR"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/kayo-santos/",
+        "https://github.com/kayoinreality"
+      ],
+      "knowsAbout": [
+        "TypeScript", "Next.js", "React", "Flutter", "Node.js",
+        "PostgreSQL", "Redis", "Firebase", "Google Cloud Run", "Stripe"
+      ]
+    }
+  }
+  </script>
+
+  <!-- Um único arquivo: React em build de produção + a aplicação, montados por
+       build.mjs. Sem CDN de terceiros no caminho crítico e sem Babel no
+       navegador — o JSX é transpilado no build, não a cada visita. -->
+  <script defer src="dist/bundle.js"></script>
 </head>
 <body>
   <div id="root"></div>
-
-  <script type="text/babel" src="data.jsx"></script>
-  <script type="text/babel" src="easter.jsx"></script>
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="app.jsx"></script>
 </body>
 </html>

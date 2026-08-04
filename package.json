@@ -1,19 +1,25 @@
 {
   "name": "myreality",
   "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
+  "description": "Portfólio de Kayo Santos — myreality.tech",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node build.mjs",
+    "dev": "node build.mjs --dev",
+    "serve": "node build.mjs --dev && python3 -m http.server 5501"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kayoinreality/MyReality.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Kayo Santos",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
   "bugs": {
     "url": "https://github.com/kayoinreality/MyReality/issues"
   },

@@ -5,9 +5,11 @@ const STRINGS = {
     hero: {
       role: "Desenvolvedor full-stack",
       location: "Goiânia, BR",
-      available: "Disponível para freelas",
+      available: "Aberto a vagas full-stack",
       lead1: "Construo produto de ponta a ponta com o rigor de quem responde por operação real:",
       lead2: " observabilidade, métricas e processo.",
+      ctaWork: "Ver projetos",
+      ctaContact: "Falar comigo",
       scroll: "rolar"
     },
     project: {
@@ -15,19 +17,34 @@ const STRINGS = {
       build: "O que construí",
       decisions: "Decisões técnicas",
       status: "Status",
+      architecture: "Arquitetura",
       open: "abrir case study",
       close: "fechar",
-      privateCode: "Código privado"
+      privateCode: "Código privado",
+      copyLink: "copiar link",
+      linkCopied: "link copiado!"
     },
     sections: {
       selected: "Trabalho selecionado",
       selectedSub: "Clique em qualquer projeto para abrir o case study",
+      earlier: "Antes disso",
+      earlierSub: "O caminho até aqui, do primeiro bot ao primeiro cliente",
       about: "Sobre",
       experience: "Experiência",
       now: "Agora",
       nowSub: "O que estou fazendo neste momento",
       contact: "Vamos conversar",
-      contactSub: "Aberto a freelas, colaborações e conversas técnicas"
+      contactSub: "Aberto a vagas, freelas, colaborações e conversas técnicas"
+    },
+    ui: {
+      themeToLight: "Mudar para o tema claro",
+      themeToDark: "Mudar para o tema escuro",
+      langToggle: "Alternar idioma",
+      photoCaption: "foto: kayo",
+      statusLabel: "STATUS",
+      konamiTitle: "Você achou.",
+      konamiBody: "Easter egg destravado: tudo agora está em modo diversão. Clique em qualquer lugar para fechar.",
+      jediHint: "clique em qualquer lugar · que a força esteja com você"
     },
     about: {
       p1: "Sou Kayo, desenvolvedor full-stack. Construo produto de ponta a ponta — interface, API, banco e o que precisa continuar de pé em produção depois. TypeScript e Next.js no web, Flutter no mobile, Postgres e Firebase atrás, e biblioteca open source quando o problema merece ser resolvido uma vez só.",
@@ -79,6 +96,10 @@ const STRINGS = {
       location: "De Goiânia, GO",
       updated: "Atualizado em"
     },
+    // Data da última revisão de conteúdo desta seção. Editar à mão ao mexer
+    // no bloco "Agora" — antes isso era new Date(), o que fazia a página
+    // alegar "atualizado agora" para sempre. Relógio não é sinal de frescor.
+    updatedAt: "2026-08-04",
     contact: {
       cta: "Mande um email",
       orFollow: "Ou me siga em",
@@ -95,9 +116,11 @@ const STRINGS = {
     hero: {
       role: "Full-stack Developer",
       location: "Goiânia, BR",
-      available: "Available for freelance",
+      available: "Open to full-stack roles",
       lead1: "I build product end to end, with the rigor of someone accountable for a real operation:",
       lead2: " observability, metrics, and process.",
+      ctaWork: "View work",
+      ctaContact: "Get in touch",
       scroll: "scroll"
     },
     project: {
@@ -105,19 +128,34 @@ const STRINGS = {
       build: "What I built",
       decisions: "Technical decisions",
       status: "Status",
+      architecture: "Architecture",
       open: "open case study",
       close: "close",
-      privateCode: "Private codebase"
+      privateCode: "Private codebase",
+      copyLink: "copy link",
+      linkCopied: "link copied!"
     },
     sections: {
       selected: "Selected work",
       selectedSub: "Click any project to open the case study",
+      earlier: "Before that",
+      earlierSub: "The road here, from the first bot to the first client",
       about: "About",
       experience: "Experience",
       now: "Now",
       nowSub: "What I'm doing at this very moment",
       contact: "Let's talk",
-      contactSub: "Open to freelance, collaborations and technical chats"
+      contactSub: "Open to roles, freelance, collaborations and technical chats"
+    },
+    ui: {
+      themeToLight: "Switch to light mode",
+      themeToDark: "Switch to dark mode",
+      langToggle: "Toggle language",
+      photoCaption: "photo: kayo",
+      statusLabel: "STATUS",
+      konamiTitle: "You found it.",
+      konamiBody: "Easter egg unlocked: everything is in fun mode now. Click anywhere to close.",
+      jediHint: "click anywhere · may the force be with you"
     },
     about: {
       p1: "I'm Kayo, a full-stack developer. I build product end to end — interface, API, database and whatever has to stay standing in production afterwards. TypeScript and Next.js on the web, Flutter on mobile, Postgres and Firebase behind them, and an open-source library when a problem deserves to be solved once.",
@@ -169,6 +207,7 @@ const STRINGS = {
       location: "From Goiânia, BR",
       updated: "Updated"
     },
+    updatedAt: "2026-08-04",
     contact: {
       cta: "Send an email",
       orFollow: "Or follow me on",
@@ -185,6 +224,8 @@ const STRINGS = {
 const PROJECTS = [
   {
     id: "fluxo",
+    tier: "selected",
+    diagram: "fluxo",
     n: "01",
     title: "Fluxo",
     year: "2026",
@@ -246,6 +287,8 @@ const PROJECTS = [
   },
   {
     id: "aura",
+    tier: "selected",
+    diagram: "aura",
     n: "02",
     title: "Aura Educacional",
     year: "2026",
@@ -305,6 +348,7 @@ const PROJECTS = [
   },
   {
     id: "slidinglimiter",
+    tier: "selected",
     n: "03",
     title: { pt: "Rate limiters de janela deslizante", en: "Sliding-window rate limiters" },
     year: "2026",
@@ -366,6 +410,7 @@ const PROJECTS = [
   },
   {
     id: "dashmytracking",
+    tier: "earlier",
     n: "04",
     title: "DashMytracking",
     year: "2024",
@@ -405,6 +450,7 @@ const PROJECTS = [
   },
   {
     id: "antigravity",
+    tier: "earlier",
     n: "05",
     title: "Antigravity",
     year: "2025",
@@ -445,6 +491,7 @@ const PROJECTS = [
   },
   {
     id: "judicial",
+    tier: "earlier",
     n: "06",
     title: { pt: "Administração Judicial", en: "Judicial Administration" },
     year: "2024",
@@ -485,6 +532,7 @@ const PROJECTS = [
   },
   {
     id: "puc",
+    tier: "earlier",
     n: "07",
     title: "Agenda Aura — PUC",
     year: "2024",
@@ -525,6 +573,7 @@ const PROJECTS = [
   },
   {
     id: "discordbot",
+    tier: "earlier",
     n: "08",
     title: "Discord Bot",
     year: "2023",
@@ -576,18 +625,7 @@ const SOCIAL = [
   { id: "github", label: "GitHub", value: "@kayoinreality", href: "https://github.com/kayoinreality", copyable: false }
 ];
 
-// Spotify mock — placeholder while real integration isn't wired
-const SPOTIFY_NOW = {
-  track: "Sundial",
-  artist: "Noname",
-  album: "Sundial",
-  progress: 0.42,
-  duration: "3:18",
-  current: "1:23"
-};
-
 window.STRINGS = STRINGS;
 window.PROJECTS = PROJECTS;
 window.STACK = STACK;
 window.SOCIAL = SOCIAL;
-window.SPOTIFY_NOW = SPOTIFY_NOW;

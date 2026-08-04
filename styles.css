@@ -99,7 +99,20 @@ img { max-width: 100%; display: block; }
 }
 .nav a:hover { color: var(--accent); }
 .nav a:hover::after { right: 0; }
-@media (max-width: 760px) { .nav { display: none; } }
+/* No mobile a nav era `display: none`, sem substituto: quem abria no celular
+   — a maioria dos recrutadores — ficava sem navegação nenhuma. Agora ela
+   continua na mesma linha, rolável na horizontal, e o nome da marca sai para
+   abrir espaço. Sem segunda faixa: o header é fixo, e dobrar a altura comeria
+   13% da tela do telefone o tempo todo. */
+@media (max-width: 760px) {
+  .brand-name { display: none; }
+  .nav {
+    flex: 1; min-width: 0; margin: 0 14px; gap: 18px; font-size: 12px;
+    overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { white-space: nowrap; }
+}
 
 .header-actions { display: flex; gap: 10px; align-items: center; }
 .theme-toggle {
@@ -139,7 +152,7 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
 
 /* ── Hero ────────────────────────────────────────────────── */
 .hero {
-  min-height: 100vh; padding: 140px 0 60px;
+  min-height: 100vh; padding: clamp(104px, 11vh, 140px) 0 60px;
   display: flex; flex-direction: column; justify-content: space-between;
   position: relative;
 }
@@ -159,7 +172,10 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
 .hero-name {
   margin: clamp(40px, 6vh, 80px) 0 0;
   font-weight: 500;
-  font-size: clamp(72px, 18vw, 280px);
+  /* O tamanho responde à largura E à altura. Só com vw, um notebook 1440x900
+     rendia um nome de 259px que empurrava o CTA para fora da dobra — o botão
+     existia e ninguém via. Num monitor alto o 22vh devolve o tamanho cheio. */
+  font-size: clamp(72px, min(18vw, 22vh), 280px);
   line-height: 0.86;
   letter-spacing: -0.05em;
 }
@@ -175,6 +191,17 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
   margin: clamp(32px, 5vh, 60px) 0 0; font-weight: 400;
 }
 .hero-lead em { color: var(--accent); font-style: normal; }
+
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(28px, 4vh, 40px); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.02em;
+  padding: 12px 22px; border: 1px solid var(--line); border-radius: 999px;
+  transition: background .3s var(--easing), color .3s var(--easing), border-color .3s var(--easing);
+}
+.btn-primary { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn-ghost:hover { border-color: var(--fg); color: var(--accent); }
 
 .hero-foot {
   display: flex; justify-content: space-between; align-items: flex-end;
@@ -366,6 +393,54 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted);
 }
+.study-copy {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted);
+  border-bottom: 1px solid transparent; transition: color .2s var(--easing), border-color .2s var(--easing);
+}
+.study-copy:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── Diagrama de arquitetura ─────────────────────────────── */
+.diagram-frame {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--fg) 2%, transparent);
+  padding: clamp(12px, 2vw, 22px);
+  max-width: 900px;
+  /* O diagrama tem largura mínima: abaixo dela o texto vira ilegível, então
+     é melhor rolar o quadro do que espremer. O scroll fica aqui dentro — a
+     página nunca ganha barra horizontal por causa dele. */
+  overflow-x: auto;
+}
+.dgm { display: block; width: 100%; min-width: 620px; height: auto; }
+.dgm-group { fill: none; stroke: var(--line); stroke-dasharray: 3 4; }
+.dgm-group-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; fill: var(--muted);
+}
+.dgm-node rect { fill: var(--bg); stroke: var(--line); }
+.dgm-node-title { font-family: var(--mono); font-size: 14px; fill: var(--fg); }
+.dgm-node-line { font-family: var(--sans); font-size: 12px; fill: var(--muted); }
+.dgm-node.is-accent rect { stroke: var(--accent); }
+.dgm-node.is-accent .dgm-node-title { fill: var(--accent); }
+.dgm-link { fill: none; stroke: var(--muted); stroke-width: 1.25; opacity: 0.55; }
+.dgm-link.is-accent { stroke: var(--accent); opacity: 1; }
+.dgm-arrowhead { fill: var(--muted); opacity: 0.55; }
+.dgm-arrowhead.is-accent { fill: var(--accent); opacity: 1; }
+.dgm-note { font-family: var(--mono); font-size: 11px; fill: var(--accent); }
+
+/* ── Trabalho anterior ───────────────────────────────────── */
+/* Os três primeiros projetos têm case study completo; estes cinco são o
+   caminho até lá. Agrupá-los faz a diferença de profundidade ler como
+   curadoria, e não como três bons e cinco magros. */
+.project-list.is-earlier { margin-top: clamp(48px, 7vw, 88px); }
+.earlier-head { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.earlier-title {
+  margin: 0; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); font-weight: 500;
+}
+.earlier-sub { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+.project-list.is-earlier .project-title { font-size: clamp(24px, 2.6vw, 34px); }
+.project-list.is-earlier .project-blurb { color: var(--muted); }
 
 @media (max-width: 760px) {
   .project-head { grid-template-columns: 60px 1fr; padding: 24px 0; }
@@ -375,6 +450,7 @@ main { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto; }
   }
   .project-detail-inner { grid-template-columns: 1fr; padding-left: 16px; padding-bottom: 32px; }
   .project-detail-inner > * { grid-column: 1; }
+  .project-list.is-earlier .project-title { font-size: 26px; }
 }
 
 /* ── About ───────────────────────────────────────────────── */

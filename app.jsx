@@ -1,7 +1,7 @@
 const { useState, useEffect, useRef, useMemo, useCallback, Fragment } = React;
 
 // ---------- Header ----------
-function Header({ lang, setLang, t, dark, onToggleDark, onTweaks, hasTweaksToggle }) {
+function Header({ lang, setLang, t, dark, onToggleDark }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -26,13 +26,13 @@ function Header({ lang, setLang, t, dark, onToggleDark, onTweaks, hasTweaksToggl
         <button
           className="theme-toggle"
           onClick={onToggleDark}
-          aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+          aria-label={dark ? t.ui.themeToLight : t.ui.themeToDark}
           aria-pressed={dark}
           data-cursor="hover"
         >
           {dark ? "☀" : "☾"}
         </button>
-        <button className="lang-toggle" onClick={() => setLang(lang === "pt" ? "en" : "pt")} aria-label="Toggle language">
+        <button className="lang-toggle" onClick={() => setLang(lang === "pt" ? "en" : "pt")} aria-label={t.ui.langToggle}>
           <span className={lang === "pt" ? "is-active" : ""}>PT</span>
           <span className="sep">/</span>
           <span className={lang === "en" ? "is-active" : ""}>EN</span>
@@ -73,6 +73,15 @@ function Hero({ t, lang }) {
       <p className="hero-lead" data-reveal style={{"--d":"260ms"}}>
         {t.hero.lead1}<em>{t.hero.lead2}</em>
       </p>
+
+      <div className="hero-cta" data-reveal style={{"--d":"340ms"}}>
+        <a className="btn btn-primary" href="#work" data-cursor="hover">
+          {t.hero.ctaWork}
+        </a>
+        <a className="btn btn-ghost" href="#contact" data-cursor="hover">
+          {t.hero.ctaContact}
+        </a>
+      </div>
 
       <div className="hero-foot">
         <div className="scroll-indicator">
@@ -140,6 +149,18 @@ function ProjectRow({ p, lang, t, i, open, onToggle }) {
   const study = p.study;
   const panelId = "case-" + p.id;
   const links = p.links || [];
+  const Diagram = p.diagram && window.DIAGRAMS ? window.DIAGRAMS[p.diagram] : null;
+  const [copied, setCopied] = useState(false);
+
+  // Copia a URL absoluta do case, para colar numa candidatura ou mensagem.
+  const copyLink = () => {
+    const url = location.origin + location.pathname + location.search + "#" + CASE_HASH + p.id;
+    try {
+      navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch (e) { /* clipboard bloqueado — o link continua na barra de endereço */ }
+  };
 
   return (
     // O estado aberto vai num atributo próprio, não no className: useReveal
@@ -147,6 +168,7 @@ function ProjectRow({ p, lang, t, i, open, onToggle }) {
     // montar a classe com o estado faria cada clique reescrever o atributo
     // class inteiro e apagar o is-revealed, deixando a linha em opacity 0.
     <article
+      id={"project-" + p.id}
       className={"project-row swatch-" + p.swatch}
       data-open={open ? "" : undefined}
       data-reveal
@@ -186,6 +208,14 @@ function ProjectRow({ p, lang, t, i, open, onToggle }) {
 
       <div className="project-detail" id={panelId} hidden={!open}>
         <div className="project-detail-inner">
+          {Diagram && (
+            <div className="study-block study-diagram">
+              <div className="study-label">{t.project.architecture}</div>
+              <div className="diagram-frame">
+                <Diagram lang={lang} />
+              </div>
+            </div>
+          )}
           {study && study.problem && (
             <div className="study-block">
               <div className="study-label">{t.project.problem}</div>
@@ -215,6 +245,9 @@ function ProjectRow({ p, lang, t, i, open, onToggle }) {
               </a>
             ))}
             {p.privateRepo && <span className="study-private">{t.project.privateCode}</span>}
+            <button type="button" className="study-copy" onClick={copyLink} data-cursor="hover">
+              {copied ? t.project.linkCopied : t.project.copyLink}
+            </button>
           </div>
         </div>
       </div>
@@ -222,23 +255,72 @@ function ProjectRow({ p, lang, t, i, open, onToggle }) {
   );
 }
 
+// Prefixo do deep link de case study: #case/fluxo. Só hashes com este prefixo
+// são interpretados como case — #work, #about e o resto da nav seguem intactos.
+const CASE_HASH = "case/";
+
+function caseFromHash() {
+  const h = decodeURIComponent(location.hash.replace(/^#/, ""));
+  if (!h.startsWith(CASE_HASH)) return null;
+  const id = h.slice(CASE_HASH.length);
+  return PROJECTS.some((p) => p.id === id) ? id : null;
+}
+
 function Work({ t, lang }) {
-  const [openId, setOpenId] = useState(null);
+  // O case aberto mora na URL, não só em memória: dá para mandar o link do
+  // Fluxo numa candidatura, o F5 reabre no mesmo lugar e o Google enxerga.
+  const [openId, setOpenId] = useState(caseFromHash);
+
+  // Colar uma URL com #case/... ou usar voltar/avançar reabre o case certo.
+  useEffect(() => {
+    const onHash = () => setOpenId(caseFromHash());
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  // Chegou por link direto: rola até a linha depois do primeiro paint.
+  useEffect(() => {
+    const id = caseFromHash();
+    if (!id) return;
+    const el = document.getElementById("project-" + id);
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ block: "start" }));
+  }, []);
+
+  // replaceState, não pushState: a nav do site já usa âncoras (#work, #about),
+  // e empilhar cada abre/fecha faria o botão voltar percorrer cliques de
+  // acordeão em vez de devolver o visitante para a página anterior.
+  const toggle = (id) => {
+    const next = openId === id ? null : id;
+    setOpenId(next);
+    history.replaceState(null, "", next ? "#" + CASE_HASH + next : "#work");
+  };
+
+  const selected = PROJECTS.filter((p) => p.tier !== "earlier");
+  const earlier = PROJECTS.filter((p) => p.tier === "earlier");
+
+  const rows = (list, offset) => list.map((p, i) => (
+    <ProjectRow
+      key={p.id}
+      p={p}
+      lang={lang}
+      t={t}
+      i={i + offset}
+      open={openId === p.id}
+      onToggle={() => toggle(p.id)}
+    />
+  ));
+
   return (
     <section id="work" className="section work">
       <SectionHead idx="01" title={t.sections.selected} sub={t.sections.selectedSub} />
-      <div className="project-list">
-        {PROJECTS.map((p, i) => (
-          <ProjectRow
-            key={p.id}
-            p={p}
-            lang={lang}
-            t={t}
-            i={i}
-            open={openId === p.id}
-            onToggle={() => setOpenId(openId === p.id ? null : p.id)}
-          />
-        ))}
+      <div className="project-list">{rows(selected, 0)}</div>
+
+      <div className="project-list is-earlier">
+        <div className="earlier-head" data-reveal>
+          <h3 className="earlier-title">{t.sections.earlier}</h3>
+          <p className="earlier-sub">{t.sections.earlierSub}</p>
+        </div>
+        {rows(earlier, selected.length)}
       </div>
     </section>
   );
@@ -257,8 +339,8 @@ function About({ t }) {
         </div>
         <aside className="about-side">
           <div className="about-photo" data-reveal>
-            <img className="photo-img" src="assets/kayo.webp" alt="Kayo" loading="lazy" />
-            <div className="photo-caption">photo: kayo</div>
+            <img className="photo-img" src="assets/kayo.webp" alt="Kayo Santos" width="900" height="1600" loading="lazy" />
+            <div className="photo-caption">{t.ui.photoCaption}</div>
           </div>
           <div className="stack-block" data-reveal style={{"--d":"60ms"}}>
             <div className="stack-label">{t.stack}</div>
@@ -297,17 +379,19 @@ function Experience({ t }) {
 
 // ---------- Now ----------
 function Now({ t, lang }) {
-  const now = useLiveClock();
-  const dateFmt = now.toLocaleDateString(lang === "pt" ? "pt-BR" : "en-US", { day: "2-digit", month: "short", year: "numeric" });
-  const timeFmt = now.toLocaleTimeString(lang === "pt" ? "pt-BR" : "en-US", { hour: "2-digit", minute: "2-digit" });
-  // Bars for fake spotify visualizer
+  const locale = lang === "pt" ? "pt-BR" : "en-US";
+  // Data real da última revisão do conteúdo, vinda de data.jsx. Era new Date(),
+  // que fazia a página alegar "atualizado agora" a cada visita — um relógio
+  // não diz nada sobre quando o texto mudou pela última vez.
+  const updated = new Date(t.updatedAt + "T12:00:00");
+  const dateFmt = updated.toLocaleDateString(locale, { day: "2-digit", month: "short", year: "numeric" });
   const bars = Array.from({ length: 24 });
   return (
     <section id="now" className="section now">
       <SectionHead idx="04" title={t.sections.now} sub={t.sections.nowSub} />
       <div className="now-grid">
         <div className="now-status" data-reveal>
-          <div className="now-label">STATUS</div>
+          <div className="now-label">{t.ui.statusLabel}</div>
           <h3 className="now-status-title">{t.now.status}</h3>
           <p className="now-status-sub">{t.now.statusSub}</p>
           <div className="now-tags">
@@ -349,17 +433,11 @@ function Now({ t, lang }) {
         </div>
         <div className="now-card now-meta-card" data-reveal style={{"--d":"240ms"}}>
           <div className="now-label">{t.now.location.toUpperCase()}</div>
-          <p>{t.now.updated}: {dateFmt} · {timeFmt}</p>
+          <p>{t.now.updated}: {dateFmt}</p>
         </div>
       </div>
     </section>
   );
-}
-
-function formatTime(s) {
-  const m = Math.floor(s / 60);
-  const sec = Math.floor(s % 60).toString().padStart(2, "0");
-  return m + ":" + sec;
 }
 
 // ---------- Contact ----------
@@ -435,13 +513,36 @@ function getInitialDark(fallback) {
   return fallback;
 }
 
+// Idioma inicial, na ordem: link compartilhado (?lang=) > escolha salva >
+// idioma do navegador > português. O ?lang= vem primeiro de propósito: quem
+// abre um link em inglês tem que ver inglês, mesmo tendo escolhido PT antes.
+function getInitialLang() {
+  const fromUrl = new URLSearchParams(location.search).get("lang");
+  if (fromUrl === "pt" || fromUrl === "en") return fromUrl;
+  try {
+    const saved = localStorage.getItem("lang");
+    if (saved === "pt" || saved === "en") return saved;
+  } catch (e) { /* localStorage bloqueado — ignora */ }
+  return (navigator.language || "").toLowerCase().startsWith("pt") ? "pt" : "en";
+}
+
+// Substitui o useTweaks do tweaks-panel.jsx, que é ferramenta de autoria e não
+// entra no bundle de produção (build.mjs). Mesma API: [valores, setValor].
+function useTweaks(defaults) {
+  const [values, setValues] = useState(defaults);
+  const setTweak = useCallback((key, val) => {
+    setValues((prev) => ({ ...prev, [key]: val }));
+  }, []);
+  return [values, setTweak];
+}
+
 function App() {
   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
     "palette": "ink",
     "dark": false
   }/*EDITMODE-END*/;
 
-  const [lang, setLang] = useState("pt");
+  const [lang, setLang] = useState(getInitialLang);
   // Resolve o tema inicial uma única vez (salvo > sistema > default).
   const initialTweaks = useMemo(
     () => ({ ...TWEAK_DEFAULTS, dark: getInitialDark(TWEAK_DEFAULTS.dark) }),
@@ -472,6 +573,20 @@ function App() {
     try { localStorage.setItem("theme", tweaks.dark ? "dark" : "light"); } catch (e) { /* ignora */ }
   }, [tweaks.dark]);
 
+  // O idioma precisa existir em três lugares além do estado do React:
+  // no <html lang> (senão o leitor de tela lê inglês com fonética portuguesa),
+  // na URL (senão a versão em inglês não é linkável nem indexável) e no
+  // localStorage (senão volta para PT a cada reload).
+  useEffect(() => {
+    document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
+    try { localStorage.setItem("lang", lang); } catch (e) { /* ignora */ }
+
+    const url = new URL(location.href);
+    if (lang === "pt") url.searchParams.delete("lang");
+    else url.searchParams.set("lang", lang);
+    history.replaceState(null, "", url.pathname + url.search + url.hash);
+  }, [lang]);
+
   useReveal();
   useLightsaberFavicon();
   useKonami(useCallback(() => {
@@ -498,8 +613,8 @@ function App() {
     <Fragment>
       <CustomCursor />
       <div className={"app " + (konamiOn ? "konami" : "") + (jediOn ? " jedi" : "")}>
-        {konamiOn && <KonamiOverlay onClose={() => setKonamiOn(false)} />}
-        {jediOn && <JediOverlay onClose={() => setJediOn(false)} lang={lang} />}
+        {konamiOn && <KonamiOverlay onClose={() => setKonamiOn(false)} t={t} />}
+        {jediOn && <JediOverlay onClose={() => setJediOn(false)} lang={lang} t={t} />}
         <Header lang={lang} setLang={setLang} t={t} dark={tweaks.dark} onToggleDark={() => setTweak("dark", !tweaks.dark)} />
         <main>
           <Hero t={t} lang={lang} />
@@ -513,11 +628,14 @@ function App() {
         <Footer t={t} />
       </div>
 
+      {/* Ferramenta de autoria: só existe no bundle de dev (npm run dev).
+          Em produção `TweaksPanel` é undefined e nada disto é montado. */}
+      {typeof TweaksPanel !== "undefined" && (
       <TweaksPanel title="Tweaks" defaultOpen={false}>
-        <TweakSection title="Theme">
+        <TweakSection label="Theme">
           <TweakToggle label="Dark mode" value={tweaks.dark} onChange={(v) => setTweak("dark", v)} />
         </TweakSection>
-        <TweakSection title="Palette">
+        <TweakSection label="Palette">
           <TweakSelect
             label="Accent"
             value={tweaks.palette}
@@ -531,17 +649,18 @@ function App() {
           />
         </TweakSection>
       </TweaksPanel>
+      )}
     </Fragment>
   );
 }
 
-function KonamiOverlay({ onClose }) {
+function KonamiOverlay({ onClose, t }) {
   return (
     <div className="konami-overlay" onClick={onClose}>
       <div className="konami-card">
         <div className="konami-eyebrow">↑↑↓↓←→←→ B A</div>
-        <h3>You found it.</h3>
-        <p>Easter egg unlocked: tudo agora está em <em>fun mode</em>. Click em qualquer lugar pra fechar.</p>
+        <h3>{t.ui.konamiTitle}</h3>
+        <p>{t.ui.konamiBody}</p>
         <div className="konami-confetti">
           {Array.from({ length: 28 }).map((_, i) => (
             <span key={i} className="confetti" style={{"--i": i, "--n": 28}}></span>
@@ -552,7 +671,7 @@ function KonamiOverlay({ onClose }) {
   );
 }
 
-function JediOverlay({ onClose, lang }) {
+function JediOverlay({ onClose, lang, t }) {
   const text = lang === "pt"
     ? ["Episódio MMXXVI", "KAYO SANTOS", "",
        "Há muito tempo, numa galáxia de monorepos",
@@ -595,7 +714,7 @@ function JediOverlay({ onClose, lang }) {
           ))}
         </div>
       </div>
-      <div className="jedi-hint">click anywhere · may the force be with you</div>
+      <div className="jedi-hint">{t.ui.jediHint}</div>
     </div>
   );
 }
