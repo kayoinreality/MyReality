@@ -64,7 +64,10 @@ function useReveal() {
     }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  });
+    // Só no mount: sem o array, cada re-render do App (troca de tema, de
+    // idioma, easter egg) desmontava o observer e re-observava tudo de novo.
+    // Nada com [data-reveal] entra no DOM depois da montagem.
+  }, []);
 }
 
 // Favicon animado: sabre de luz vermelho pixelado que acende e apaga.
@@ -172,24 +175,8 @@ function useLiveClock() {
   return now;
 }
 
-// Spotify progress: simulate ticking forward
-function useSpotifyProgress() {
-  const [p, setP] = React.useState(SPOTIFY_NOW.progress);
-  React.useEffect(() => {
-    const t = setInterval(() => {
-      setP((prev) => {
-        const next = prev + 0.0035;
-        return next >= 1 ? 0 : next;
-      });
-    }, 1000);
-    return () => clearInterval(t);
-  }, []);
-  return p;
-}
-
 window.useKonami = useKonami;
 window.CustomCursor = CustomCursor;
 window.useReveal = useReveal;
 window.useLightsaberFavicon = useLightsaberFavicon;
 window.useLiveClock = useLiveClock;
-window.useSpotifyProgress = useSpotifyProgress;
