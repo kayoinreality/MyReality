@@ -48,30 +48,45 @@ const STRINGS = {
     },
     about: {
       p1: "Sou Kayo, desenvolvedor full-stack. Construo produto de ponta a ponta — interface, API, banco e o que precisa continuar de pé em produção depois. TypeScript e Next.js no web, Flutter no mobile, Postgres e Firebase atrás, e biblioteca open source quando o problema merece ser resolvido uma vez só.",
-      p2: "Meus dois projetos maiores estão no ar: o Fluxo, um app de finanças com web em Next.js e mobile em Flutter nativo sobre Firebase, e a Aura Educacional, uma LMS multi-tenant em Next.js + Hono no Cloud Run. Também publico bibliotecas open source — um motor de rate limiting de janela deslizante sobre Redis, com pacotes para Express e Fastify.",
+      p2: "Sou cofundador da Aura Educacional, uma LMS multi-tenant em Next.js + Hono no Cloud Run, e toco o Fluxo, um app de finanças com web em Next.js e mobile em Flutter nativo sobre Firebase. Os dois estão no ar e cobram de verdade, por Stripe. Também publico bibliotecas open source — um motor de rate limiting de janela deslizante sobre Redis, com pacotes para Express e Fastify.",
       p3: "Em paralelo, respondo por uma operação de última milha como analista: rastreamento de frota ao vivo, KPIs e o fechamento que a gerência usa para decidir. É um trabalho que cobra confiabilidade antes de cobrar técnica — tem gente esperando entrega, e prazo perdido não volta atrás. Saí de lá com um hábito que levo para o código: não escrevo linha sem perguntar como vou observá-la em produção."
     },
     stack: "Stack principal",
+    // Aura e BR Render são concomitantes. Entre cargos simultâneos a ordem é
+    // escolha, não cronologia — e quem lê isto para uma vaga full-stack precisa
+    // bater no trabalho de dev na primeira linha, não no cargo de logística.
+    // TODO estágios: entram como empresa concedente em `company`, com "via IEL"
+    // como nota. O IEL é agente de integração, nunca o empregador.
     experience: [
+      {
+        period: "2024 — agora",
+        role: "Cofundador · Desenvolvedor Full-stack",
+        company: "Aura Educacional · auraorg.com.br",
+        bullets: [
+          "LMS multi-tenant no ar: monorepo com 4 aplicações (web, learn, admin e api) em Next.js 15 e Hono sobre Cloud Run.",
+          "Postgres com Drizzle, Firebase Auth, pagamentos Stripe por assinatura e venda avulsa, e vídeo via Mux.",
+          "Certificados de horas com verificação pública e CMS interno que publica curso sem deploy.",
+          "Arquitetura, deploy e segurança documentados e versionados junto do código."
+        ]
+      },
+      {
+        period: "2024 — agora",
+        role: "Desenvolvedor Full-stack · PJ e produto próprio",
+        company: "Fluxo · clientes · open source",
+        bullets: [
+          "Fluxo — app de finanças no ar em fluxo.finance: monorepo com 5 apps, web em Next.js, mobile em Flutter nativo, 18 Cloud Functions e cobrança real via Stripe.",
+          "Site de assessoria jurídica entregue e em produção para escritório cliente.",
+          "Bibliotecas open source de rate limiting sobre Redis, com janela deslizante exata e pacotes para Express e Fastify."
+        ]
+      },
       {
         period: "2026 — agora",
         role: "Analista de Logística",
         company: "BR Render · Operação de última milha",
         bullets: [
-          "Rastreamento ao vivo de frota via plataforma mytracking; auditoria de SLA porta-a-porta.",
+          "Dashboards em Power BI e Python conectados ao banco operacional, reduzindo o tempo de fechamento gerencial.",
           "Desenho e implantação de KPIs operacionais (OTD, OTIF, ocorrências/100 entregas, tempo de fila).",
-          "Dashboards em Power BI e Python conectados ao banco operacional, reduzindo tempo de fechamento gerencial."
-        ]
-      },
-      {
-        period: "2024 — agora",
-        role: "Desenvolvedor independente",
-        company: "Projetos paralelos",
-        bullets: [
-          "Fluxo — app de finanças no ar em fluxo.finance: monorepo com 5 apps, web em Next.js, mobile em Flutter nativo, Firebase e cobrança real via Stripe.",
-          "Aura Educacional — LMS multi-tenant no ar em auraorg.com.br (Next.js, Hono, Cloud Run, Postgres, Stripe, Mux).",
-          "Bibliotecas open source de rate limiting sobre Redis, com janela deslizante exata e pacotes para Express e Fastify.",
-          "Site de assessoria jurídica em produção para escritório real."
+          "Rastreamento ao vivo de frota via plataforma mytracking; auditoria de SLA porta-a-porta."
         ]
       },
       {
@@ -159,30 +174,42 @@ const STRINGS = {
     },
     about: {
       p1: "I'm Kayo, a full-stack developer. I build product end to end — interface, API, database and whatever has to stay standing in production afterwards. TypeScript and Next.js on the web, Flutter on mobile, Postgres and Firebase behind them, and an open-source library when a problem deserves to be solved once.",
-      p2: "My two largest projects are live: Fluxo, a personal finance app with a Next.js web app and a native Flutter mobile app on Firebase, and Aura Educacional, a multi-tenant LMS in Next.js + Hono on Cloud Run. I also publish open-source libraries — a sliding-window rate limiting engine on Redis, with packages for Express and Fastify.",
+      p2: "I co-founded Aura Educacional, a multi-tenant LMS in Next.js + Hono on Cloud Run, and I run Fluxo, a personal finance app with a Next.js web app and a native Flutter mobile app on Firebase. Both are live and billing for real, through Stripe. I also publish open-source libraries — a sliding-window rate limiting engine on Redis, with packages for Express and Fastify.",
       p3: "Alongside that, I'm accountable for a last-mile operation as an analyst: live fleet tracking, operational KPIs and the management close decisions are made on. It's work that demands reliability before it demands technique — people are waiting on deliveries, and a missed window doesn't come back. I brought one habit from it into code: I don't ship a line without asking how I'll observe it in production."
     },
     stack: "Main stack",
+    // Mirrors the PT ordering: concurrent roles, dev work first. See the note
+    // on the PT block for why, and for where the internships go.
     experience: [
+      {
+        period: "2024 — now",
+        role: "Co-founder · Full-stack Developer",
+        company: "Aura Educacional · auraorg.com.br",
+        bullets: [
+          "Multi-tenant LMS in production: a 4-app monorepo (web, learn, admin and api) in Next.js 15 and Hono on Cloud Run.",
+          "Postgres with Drizzle, Firebase Auth, Stripe payments for both subscription and one-off sales, and video through Mux.",
+          "Hour certificates with public verification, and an internal CMS that publishes a course without a deploy.",
+          "Architecture, deployment and security documented and versioned alongside the code."
+        ]
+      },
+      {
+        period: "2024 — now",
+        role: "Full-stack Developer · contract and own product",
+        company: "Fluxo · clients · open source",
+        bullets: [
+          "Fluxo — personal finance app live at fluxo.finance: 5-app monorepo, Next.js web, native Flutter mobile, 18 Cloud Functions and real Stripe billing.",
+          "Legal-services site delivered and running in production for a law firm client.",
+          "Open-source Redis rate limiting libraries with an exact sliding window and packages for Express and Fastify."
+        ]
+      },
       {
         period: "2026 — now",
         role: "Logistics Analyst",
         company: "BR Render · Last-mile operations",
         bullets: [
-          "Live fleet tracking via mytracking platform; door-to-door SLA audit.",
+          "Power BI and Python dashboards wired to the operational DB, cutting management close time.",
           "Design and rollout of operational KPIs (OTD, OTIF, incidents/100 deliveries, queue time).",
-          "Power BI and Python dashboards wired to the operational DB, cutting management close time."
-        ]
-      },
-      {
-        period: "2024 — now",
-        role: "Independent developer",
-        company: "Side projects",
-        bullets: [
-          "Fluxo — personal finance app live at fluxo.finance: 5-app monorepo, Next.js web, native Flutter mobile, Firebase and real Stripe billing.",
-          "Aura Educacional — multi-tenant LMS live at auraorg.com.br (Next.js, Hono, Cloud Run, Postgres, Stripe, Mux).",
-          "Open-source Redis rate limiting libraries with an exact sliding window and packages for Express and Fastify.",
-          "Live legal-services site for a real law firm."
+          "Live fleet tracking via mytracking platform; door-to-door SLA audit."
         ]
       },
       {
