@@ -4,6 +4,8 @@ const EMAIL = "kayorodrigodzn@gmail.com";
 const ALL_PROJECTS = [DELIVERY_CASE, ...PROJECTS];
 const FEATURED_PROJECT_IDS = ["fluxo", "aura", "judicial"];
 const VIEWS = ["home", "about", "resume", "projects", "services"];
+const THEMES = ["dark", "light"];
+const THEME_COLORS = { dark: "#050505", light: "#f6f2ef" };
 const PROJECT_PREVIEWS = {
   fluxo: {
     src: "assets/projects/fluxo.webp",
@@ -46,10 +48,55 @@ const Arrow = ({ left = false }) => (
   </svg>
 );
 
+const Sun = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.1" stroke="currentColor" strokeWidth="1.5" />
+    <path
+      d="M12 2.7v2.5M12 18.8v2.5M2.7 12h2.5M18.8 12h2.5M5.4 5.4l1.8 1.8M16.8 16.8l1.8 1.8M18.6 5.4l-1.8 1.8M7.2 16.8l-1.8 1.8"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const Moon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+  </svg>
+);
+
 const Out = () => <span aria-hidden="true">↗</span>;
 const projectTitle = (project) =>
   typeof project.title === "string" ? project.title : project.title.pt;
 const projectById = (id) => ALL_PROJECTS.find((project) => project.id === id);
+
+function readStoredTheme() {
+  try {
+    const stored = localStorage.getItem("theme");
+    return THEMES.includes(stored) ? stored : null;
+  } catch {
+    return null;
+  }
+}
+
+function readTheme() {
+  const stored = readStoredTheme();
+  if (stored) return stored;
+  const applied = document.documentElement.dataset.theme;
+  if (THEMES.includes(applied)) return applied;
+  return matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
+
+// Só grava quando alguém clica no botão: sem escolha salva, a página continua
+// acompanhando o sistema operacional em vez de congelar no tema da primeira visita.
+function storeTheme(theme) {
+  try {
+    localStorage.setItem("theme", theme);
+  } catch {
+    /* modo privado sem storage: a escolha vale só para esta visita. */
+  }
+}
 
 function readRoute() {
   const url = new URL(location.href);
@@ -99,7 +146,7 @@ function PageIntro({ index, eyebrow, title, body }) {
   );
 }
 
-function Header({ route, navigate, menu, setMenu, openContact }) {
+function Header({ route, navigate, menu, setMenu, openContact, theme, toggleTheme }) {
   const items = [
     ["about", "Sobre"],
     ["resume", "Currículo"],
@@ -136,6 +183,15 @@ function Header({ route, navigate, menu, setMenu, openContact }) {
       </nav>
       <div className="header-actions">
         <span className="availability"><i /> aberto a projetos</span>
+        <button
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-pressed={theme === "light"}
+          aria-label={theme === "dark" ? "Ativar modo claro" : "Ativar modo escuro"}
+          title={theme === "dark" ? "Modo claro" : "Modo escuro"}
+        >
+          {theme === "dark" ? <Sun /> : <Moon />}
+        </button>
         <button className="contact-trigger" onClick={openContact}>Contato <Out /></button>
         <button
           className="menu-trigger"
@@ -509,6 +565,7 @@ function ContactDialog({ route, dialogRef, closeContact, setNotice }) {
 
 function App() {
   const [route, setRoute] = useState(readRoute);
+  const [theme, setTheme] = useState(readTheme);
   const [menu, setMenu] = useState(false);
   const [notice, setNotice] = useState("");
   const [contactOpen, setContactOpen] = useState(false);
@@ -535,12 +592,27 @@ function App() {
   }, []);
   const closeContact = () => setContactOpen(false);
   const openContact = () => setContactOpen(true);
+  const toggleTheme = () => setTheme((current) => {
+    const next = current === "dark" ? "light" : "dark";
+    storeTheme(next);
+    return next;
+  });
 
   useEffect(() => {
     const restore = () => setRoute(readRoute());
     addEventListener("popstate", restore);
     addEventListener("hashchange", restore);
     return () => { removeEventListener("popstate", restore); removeEventListener("hashchange", restore); };
+  }, []);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", THEME_COLORS[theme]);
+  }, [theme]);
+  useEffect(() => {
+    const query = matchMedia("(prefers-color-scheme: light)");
+    const follow = (event) => { if (!readStoredTheme()) setTheme(event.matches ? "light" : "dark"); };
+    query.addEventListener("change", follow);
+    return () => query.removeEventListener("change", follow);
   }, []);
   useEffect(() => {
     const titles = { home: "Portfólio", about: "Sobre", resume: "Currículo", projects: "Projetos", services: "Serviços" };
@@ -564,7 +636,7 @@ function App() {
   return (
     <>
       <a className="skip-link" href="#main-content">Pular para o conteúdo</a>
-      <Header route={route} navigate={navigate} menu={menu} setMenu={setMenu} openContact={openContact} />
+      <Header route={route} navigate={navigate} menu={menu} setMenu={setMenu} openContact={openContact} theme={theme} toggleTheme={toggleTheme} />
       <main id="main-content">
         {route.view === "home" && <HomeView navigate={navigate} />}
         {route.view === "about" && <AboutView navigate={navigate} />}
