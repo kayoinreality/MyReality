@@ -19,10 +19,10 @@ const OUT = resolve(ROOT, "dist/bundle.js");
 // tweaks-panel é ferramenta de autoria — fica de fora do bundle de produção.
 const SOURCES = [
   "data.jsx",
+  "conversion-data.jsx",
   "diagrams.jsx",
   "easter.jsx",
-  ...(DEV ? ["tweaks-panel.jsx"] : []),
-  "app.jsx"
+  "conversion-app.jsx"
 ];
 
 const parts = [];
