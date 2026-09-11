@@ -4,6 +4,34 @@ const EMAIL = "kayorodrigodzn@gmail.com";
 const ALL_PROJECTS = [DELIVERY_CASE, ...PROJECTS];
 const FEATURED_PROJECT_IDS = ["fluxo", "aura", "judicial"];
 const VIEWS = ["home", "about", "resume", "projects", "services"];
+const PROJECT_PREVIEWS = {
+  fluxo: {
+    src: "assets/projects/fluxo.webp",
+    alt: "Página inicial do Fluxo, aplicativo de planejamento financeiro",
+    domain: "fluxo.finance",
+    href: "https://fluxo.finance/"
+  },
+  aura: {
+    src: "assets/projects/aura.webp",
+    alt: "Tela de acesso da plataforma Aura Educacional",
+    domain: "auraeducacional.app",
+    href: "https://auraeducacional.app/login"
+  },
+  judicial: {
+    src: "assets/projects/judicial.webp",
+    alt: "Página inicial do site de Administração Judicial",
+    domain: "GitHub Pages · site entregue",
+    href: "https://kayoinreality.github.io/Adminstra-o-Judicial/"
+  }
+};
+const PROJECT_LINKS = {
+  fluxo: [{ kind: "live", href: PROJECT_PREVIEWS.fluxo.href }],
+  aura: [{ kind: "live", href: PROJECT_PREVIEWS.aura.href }],
+  judicial: [
+    { kind: "live", href: PROJECT_PREVIEWS.judicial.href },
+    { kind: "repo", href: "https://github.com/kayoinreality/Adminstra-o-Judicial" }
+  ]
+};
 
 const Arrow = ({ left = false }) => (
   <svg
@@ -240,21 +268,35 @@ function ResumeView({ route, selectProfile, navigate, openContact }) {
   );
 }
 
-function ProjectCard({ project, index, openProject }) {
+function ProjectSlide({ project, index, active, openProject }) {
   const note = PROJECT_NOTES[project.id];
+  const preview = PROJECT_PREVIEWS[project.id];
   return (
-    <article className={"project-card project-" + project.id}>
+    <article
+      id={"project-slide-" + project.id}
+      className={"project-slide project-" + project.id + (active ? " is-active" : "")}
+      aria-current={active ? "true" : undefined}
+    >
       <button onClick={() => openProject(project.id)} aria-label={"Explorar projeto " + projectTitle(project)}>
-        <span className="project-card-visual" aria-hidden="true">
-          <span className="visual-number">0{index + 1}</span>
-          <span className="visual-mark">{project.id === "judicial" ? "AJ" : projectTitle(project)}</span>
-          <span className="visual-lines"><i /><i /><i /></span>
+        <span className="project-preview">
+          <img
+            src={preview.src}
+            alt={preview.alt}
+            width="1200"
+            height="824"
+            loading={index === 0 ? "eager" : "lazy"}
+          />
+          <span className="preview-browser" aria-hidden="true">
+            <span><i /><i /><i /></span>
+            <small>{preview.domain}</small>
+          </span>
+          <span className="preview-index" aria-hidden="true">0{index + 1}</span>
         </span>
-        <span className="project-card-body">
+        <span className="project-slide-body">
           <span className="micro-label">{note.label}</span>
           <strong>{projectTitle(project)}</strong>
           <small>{note.blurb}</small>
-          <span className="project-card-foot"><span>{project.year}</span><span>ABRIR CASE <Arrow /></span></span>
+          <span className="project-slide-foot"><span>{project.year}</span><span>ABRIR CASE <Arrow /></span></span>
         </span>
       </button>
     </article>
@@ -262,9 +304,34 @@ function ProjectCard({ project, index, openProject }) {
 }
 
 function ProjectsView({ openProject }) {
-  const rail = useRef(null);
+  const wheel = useRef(null);
+  const scrollFrame = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const projects = FEATURED_PROJECT_IDS.map(projectById);
-  const move = (direction) => rail.current?.scrollBy({ left: direction * Math.min(520, window.innerWidth * 0.78), behavior: "smooth" });
+  const goTo = useCallback((index) => {
+    const next = Math.max(0, Math.min(projects.length - 1, index));
+    const container = wheel.current;
+    const item = container?.children[next];
+    if (!container || !item) return;
+    const top = item.offsetTop - (container.clientHeight - item.clientHeight) / 2;
+    container.scrollTo({ top, behavior: "smooth" });
+    setActiveIndex(next);
+  }, [projects.length]);
+  const syncActive = () => {
+    cancelAnimationFrame(scrollFrame.current);
+    scrollFrame.current = requestAnimationFrame(() => {
+      const container = wheel.current;
+      if (!container) return;
+      const middle = container.scrollTop + container.clientHeight / 2;
+      const items = Array.from(container.children);
+      const closest = items.reduce((best, item, index) => {
+        const distance = Math.abs(item.offsetTop + item.clientHeight / 2 - middle);
+        return distance < best.distance ? { index, distance } : best;
+      }, { index: 0, distance: Infinity });
+      setActiveIndex(closest.index);
+    });
+  };
+  useEffect(() => () => cancelAnimationFrame(scrollFrame.current), []);
 
   return (
     <section className="view-shell projects-view" aria-labelledby="projects-title">
@@ -272,16 +339,53 @@ function ProjectsView({ openProject }) {
         index="03"
         eyebrow="PROJETOS SELECIONADOS"
         title={<>Três produtos.<br /><em>Três problemas reais.</em></>}
-        body="Role horizontalmente e abra qualquer case. A história, as decisões e a arquitetura aparecem aqui dentro; você só sai quando quiser visitar o produto ou o código."
+        body="Gire a galeria vertical e abra qualquer case. As prévias vêm das interfaces reais; a história, as decisões e a arquitetura continuam aqui dentro."
       />
-      <div className="rail-toolbar">
-        <span>ARRASTE OU USE AS SETAS</span>
-        <div><button onClick={() => move(-1)} aria-label="Projetos anteriores"><Arrow left /></button><button onClick={() => move(1)} aria-label="Próximos projetos"><Arrow /></button></div>
+      <div className="project-wheel-frame">
+        <div
+          className="project-wheel"
+          ref={wheel}
+          tabIndex="0"
+          role="region"
+          aria-roledescription="galeria em roleta"
+          aria-label="Galeria vertical de projetos"
+          onScroll={syncActive}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowUp") { event.preventDefault(); goTo(activeIndex - 1); }
+            if (event.key === "ArrowDown") { event.preventDefault(); goTo(activeIndex + 1); }
+          }}
+        >
+          {projects.map((project, index) => (
+            <ProjectSlide
+              key={project.id}
+              project={project}
+              index={index}
+              active={activeIndex === index}
+              openProject={openProject}
+            />
+          ))}
+        </div>
+        <aside className="wheel-controls" aria-label="Controles da galeria">
+          <span className="wheel-counter" aria-live="polite"><strong>0{activeIndex + 1}</strong> / 0{projects.length}</span>
+          <div className="wheel-dots">
+            {projects.map((project, index) => (
+              <button
+                key={project.id}
+                className={activeIndex === index ? "is-active" : ""}
+                onClick={() => goTo(index)}
+                aria-label={"Mostrar " + projectTitle(project)}
+                aria-pressed={activeIndex === index}
+              ><span /></button>
+            ))}
+          </div>
+          <div className="wheel-arrows">
+            <button onClick={() => goTo(activeIndex - 1)} disabled={activeIndex === 0} aria-label="Projeto anterior">↑</button>
+            <button onClick={() => goTo(activeIndex + 1)} disabled={activeIndex === projects.length - 1} aria-label="Próximo projeto">↓</button>
+          </div>
+          <small>ROLE<br />VERTICAL</small>
+        </aside>
       </div>
-      <div className="project-rail" ref={rail} tabIndex="0" aria-label="Projetos em destaque">
-        {projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} openProject={openProject} />)}
-      </div>
-      <p className="projects-note">Projetos próprios, produto em cofundação e trabalho entregue a cliente. Nenhum resultado ou métrica foi presumido.</p>
+      <p className="projects-note">Fluxo e Administração Judicial usam capturas das páginas públicas. A Aura mostra a interface pública de acesso, sem depender do domínio institucional.</p>
     </section>
   );
 }
@@ -355,7 +459,7 @@ function ProjectDialog({ project, dialogRef, closeProject }) {
       {Diagram && <details className="architecture"><summary>Ver arquitetura técnica <span>+</span></summary><div className="diagram-frame"><Diagram lang="pt" /></div></details>}
       <div className="case-footer">
         <span>{note.proof}</span>
-        <div>{project.links.map((link) => (
+        <div>{(PROJECT_LINKS[project.id] || project.links).map((link) => (
           <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
             {link.kind === "repo" ? "Ver código" : "Visitar projeto"} <Out />
           </a>
