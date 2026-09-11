@@ -10,6 +10,11 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
 <link rel="preload" href="assets/fonts/inter-tight-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="styles.css"/>
+<script>
+/* Resolve o tema antes do primeiro paint: sem isso a página abriria escura
+   e piscaria para o claro quando o React montasse. */
+(function(){try{var s=localStorage.getItem("theme");document.documentElement.dataset.theme=(s==="light"||s==="dark")?s:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");}catch(e){}})();
+</script>
 <script defer src="dist/bundle.js"></script>
 </head>
 <body><div id="root"></div><noscript><main style="font-family:Arial;padding:40px;max-width:720px;margin:auto;background:#050505;color:#f4efeb;min-height:100vh"><h1>Kayo Santos</h1><p>Desenvolvimento de software, logística, design e soluções para negócios.</p><p>Ative o JavaScript para acessar Sobre, Currículo, Projetos e Serviços.</p><p>Contato: <a style="color:#f1272f" href="mailto:kayorodrigodzn@gmail.com">kayorodrigodzn@gmail.com</a> · <a style="color:#f1272f" href="https://github.com/kayoinreality">GitHub</a> · <a style="color:#f1272f" href="https://www.linkedin.com/in/kayo-santos/">LinkedIn</a></p></main></noscript></body>
