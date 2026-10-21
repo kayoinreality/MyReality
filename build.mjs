@@ -1,53 +1,98 @@
-// Build: concatena os fontes JSX na ordem de execução e empacota com esbuild
-// incluindo React, Lenis, GSAP (ScrollTrigger) e Motion (Framer Motion) num bundle único.
+// Build do site da Reality.
+//   node build.mjs           → _site/ minificado, pronto para o GitHub Pages
+//   node build.mjs --dev     → _site/ sem minificar, recompila ao salvar e serve em http://localhost:5501
+//
+// Gera um index.html por rota (com título e descrição próprios) para que links
+// diretos funcionem no Pages, e um 404.html que cai no mesmo app.
 import * as esbuild from "esbuild";
-import { readFile, mkdir, rm, stat } from "node:fs/promises";
-import { dirname, resolve } from "node:path";
+import { cp, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
+import { createServer } from "node:http";
+import { dirname, extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { ROUTES } from "./src/data.js";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
+const OUT = resolve(ROOT, "_site");
 const DEV = process.argv.includes("--dev");
-const OUT = resolve(ROOT, "dist/bundle.js");
+const ORIGIN = "https://myreality.tech";
 
-const SOURCES = [
-  "data.jsx",
-  "conversion-data.jsx",
-  "diagrams.jsx",
-  "easter.jsx",
-  "conversion-app.jsx"
-];
+const escape = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-const parts = [];
-for (const file of SOURCES) {
-  parts.push(`// ─── ${file} ───\n${await readFile(resolve(ROOT, file), "utf8")}`);
+async function writePages() {
+  const template = await readFile(resolve(ROOT, "index.html"), "utf8");
+  const page = (title, description, canonical, robots = "") =>
+    template
+      .replaceAll("%TITLE%", escape(title))
+      .replaceAll("%DESCRIPTION%", escape(description))
+      .replaceAll("%CANONICAL%", canonical)
+      .replace("%ROBOTS%", robots);
+
+  for (const r of ROUTES) {
+    const dir = join(OUT, r.path);
+    await mkdir(dir, { recursive: true });
+    await writeFile(join(dir, "index.html"), page(r.title, r.description, `${ORIGIN}${r.path === "/" ? "/" : r.path}`));
+  }
+  await writeFile(
+    join(OUT, "404.html"),
+    page("Página não encontrada — Reality", "Essa página não existe.", `${ORIGIN}/`, '<meta name="robots" content="noindex"/>')
+  );
 }
 
-await rm(resolve(ROOT, "dist"), { recursive: true, force: true });
-await mkdir(resolve(ROOT, "dist"), { recursive: true });
+async function copyStatic() {
+  await cp(resolve(ROOT, "assets"), join(OUT, "assets"), { recursive: true });
+  for (const f of ["CNAME", ".nojekyll"]) await cp(resolve(ROOT, f), join(OUT, f));
+}
 
-const result = await esbuild.build({
-  stdin: {
-    contents: parts.join("\n\n"),
-    resolveDir: ROOT,
-    sourcefile: "reality-bundle.jsx",
-    loader: "jsx"
-  },
+const options = {
+  entryPoints: { app: resolve(ROOT, "src/main.jsx") },
+  outdir: join(OUT, "static"),
   bundle: true,
-  outfile: OUT,
   format: "iife",
   platform: "browser",
-  target: ["es2020"],
+  target: ["es2020", "safari15"],
   jsx: "automatic",
   minify: !DEV,
-  sourcemap: false,
+  sourcemap: DEV,
   legalComments: "none",
-  define: {
-    "process.env.NODE_ENV": JSON.stringify(DEV ? "development" : "production")
-  }
-});
+  external: ["/assets/*"],
+  logLevel: "warning",
+  define: { "process.env.NODE_ENV": JSON.stringify(DEV ? "development" : "production") }
+};
 
-for (const w of result.warnings) console.warn(`[aviso] ${w.text}`);
+await rm(OUT, { recursive: true, force: true });
+await mkdir(OUT, { recursive: true });
+await copyStatic();
+await writePages();
 
-const info = await stat(OUT);
-const kb = (info.size / 1024).toFixed(1);
-console.log(`dist/bundle.js — ${kb} kB (React + Lenis + GSAP + Motion)${DEV ? " — dev" : ""}`);
+if (!DEV) {
+  await esbuild.build(options);
+  const kb = async (f) => ((await stat(join(OUT, "static", f))).size / 1024).toFixed(1);
+  console.log(`_site pronto — app.js ${await kb("app.js")} kB, app.css ${await kb("app.css")} kB, ${ROUTES.length} rotas`);
+} else {
+  const ctx = await esbuild.context(options);
+  await ctx.watch();
+
+  const types = {
+    ".html": "text/html; charset=utf-8",
+    ".css": "text/css",
+    ".js": "application/javascript",
+    ".map": "application/json",
+    ".svg": "image/svg+xml",
+    ".webp": "image/webp",
+    ".png": "image/png",
+    ".woff2": "font/woff2"
+  };
+  createServer(async (req, res) => {
+    const url = decodeURIComponent(req.url.split("?")[0]);
+    const candidates = extname(url) ? [url] : [join(url, "index.html"), "/404.html"];
+    for (const c of candidates) {
+      try {
+        const body = await readFile(join(OUT, c));
+        res.writeHead(c === "/404.html" ? 404 : 200, { "Content-Type": types[extname(c)] || "application/octet-stream" });
+        return res.end(body);
+      } catch {}
+    }
+    res.writeHead(404);
+    res.end("Não encontrado");
+  }).listen(5501, () => console.log("Reality em http://localhost:5501 (recompila ao salvar)"));
+}

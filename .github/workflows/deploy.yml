@@ -28,15 +28,9 @@ jobs:
           cache: npm
 
       - run: npm ci
+      # Gera _site/ completo: um HTML por rota, 404.html, bundle e assets.
+      # Os fontes em src/ ficam no repo, não no ar.
       - run: npm run build
-
-      # Só o que o site precisa em runtime. Os .jsx são fonte: ficam no repo,
-      # não no ar — quem quiser lê no GitHub, não baixa junto com a página.
-      - name: Montar o diretório publicado
-        run: |
-          mkdir -p _site
-          cp index.html styles.css CNAME .nojekyll _site/
-          cp -r dist assets _site/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
