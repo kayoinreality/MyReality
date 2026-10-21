@@ -1,27 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
-  <title>Sabre de luz</title>
-
-  <!-- Halo vermelho: quatro linhas contra duas de núcleo, para o ícone ler
-       como vermelho mesmo a 16px. A ponta afina em dois degraus. -->
-  <g fill="#FF2A16">
-    <rect x="6" y="5" width="8" height="1"/>
-    <rect x="6" y="6" width="9" height="1"/>
-    <rect x="6" y="9" width="9" height="1"/>
-    <rect x="6" y="10" width="8" height="1"/>
-  </g>
-
-  <!-- Núcleo incandescente -->
-  <g fill="#FFF1EC">
-    <rect x="6" y="7" width="10" height="1"/>
-    <rect x="6" y="8" width="10" height="1"/>
-  </g>
-
-  <!-- Cabo -->
-  <rect x="1" y="5" width="1" height="6" fill="#26262A"/>
-  <rect x="2" y="5" width="1" height="6" fill="#4A4A50"/>
-  <rect x="3" y="5" width="1" height="6" fill="#2E2E33"/>
-  <rect x="4" y="5" width="1" height="6" fill="#4A4A50"/>
-  <rect x="5" y="5" width="1" height="6" fill="#9A9AA2"/>
-  <!-- Botão de acionamento -->
-  <rect x="3" y="7" width="1" height="2" fill="#D93A24"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" fill="none">
+  <rect width="28" height="28" rx="6" fill="#050508"/>
+  <path d="M14 3.5L23.5 9V19.5L14 24.5L4.5 19.5V9L14 3.5Z" stroke="#FFFFFF" stroke-width="1.6" fill="rgba(255,255,255,0.06)"/>
+  <path d="M14 3.5V14.2M14 14.2L23.5 9M14 14.2L4.5 9M14 14.2V24.5" stroke="#94A3B8" stroke-width="1.2"/>
+  <polygon points="14,7.8 19.2,10.8 14,14.2 8.8,10.8" fill="rgba(255,255,255,0.28)"/>
 </svg>
