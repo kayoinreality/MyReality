@@ -1,658 +1,259 @@
-// Data: i18n strings + projects + experience
-const STRINGS = {
-  pt: {
-    nav: { work: "Projetos", about: "Sobre", experience: "Experiência", now: "Agora", contact: "Contato" },
-    hero: {
-      role: "Desenvolvedor full-stack",
-      location: "Goiânia, BR",
-      available: "Aberto a vagas full-stack",
-      lead1: "Construo produto de ponta a ponta com o rigor de quem responde por operação real:",
-      lead2: " observabilidade, métricas e processo.",
-      ctaWork: "Ver projetos",
-      ctaContact: "Falar comigo",
-      scroll: "rolar"
-    },
-    project: {
-      problem: "O problema",
-      build: "O que construí",
-      decisions: "Decisões técnicas",
-      status: "Status",
-      architecture: "Arquitetura",
-      open: "abrir case study",
-      close: "fechar",
-      privateCode: "Código privado",
-      copyLink: "copiar link",
-      linkCopied: "link copiado!"
-    },
-    sections: {
-      selected: "Trabalho selecionado",
-      selectedSub: "Clique em qualquer projeto para abrir o case study",
-      earlier: "Antes disso",
-      earlierSub: "O caminho até aqui, do primeiro bot ao primeiro cliente",
-      about: "Sobre",
-      experience: "Experiência",
-      now: "Agora",
-      nowSub: "O que estou fazendo neste momento",
-      contact: "Vamos conversar",
-      contactSub: "Aberto a vagas, freelas, colaborações e conversas técnicas"
-    },
-    ui: {
-      themeToLight: "Mudar para o tema claro",
-      themeToDark: "Mudar para o tema escuro",
-      langToggle: "Alternar idioma",
-      photoCaption: "foto: kayo",
-      statusLabel: "STATUS",
-      konamiTitle: "Você achou.",
-      konamiBody: "Easter egg destravado: tudo agora está em modo diversão. Clique em qualquer lugar para fechar.",
-      jediHint: "clique em qualquer lugar · que a força esteja com você"
-    },
-    about: {
-      p1: "Sou Kayo, desenvolvedor full-stack. Construo produto de ponta a ponta — interface, API, banco e o que precisa continuar de pé em produção depois. TypeScript e Next.js no web, Flutter no mobile, Postgres e Firebase atrás, e biblioteca open source quando o problema merece ser resolvido uma vez só.",
-      p2: "Sou cofundador da Aura Educacional, uma LMS multi-tenant em Next.js + Hono no Cloud Run, e toco o Fluxo, um app de finanças com web em Next.js e mobile em Flutter nativo sobre Firebase. Os dois estão no ar e cobram de verdade, por Stripe. Também publico bibliotecas open source — um motor de rate limiting de janela deslizante sobre Redis, com pacotes para Express e Fastify.",
-      p3: "Em paralelo, respondo por uma operação de última milha como analista: rastreamento de frota ao vivo, KPIs e o fechamento que a gerência usa para decidir. É um trabalho que cobra confiabilidade antes de cobrar técnica — tem gente esperando entrega, e prazo perdido não volta atrás. Saí de lá com um hábito que levo para o código: não escrevo linha sem perguntar como vou observá-la em produção."
-    },
-    stack: "Stack principal",
-    // Aura e BR Render são concomitantes. Entre cargos simultâneos a ordem é
-    // escolha, não cronologia — e quem lê isto para uma vaga full-stack precisa
-    // bater no trabalho de dev na primeira linha, não no cargo de logística.
-    // TODO estágios: entram como empresa concedente em `company`, com "via IEL"
-    // como nota. O IEL é agente de integração, nunca o empregador.
-    experience: [
-      {
-        period: "2024 — agora",
-        role: "Cofundador · Desenvolvedor Full-stack",
-        company: "Aura Educacional · auraorg.com.br",
-        bullets: [
-          "LMS multi-tenant no ar: monorepo com 4 aplicações (web, learn, admin e api) em Next.js 15 e Hono sobre Cloud Run.",
-          "Postgres com Drizzle, Firebase Auth, pagamentos Stripe por assinatura e venda avulsa, e vídeo via Mux.",
-          "Certificados de horas com verificação pública e CMS interno que publica curso sem deploy.",
-          "Arquitetura, deploy e segurança documentados e versionados junto do código."
-        ]
-      },
-      {
-        period: "2024 — agora",
-        role: "Desenvolvedor Full-stack · PJ e produto próprio",
-        company: "Fluxo · clientes · open source",
-        bullets: [
-          "Fluxo — app de finanças no ar em fluxo.finance: monorepo com 5 apps, web em Next.js, mobile em Flutter nativo, 18 Cloud Functions e cobrança real via Stripe.",
-          "Site de assessoria jurídica entregue e em produção para escritório cliente.",
-          "Bibliotecas open source de rate limiting sobre Redis, com janela deslizante exata e pacotes para Express e Fastify."
-        ]
-      },
-      {
-        period: "2026 — agora",
-        role: "Analista de Logística",
-        company: "BR Render · Operação de última milha",
-        bullets: [
-          "Dashboards em Power BI e Python conectados ao banco operacional, reduzindo o tempo de fechamento gerencial.",
-          "Desenho e implantação de KPIs operacionais (OTD, OTIF, ocorrências/100 entregas, tempo de fila).",
-          "Rastreamento ao vivo de frota via plataforma mytracking; auditoria de SLA porta-a-porta."
-        ]
-      },
-      {
-        period: "2023 — 2026",
-        role: "Análise e Desenvolvimento de Sistemas",
-        company: "PUC Goiás",
-        bullets: [
-          "Projeto Integrador: Agenda Aura — protótipo navegável + backlog Jira + Figma.",
-          "Foco em engenharia de software, banco de dados e gestão de projetos."
-        ]
-      }
-    ],
-    now: {
-      status: "Construindo o Fluxo",
-      statusSub: "Assinatura via Stripe no ar no web. Próximo: Google Play Billing e proxy da LLM em Cloud Function.",
-      statusTags: ["Flutter", "Firebase", "Stripe"],
-      reading: "Lendo",
-      readingValue: "Designing Data-Intensive Applications — Kleppmann",
-      listening: "Ouvindo",
-      learning: "Estudando",
-      learningValue: "Open Finance via agregador e MCP remoto em Cloud Run",
-      location: "De Goiânia, GO",
-      updated: "Atualizado em"
-    },
-    // Data da última revisão de conteúdo desta seção. Editar à mão ao mexer
-    // no bloco "Agora" — antes isso era new Date(), o que fazia a página
-    // alegar "atualizado agora" para sempre. Relógio não é sinal de frescor.
-    updatedAt: "2026-08-04",
-    contact: {
-      cta: "Mande um email",
-      orFollow: "Ou me siga em",
-      copy: "copiar",
-      copied: "copiado!"
-    },
-    footer: {
-      built: "Construído à mão com HTML, CSS e React.",
-      konami: "Tente o Konami Code."
-    }
-  },
-  en: {
-    nav: { work: "Work", about: "About", experience: "Experience", now: "Now", contact: "Contact" },
-    hero: {
-      role: "Full-stack Developer",
-      location: "Goiânia, BR",
-      available: "Open to full-stack roles",
-      lead1: "I build product end to end, with the rigor of someone accountable for a real operation:",
-      lead2: " observability, metrics, and process.",
-      ctaWork: "View work",
-      ctaContact: "Get in touch",
-      scroll: "scroll"
-    },
-    project: {
-      problem: "The problem",
-      build: "What I built",
-      decisions: "Technical decisions",
-      status: "Status",
-      architecture: "Architecture",
-      open: "open case study",
-      close: "close",
-      privateCode: "Private codebase",
-      copyLink: "copy link",
-      linkCopied: "link copied!"
-    },
-    sections: {
-      selected: "Selected work",
-      selectedSub: "Click any project to open the case study",
-      earlier: "Before that",
-      earlierSub: "The road here, from the first bot to the first client",
-      about: "About",
-      experience: "Experience",
-      now: "Now",
-      nowSub: "What I'm doing at this very moment",
-      contact: "Let's talk",
-      contactSub: "Open to roles, freelance, collaborations and technical chats"
-    },
-    ui: {
-      themeToLight: "Switch to light mode",
-      themeToDark: "Switch to dark mode",
-      langToggle: "Toggle language",
-      photoCaption: "photo: kayo",
-      statusLabel: "STATUS",
-      konamiTitle: "You found it.",
-      konamiBody: "Easter egg unlocked: everything is in fun mode now. Click anywhere to close.",
-      jediHint: "click anywhere · may the force be with you"
-    },
-    about: {
-      p1: "I'm Kayo, a full-stack developer. I build product end to end — interface, API, database and whatever has to stay standing in production afterwards. TypeScript and Next.js on the web, Flutter on mobile, Postgres and Firebase behind them, and an open-source library when a problem deserves to be solved once.",
-      p2: "I co-founded Aura Educacional, a multi-tenant LMS in Next.js + Hono on Cloud Run, and I run Fluxo, a personal finance app with a Next.js web app and a native Flutter mobile app on Firebase. Both are live and billing for real, through Stripe. I also publish open-source libraries — a sliding-window rate limiting engine on Redis, with packages for Express and Fastify.",
-      p3: "Alongside that, I'm accountable for a last-mile operation as an analyst: live fleet tracking, operational KPIs and the management close decisions are made on. It's work that demands reliability before it demands technique — people are waiting on deliveries, and a missed window doesn't come back. I brought one habit from it into code: I don't ship a line without asking how I'll observe it in production."
-    },
-    stack: "Main stack",
-    // Mirrors the PT ordering: concurrent roles, dev work first. See the note
-    // on the PT block for why, and for where the internships go.
-    experience: [
-      {
-        period: "2024 — now",
-        role: "Co-founder · Full-stack Developer",
-        company: "Aura Educacional · auraorg.com.br",
-        bullets: [
-          "Multi-tenant LMS in production: a 4-app monorepo (web, learn, admin and api) in Next.js 15 and Hono on Cloud Run.",
-          "Postgres with Drizzle, Firebase Auth, Stripe payments for both subscription and one-off sales, and video through Mux.",
-          "Hour certificates with public verification, and an internal CMS that publishes a course without a deploy.",
-          "Architecture, deployment and security documented and versioned alongside the code."
-        ]
-      },
-      {
-        period: "2024 — now",
-        role: "Full-stack Developer · contract and own product",
-        company: "Fluxo · clients · open source",
-        bullets: [
-          "Fluxo — personal finance app live at fluxo.finance: 5-app monorepo, Next.js web, native Flutter mobile, 18 Cloud Functions and real Stripe billing.",
-          "Legal-services site delivered and running in production for a law firm client.",
-          "Open-source Redis rate limiting libraries with an exact sliding window and packages for Express and Fastify."
-        ]
-      },
-      {
-        period: "2026 — now",
-        role: "Logistics Analyst",
-        company: "BR Render · Last-mile operations",
-        bullets: [
-          "Power BI and Python dashboards wired to the operational DB, cutting management close time.",
-          "Design and rollout of operational KPIs (OTD, OTIF, incidents/100 deliveries, queue time).",
-          "Live fleet tracking via mytracking platform; door-to-door SLA audit."
-        ]
-      },
-      {
-        period: "2023 — 2026",
-        role: "Systems Analysis and Development",
-        company: "PUC Goiás",
-        bullets: [
-          "Capstone: Agenda Aura — clickable prototype + Jira backlog + Figma.",
-          "Software engineering, databases and project management focus."
-        ]
-      }
-    ],
-    now: {
-      status: "Building Fluxo",
-      statusSub: "Stripe subscription live on the web. Next: Google Play Billing and an LLM proxy in a Cloud Function.",
-      statusTags: ["Flutter", "Firebase", "Stripe"],
-      reading: "Reading",
-      readingValue: "Designing Data-Intensive Applications — Kleppmann",
-      listening: "Listening",
-      learning: "Learning",
-      learningValue: "Open Finance via an aggregator and a remote MCP server on Cloud Run",
-      location: "From Goiânia, BR",
-      updated: "Updated"
-    },
-    updatedAt: "2026-08-04",
-    contact: {
-      cta: "Send an email",
-      orFollow: "Or follow me on",
-      copy: "copy",
-      copied: "copied!"
-    },
-    footer: {
-      built: "Hand-built with HTML, CSS and React.",
-      konami: "Try the Konami Code."
-    }
-  }
+// ─── REALITY · Engenharia de Software Sob Medida ───
+// Dependências core empacotadas via esbuild (React 18, Lenis, GSAP + ScrollTrigger, Motion)
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { createRoot } from "react-dom/client";
+import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, AnimatePresence } from "motion/react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Dados comerciais fictícios para a 1ª versão institucional da Reality
+const COMPANY = {
+  name: "Reality",
+  legalName: "Reality Engenharia de Software Sob Medida Ltda.",
+  tagline: "Software sob medida para operações reais.",
+  domain: "myreality.tech",
+  cnpj: "48.712.904/0001-88",
+  location: "Goiânia, GO · Atendimento Nacional & Internacional",
+  whatsappNumber: "5562999990000",
+  whatsappDisplay: "+55 (62) 99999-0000",
+  email: "contato@myreality.tech",
+  founder: "Kayo Santos",
+  github: "https://github.com/kayoinreality",
+  linkedin: "https://www.linkedin.com/in/kayo-santos/",
+  slaNote: "Resposta técnica em até 2 horas úteis via WhatsApp"
 };
 
+function buildWhatsAppUrl(customMessage) {
+  const defaultText =
+    "Olá, equipe da Reality! Acessei o site myreality.tech e gostaria de conversar sobre o desenvolvimento de um software sob medida.";
+  const text = (customMessage && customMessage.trim()) ? customMessage.trim() : defaultText;
+  return `https://wa.me/${COMPANY.whatsappNumber}?text=${encodeURIComponent(text)}`;
+}
+
+// Os 3 Estudos de Caso oficiais (baseados na leitura integral dos READMEs e docs de arquitetura)
 const PROJECTS = [
   {
     id: "fluxo",
-    tier: "selected",
+    slug: "fluxo-finance",
     diagram: "fluxo",
     n: "01",
-    title: "Fluxo",
+    title: "Fluxo Finance",
+    clientType: "Produto SaaS B2C · FinTech Multiplataforma",
     year: "2026",
-    type: { pt: "App de finanças · web + mobile", en: "Personal finance app · web + mobile" },
-    role: { pt: "Solo · Full-stack", en: "Solo · Full-stack" },
-    blurb: {
-      pt: "Gestão financeira construída em volta da Jornada de Liberdade Financeira: você define a renda passiva que te faria livre e o app transforma isso em patrimônio alvo e etapas concretas. Monorepo com 5 apps — web, mobile nativo, admin, landing e um servidor MCP.",
-      en: "Personal finance built around a Financial Freedom Journey: you set the passive income that would make you free, and the app turns it into a target net worth and concrete milestones. Monorepo with 5 apps — web, native mobile, admin, landing and an MCP server."
-    },
-    tags: ["Next.js", "Flutter", "TypeScript", "Dart", "Firebase", "Firestore", "Cloud Functions", "Stripe", "Turborepo", "MCP"],
-    metric: { pt: "5 apps · ~32k linhas", en: "5 apps · ~32k lines" },
-    links: [
-      { kind: "live", label: { pt: "Ver ao vivo", en: "View live" }, href: "https://fluxo.finance" }
+    domain: "fluxo.finance",
+    liveUrl: "https://fluxo.finance/",
+    previewSrc: "assets/projects/fluxo.webp",
+    previewAlt: "Interface do ecossistema Fluxo Finance — Jornada de Liberdade Financeira",
+    accentColor: "#e06d53",
+    badge: "SaaS Multiplataforma · Web + Mobile Nativo + IA/MCP",
+    headline: "De retrovisor de gastos a GPS da Liberdade Financeira.",
+    summary:
+      "Plataforma completa de gestão financeira pessoal construída em torno da Jornada de Liberdade Financeira. Enquanto apps tradicionais apenas listam para onde o dinheiro foi, o Fluxo calcula o patrimônio-alvo a partir da renda passiva desejada e traduz cada decisão diária em dias de liberdade conquistados ou adiados.",
+    metrics: [
+      { value: "5 Apps", label: "Monorepo Turborepo (Web, Flutter, Admin, Landing, MCP)" },
+      { value: "+Xd", label: "Custo em tempo de liberdade por categoria de gasto" },
+      { value: "RLS + Trigger", label: "Segurança estrita no Supabase Postgres & Stripe" },
+      { value: "MCP Nativo", label: "Integração direta com Claude, ChatGPT e DeepSeek" }
+    ],
+    tags: [
+      "Next.js (App Router)",
+      "Flutter Nativo (iOS/Android)",
+      "TypeScript + Dart",
+      "Supabase (Postgres + RLS)",
+      "Stripe Checkout & Webhooks",
+      "OpenRouter / OpenAI LLM",
+      "Model Context Protocol (MCP)",
+      "Resend",
+      "Turborepo",
+      "Vercel"
     ],
     privateRepo: true,
+    links: [
+      { kind: "live", label: "Acessar fluxo.finance", href: "https://fluxo.finance/" }
+    ],
     study: {
-      problem: {
-        pt: "Os apps de finanças brasileiros são retrovisores: mostram muito bem para onde o dinheiro foi. Nenhum responde a pergunta que importa — isso me deixou mais perto ou mais longe de poder parar de trabalhar? O Fluxo inverte a peça central: o usuário define no onboarding a renda passiva mensal que o tornaria livre, e todo o resto do app passa a se referir a essa meta.",
-        en: "Brazilian finance apps are rear-view mirrors: they show you exactly where the money went. None answer the question that matters — did that bring me closer to, or further from, being able to stop working? Fluxo inverts the centerpiece: during onboarding the user sets the monthly passive income that would make them free, and everything else in the app refers back to that goal."
-      },
-      build: {
-        pt: [
-          "Monorepo Turborepo com 5 aplicações: web em Next.js (App Router, export estático, PWA instalável), mobile em Flutter nativo para Android e iOS, painel admin, landing e um servidor MCP.",
-          "Motor da jornada em packages/core (TypeScript), portado para Dart no app Flutter — os dois lados compartilham o mesmo modelo de domínio, não uma WebView.",
-          "12 telas no web: Visão geral, Jornada, Transações, Cartões e contas, Investimentos, Dívidas, Previsão, Relatórios, Orçamentos e metas, Perfil, Onboarding e o chat 'Falar com o Fluxo'.",
-          "18 Cloud Functions: Checkout e Customer Portal da Stripe, webhook de assinatura, chat com LLM, Google Play Billing, exclusão de conta exigida pela Play Store, taxas do Banco Central e e-mails transacionais.",
-          "Firebase Auth e Cloud Firestore com regras de segurança por usuário."
-        ],
-        en: [
-          "Turborepo monorepo with 5 apps: a Next.js web app (App Router, static export, installable PWA), a native Flutter app for Android and iOS, an admin panel, a landing page and an MCP server.",
-          "The journey engine lives in packages/core (TypeScript) and is ported to Dart in the Flutter app — both sides share the same domain model, not a WebView.",
-          "12 web screens: Overview, Journey, Transactions, Cards and accounts, Investments, Debts, Forecast, Reports, Budgets and goals, Profile, Onboarding and the 'Talk to Fluxo' chat.",
-          "18 Cloud Functions: Stripe Checkout and Customer Portal, subscription webhook, LLM chat, Google Play Billing, the account deletion the Play Store requires, Central Bank rates and transactional email.",
-          "Firebase Auth and Cloud Firestore with per-user security rules."
-        ]
-      },
-      decisions: {
-        pt: [
-          "O webhook da Stripe é a única escrita permitida no campo plano do usuário — firestore.rules rejeita o cliente que tentar se auto-promover a assinante.",
-          "Flutter nativo em vez de wrapper de WebView: a loja distribui um app de verdade, ao custo de manter o motor da jornada em duas linguagens.",
-          "O servidor MCP expõe as finanças como ferramentas para qualquer LLM — dá para perguntar 'como está minha jornada?' de dentro do Claude ou do ChatGPT.",
-          "Anúncios são ligados por configuração: sem IDs de AdSense/AdMob nenhuma requisição sai para terceiros, e o slot vira um convite para o plano pago.",
-          "Cada categoria de gasto mostra quantos dias ela atrasou a liberdade do usuário — converter reais em tempo de vida é mais visceral que percentual."
-        ],
-        en: [
-          "The Stripe webhook is the only writer allowed to touch the user's plan field — firestore.rules rejects any client trying to promote itself to a paid subscriber.",
-          "Native Flutter over a WebView wrapper: the store ships a real app, at the cost of maintaining the journey engine in two languages.",
-          "The MCP server exposes the user's finances as tools for any LLM — you can ask 'how's my journey going?' from inside Claude or ChatGPT.",
-          "Ads are wired by configuration: with no AdSense/AdMob IDs set, no third-party request leaves the app and the slot becomes a prompt for the paid plan.",
-          "Every spending category shows how many days it pushed the user's freedom back — turning money into life-time is far more visceral than a percentage."
-        ]
-      },
-      status: {
-        pt: "No ar em fluxo.finance. Assinatura Fluxo+ com cobrança real da Stripe em produção no web. Google Play Billing e Open Finance via agregador estão no roadmap. Código privado.",
-        en: "Live at fluxo.finance. The Fluxo+ subscription bills for real through Stripe on the web. Google Play Billing and Open Finance via an aggregator are on the roadmap. Private codebase."
-      }
-    },
-    swatch: "warm"
+      problemTitle: "Apps financeiros funcionam como retrovisores, não como GPS",
+      problem:
+        "Os aplicativos financeiros tradicionais do mercado brasileiro (como Mobills, Organizze e apps bancários) olham apenas para trás: mostram gráficos de onde o dinheiro já foi gasto, mas falham em responder à única pergunta que realmente importa para o usuário: 'esse gasto me deixou mais perto ou mais longe de poder viver de renda?'. Metas de poupança ficam soltas, sem conexão com o comportamento diário, gerando abandono do hábito logo nas primeiras semanas.",
+      solutionTitle: "Motor da Jornada compartilhado em duas linguagens + IA contextual e protocolo MCP",
+      solution:
+        "Projetamos e construímos o Fluxo como um ecossistema poliglota gerenciado via Turborepo. No onboarding, o usuário define a renda passiva mensal que o tornaria livre; o motor de domínio (`packages/core` em TypeScript e portado nativamente para Dart no app Flutter) transforma essa meta em patrimônio-alvo e uma trilha de etapas concretas — cada uma com lição educativa e próxima ação prática. Todo o produto (orçamentos, previsão de fim de mês, simulador 'e se' e tutor por IA) orbita essa meta central.",
+      highlights: [
+        {
+          code: "01",
+          title: "Custo em Tempo de Liberdade (+Xd) & Simulador 'E Se'",
+          body: "Cada categoria de despesa converte reais gastos em dias de vida/liberdade adiados (+Xd), gerando um impacto comportamental muito mais claro do que meros percentuais. O simulador 'E se' recalcula ao vivo o prazo de independência conforme o usuário ajusta sliders de aporte mensal, meta e taxa de retorno."
+        },
+        {
+          code: "02",
+          title: "Monorepo Next.js + Flutter Nativo (Zero WebView)",
+          body: "Em vez de empacotar um site em WebView, entregamos um PWA responsivo em Next.js na Vercel (`apps/web`) e um aplicativo verdadeiramente nativo em Flutter para Android e iOS (`apps/mobile`), mantendo a paridade matemática do motor da jornada entre TypeScript e Dart e pipeline CI/CD de AAB assinado para a Google Play Store."
+        },
+        {
+          code: "03",
+          title: "Segurança Financeira com Supabase RLS & Trigger Anti-Fraude",
+          body: "Todas as tabelas contam com políticas Row-Level Security (RLS) auditadas por suíte de testes SQL (`rls.sql`). O campo de assinatura `Fluxo+` é protegido pelo trigger `congelar_assinatura`: nem mesmo uma requisição autenticada do cliente pode se auto-promover — apenas o webhook assinado da Stripe com chave de serviço tem permissão de escrita."
+        },
+        {
+          code: "04",
+          title: "Tutor 'Falar com o Fluxo' & Servidor MCP Pioneiro",
+          body: "O chat financeiro monta o contexto no servidor (agregados LGPD-safe, sem expor chaves de LLM no bundle e com fallback local determinístico). Além disso, o servidor MCP (`apps/mcp` e `/api/mcp`) permite que assinantes consultem e registrem transações diretamente de dentro do Claude ou ChatGPT usando chaves revogáveis."
+        },
+        {
+          code: "05",
+          title: "Monetização Híbrida Consciente (Fluxo+ & AdSense/AdMob)",
+          body: "O plano gratuito monetiza com 3 slots discretos (jamais na tela da Jornada, preservando o momento de reflexão do usuário). Sem IDs configurados ou com ad-blocker, nenhuma requisição sai para terceiros e o componente converte-se automaticamente em convite nativo para a assinatura Fluxo+ (R$ 14,90/mês)."
+        }
+      ],
+      results:
+        "Produto em produção em fluxo.finance com cobrança recorrente real via Stripe (Checkout + Customer Portal), e-mails transacionais idempotentes via Resend (`ola@fluxo.finance`), exclusão em cascata em conformidade com LGPD/Google Play e roadmap estruturado para agregação Open Finance (Pluggy/Belvo)."
+    }
   },
   {
-    id: "aura",
-    tier: "selected",
-    diagram: "aura",
+    id: "fluxoacademy",
+    slug: "fluxo-academy",
+    diagram: "fluxoacademy",
     n: "02",
-    title: "Aura Educacional",
+    title: "Fluxo Academy",
+    formerName: "Antiga Aura Educacional",
+    clientType: "Plataforma EdTech · LMS Multi-Tenant & Certificação",
     year: "2026",
-    type: { pt: "LMS multi-tenant", en: "Multi-tenant LMS" },
-    role: { pt: "Cofundador · Full-stack", en: "Co-founder · Full-stack" },
-    blurb: {
-      pt: "Plataforma de cursos livres com assinatura e venda avulsa, certificados de horas verificáveis e CMS administrativo. Monorepo com 4 apps (web, learn, admin, api).",
-      en: "Online-courses platform with subscription, one-off sales, verifiable hour certificates and admin CMS. Monorepo with 4 apps (web, learn, admin, api)."
-    },
-    tags: ["Next.js 15", "Hono", "Cloud Run", "Postgres", "Drizzle", "Stripe", "Mux", "Firebase Auth"],
-    metric: { pt: "4 apps · monorepo", en: "4 apps · monorepo" },
-    links: [
-      { kind: "live", label: { pt: "Ver ao vivo", en: "View live" }, href: "https://auraorg.com.br" }
+    domain: "auraeducacional.app",
+    liveUrl: "https://auraeducacional.app/login",
+    previewSrc: "assets/projects/aura.webp",
+    previewAlt: "Interface da plataforma Fluxo Academy (antiga Aura Educacional)",
+    accentColor: "#c9a961",
+    badge: "LMS Multi-Tenant · 4 Aplicações · Cloud Run + Mux",
+    headline: "Infraestrutura própria de ensino com certificados imutáveis e venda híbrida.",
+    summary:
+      "Evolução da antiga Aura Educacional para uma plataforma LMS completa para cursos livres e instituições de ensino. Resolve o aprisionamento e as taxas por aluno das plataformas de mercado, unindo assinatura recorrente e venda avulsa de cursos a um motor de certificados declaratórios (LDB Art. 42) com verificação pública à prova de alterações futuras.",
+    metrics: [
+      { value: "4 Apps", label: "Monorepo pnpm + Turborepo (Web, Learn, Admin, API)" },
+      { value: "Imutável", label: "Snapshots de certificados auditáveis sem login (LDB 9.394/96)" },
+      { value: "JWT 30s", label: "Streaming de vídeo adaptativo protegido via Mux" },
+      { value: "Scale-to-0", label: "API Hono em containers no Google Cloud Run" }
+    ],
+    tags: [
+      "Next.js 15",
+      "React 19",
+      "Hono API",
+      "Google Cloud Run",
+      "Cloud SQL (Postgres 16)",
+      "Drizzle ORM",
+      "Stripe (Assinatura + Avulso)",
+      "Mux Video (Signed JWT)",
+      "Cloud Tasks + Puppeteer",
+      "Firebase Auth"
     ],
     privateRepo: true,
-    study: {
-      problem: {
-        pt: "Cursos livres precisam emitir certificado de horas que alguém consiga verificar depois — e vender tanto por assinatura quanto avulso. As plataformas prontas cobram por aluno, prendem o conteúdo e não entregam um certificado auditável. A Aura resolve os dois lados numa base própria.",
-        en: "Continuing-education courses need to issue hour certificates that someone can actually verify later — and to sell both by subscription and one-off. Off-the-shelf platforms charge per student, lock the content in and don't produce an auditable certificate. Aura solves both on its own foundation."
-      },
-      build: {
-        pt: [
-          "Monorepo com 4 aplicações: web (site público e catálogo), learn (player do aluno), admin (CMS interno) e api.",
-          "API em Hono rodando em Cloud Run, com Postgres e Drizzle ORM.",
-          "Player de vídeo com Mux, autenticação com Firebase Auth e pagamentos com Stripe.",
-          "Certificados de horas com verificação pública e CMS interno para publicar cursos sem deploy.",
-          "Documentação de arquitetura, deploy e segurança versionada junto do código."
-        ],
-        en: [
-          "Monorepo with 4 apps: web (public site and catalog), learn (student player), admin (internal CMS) and api.",
-          "Hono API running on Cloud Run, backed by Postgres and Drizzle ORM.",
-          "Mux video player, Firebase Auth for authentication and Stripe for payments.",
-          "Hour certificates with public verification, and an internal CMS to publish courses without a deploy.",
-          "Architecture, deployment and security docs versioned alongside the code."
-        ]
-      },
-      decisions: {
-        pt: [
-          "API em Hono no Cloud Run em vez de servidor sempre ligado: escala a zero e o custo acompanha o uso, que é o que um catálogo de cursos precisa.",
-          "Multi-tenant desde o início — cada instituição tem seus cursos e sua marca sobre a mesma base.",
-          "Mux em vez de vídeo próprio: streaming adaptativo e proteção de conteúdo sem manter pipeline de encoding.",
-          "Drizzle em vez de ORM pesado: schema em TypeScript, migrations versionadas e SQL previsível."
-        ],
-        en: [
-          "Hono on Cloud Run instead of an always-on server: it scales to zero and cost tracks usage, which is what a course catalog needs.",
-          "Multi-tenant from day one — each institution gets its own courses and branding on the same foundation.",
-          "Mux instead of self-hosted video: adaptive streaming and content protection without maintaining an encoding pipeline.",
-          "Drizzle over a heavyweight ORM: TypeScript schema, versioned migrations and predictable SQL."
-        ]
-      },
-      status: {
-        pt: "No ar em auraorg.com.br. Código privado.",
-        en: "Live at auraorg.com.br. Private codebase."
-      }
-    },
-    swatch: "cool"
-  },
-  {
-    id: "slidinglimiter",
-    tier: "selected",
-    n: "03",
-    title: { pt: "Rate limiters de janela deslizante", en: "Sliding-window rate limiters" },
-    year: "2026",
-    type: { pt: "Bibliotecas open source", en: "Open-source libraries" },
-    role: { pt: "Solo · Autor", en: "Solo · Author" },
-    blurb: {
-      pt: "Dois pacotes irmãos — um para Express, outro para Fastify — sobre o mesmo motor: janela deslizante exata em sorted sets do Redis, vários limites avaliados atomicamente num único round trip. Zero dependências de runtime.",
-      en: "Two sibling packages — one for Express, one for Fastify — over the same engine: exact sliding window on Redis sorted sets, several limits evaluated atomically in a single round trip. Zero runtime dependencies."
-    },
-    tags: ["TypeScript", "Redis", "Lua", "Express", "Fastify", "Node.js", "MIT"],
-    metric: { pt: "2 pacotes · MIT", en: "2 packages · MIT" },
     links: [
-      { kind: "repo", label: { pt: "Express", en: "Express" }, href: "https://github.com/kayoinreality/express-rate-limit-redis-sliding" },
-      { kind: "repo", label: { pt: "Fastify", en: "Fastify" }, href: "https://github.com/kayoinreality/fastify-sliding-limiter" }
+      { kind: "live", label: "Ver ambiente de acesso", href: "https://auraeducacional.app/login" }
     ],
     study: {
-      problem: {
-        pt: "A maioria dos rate limiters conta requisições num balde indexado por floor(now / janela). O balde zera na virada, então o cliente que espera a fronteira recebe duas cotas cheias seguidas: 100 requisições às 00:59.999 e mais 100 às 01:00.000 — 200 em dois milissegundos, com o limite configurado em 100 por minuto. A janela deslizante conta os últimos N milissegundos a partir de agora, e a fronteira simplesmente deixa de existir.",
-        en: "Most rate limiters count requests into a bucket keyed by floor(now / window). The bucket resets on rollover, so a client that waits for the boundary gets two full quotas back to back: 100 requests at 00:59.999 and another 100 at 01:00.000 — 200 in two milliseconds, with the limit set to 100 per minute. A sliding window counts the last N milliseconds from now, and the boundary stops existing."
-      },
-      build: {
-        pt: [
-          "Um sorted set do Redis por camada de limite, com uma entrada por unidade de requisição pontuada pelo timestamp — exato, sem aproximação nem suavização.",
-          "Um script Lua por requisição (EVALSHA, com EVAL só no NOSCRIPT) que apara a cauda vencida, conta o que sobrou e só grava se todas as camadas tiverem espaço.",
-          "Headers no formato IETF draft-8, com draft-7, draft-6 e X-RateLimit-* legado disponíveis para migração gradual.",
-          "Núcleo exportado à parte, para limitar frames de websocket ou jobs de fila — qualquer coisa que não seja uma requisição HTTP.",
-          "Suíte de testes contra um Redis de verdade, subido numa porta efêmera: o valor do pacote está na semântica do script Lua, e um mock só testaria a si mesmo."
-        ],
-        en: [
-          "One Redis sorted set per limit tier, with one entry per request unit scored by timestamp — exact, with no approximation or smoothing.",
-          "One Lua script per request (EVALSHA, falling back to EVAL only on NOSCRIPT) that trims the expired tail, counts what remains and writes only if every tier has room.",
-          "Headers in IETF draft-8 format, with draft-7, draft-6 and legacy X-RateLimit-* available for a staged migration.",
-          "The core is exported separately, to limit websocket frames or queue jobs — anything that isn't an HTTP request.",
-          "Test suite against a real Redis on an ephemeral port: the value of the package is in the Lua script's semantics, and a mock would only test itself."
-        ]
-      },
-      decisions: {
-        pt: [
-          "Vários limites (um teto de rajada e um orçamento sustentado) são avaliados e gravados no mesmo script: se a rajada rejeita, o sustentado não é cobrado. Dois middlewares separados dariam dois round trips e esse bug silencioso.",
-          "O relógio vem do TIME do Redis, não do processo — poucos segundos de deriva entre instâncias alargam ou estreitam a janela dependendo de onde a requisição cair.",
-          "IPv6 é mascarado para /56 antes de virar chave: um assinante recebe rotineiramente um /64 inteiro, e limitar o endereço puro deixaria um cliente ciclar por bilhões deles.",
-          "As chaves usam hash tag de Redis Cluster para que todas as camadas de um cliente caiam no mesmo slot, já que o script é multi-key.",
-          "Em falha do Redis o padrão é deixar passar, para a API não cair junto — mas endpoint de login quer o oposto, então onError: 'deny' é configurável por rota."
-        ],
-        en: [
-          "Multiple limits (a burst ceiling and a sustained budget) are evaluated and committed in the same script: if burst rejects, sustained is never charged. Two separate middlewares would mean two round trips and that silent bug.",
-          "The clock comes from Redis TIME, not the process — a few seconds of drift between instances silently widens or narrows the window depending on where a request lands.",
-          "IPv6 is masked to a /56 before becoming a key: a single subscriber is routinely handed an entire /64, and limiting the bare address would let one client cycle through billions of them.",
-          "Keys use a Redis Cluster hash tag so all of a client's tiers land in one slot, since the script is multi-key.",
-          "When Redis fails the default is to let requests through, so the API doesn't go down with it — but a login endpoint wants the opposite, so onError: 'deny' is configurable per route."
-        ]
-      },
-      status: {
-        pt: "Código aberto no GitHub sob licença MIT, com typecheck, lint, build e testes de integração no repositório. Ainda não publicados no npm.",
-        en: "Open source on GitHub under the MIT license, with typecheck, lint, build and integration tests in the repo. Not published to npm yet."
-      }
-    },
-    swatch: "neutral"
-  },
-  {
-    id: "dashmytracking",
-    tier: "earlier",
-    n: "04",
-    title: "DashMytracking",
-    year: "2024",
-    type: { pt: "Dashboard gerencial", en: "Management dashboard" },
-    role: { pt: "Análise · Engenharia de dados", en: "Analytics · Data engineering" },
-    blurb: {
-      pt: "Dashboard em Python para análise gerencial sobre rotas do mytracking. Conecta telemetria de frota com KPIs de OTD, OTIF e ocorrências.",
-      en: "Python dashboard for management analytics on mytracking routes. Connects fleet telemetry with OTD, OTIF and incident KPIs."
-    },
-    tags: ["Python", "pandas", "Plotly", "Power BI", "SQL"],
-    metric: { pt: "Uso interno · produção", en: "Internal · production" },
-    links: [],
-    privateRepo: true,
-    study: {
-      problem: {
-        pt: "A plataforma de rastreamento mostra onde cada veículo está, mas o fechamento gerencial era montado à mão sobre planilhas exportadas. A pergunta operacional — quantas entregas saíram do prazo e por quê — levava dias para ser respondida.",
-        en: "The tracking platform shows where each vehicle is, but the management close was assembled by hand from exported spreadsheets. The operational question — how many deliveries missed the window, and why — took days to answer."
-      },
-      build: {
-        pt: [
-          "Dashboard em Python conectado ao banco operacional, cruzando telemetria de frota com o planejamento de rotas.",
-          "KPIs de OTD, OTIF, ocorrências por 100 entregas e tempo de fila calculados no mesmo lugar em que a operação já olhava.",
-          "Distribuição em Power BI para a camada gerencial."
-        ],
-        en: [
-          "Python dashboard wired to the operational database, joining fleet telemetry with route planning.",
-          "OTD, OTIF, incidents per 100 deliveries and queue-time KPIs computed where the operation was already looking.",
-          "Power BI distribution for the management layer."
-        ]
-      },
-      status: {
-        pt: "Em uso interno na operação. Código privado — pertence ao contexto da empresa.",
-        en: "In internal use by the operation. Private codebase — it belongs to the company's context."
-      }
-    },
-    swatch: "cool"
-  },
-  {
-    id: "antigravity",
-    tier: "earlier",
-    n: "05",
-    title: "Antigravity",
-    year: "2025",
-    type: { pt: "App mobile", en: "Mobile app" },
-    role: { pt: "Solo · React Native", en: "Solo · React Native" },
-    blurb: {
-      pt: "App de notas cross-platform com canvas interativo infinito. Drag-and-drop, persistência MMKV e dark mode automático. iOS, Android e Web.",
-      en: "Cross-platform notes app with an infinite interactive canvas. Drag-and-drop, MMKV persistence and auto dark mode. iOS, Android and Web."
-    },
-    tags: ["React Native", "Expo 54", "Zustand", "MMKV", "Reanimated", "TypeScript"],
-    metric: { pt: "3 plataformas", en: "3 platforms" },
-    links: [
-      { kind: "repo", label: { pt: "Código", en: "Source" }, href: "https://github.com/kayoinreality/Antigravity" }
-    ],
-    study: {
-      problem: {
-        pt: "App de notas em lista força uma ordem que nem toda ideia tem. O Antigravity troca a lista por um canvas infinito onde a posição da nota é parte do significado.",
-        en: "List-based note apps impose an order that not every idea has. Antigravity swaps the list for an infinite canvas where a note's position is part of its meaning."
-      },
-      build: {
-        pt: [
-          "Canvas interativo infinito com drag-and-drop, animado com Reanimated.",
-          "Estado em Zustand e persistência local em MMKV.",
-          "Dark mode automático e a mesma base rodando em iOS, Android e Web via Expo."
-        ],
-        en: [
-          "Infinite interactive canvas with drag-and-drop, animated with Reanimated.",
-          "Zustand for state and MMKV for local persistence.",
-          "Automatic dark mode, with one codebase running on iOS, Android and Web through Expo."
-        ]
-      },
-      status: {
-        pt: "Código aberto no GitHub.",
-        en: "Open source on GitHub."
-      }
-    },
-    swatch: "neutral"
+      problemTitle: "Plataformas LMS prontas penalizam o crescimento e fragilizam a certificação",
+      problem:
+        "Instituições de ensino e criadores de cursos livres sofrem com três gargalos graves nas soluções de prateleira: (1) cobrança por aluno ativo ou comissões abusivas que inviabilizam escala; (2) incapacidade de combinar assinatura ilimitada ('estilo catálogo') com a compra avulsa vitalícia de cursos individuais na mesma conta; e (3) certificados frágeis que mudam ou quebram quando a grade de um curso é atualizada no CMS, comprometendo a validade jurídica e a verificação por empregadores e órgãos públicos.",
+      solutionTitle: "Arquitetura desacoplada de matrículas e emissão assíncrona com snapshots imutáveis",
+      solution:
+        "Desenvolvemos a Fluxo Academy (antiga Aura Educacional) como um monorepo de 4 aplicações independentes (`web` público, `learn` player do aluno, `admin` CMS interno e `api` em Hono no Cloud Run `southamerica-east1`) compartilhando um Design System próprio, contratos Zod estritos e banco Cloud SQL PostgreSQL 16 gerenciado com Drizzle ORM.",
+      highlights: [
+        {
+          code: "01",
+          title: "Desacoplamento `enrollments` vs. `course_access` no PostgreSQL",
+          body: "Separamos a jornada pedagógica (`enrollments`, 1 registro por aluno×curso com progresso) do direito financeiro de acesso (`course_access`: `purchase`, `gift`, `admin_grant`). Assinaturas ativas não inflam tabelas materializando linhas para cada curso: a função SQL `has_course_access(user, course)` resolve permissões em tempo real, garantindo cancelamento instantâneo de assinatura sem perder compras avulsas vitalícias."
+        },
+        {
+          code: "02",
+          title: "Certificados Imutáveis (LDB Art. 42) via Cloud Tasks + Puppeteer",
+          body: "Na conclusão do curso, a tabela `certificates` grava snapshots imutáveis (`user_name_snapshot`, `course_title_snapshot`, `workload_hours_snapshot`, `instructor_name_snapshot`, `final_score`) protegidos por constraint parcial `UNIQUE (user_id, course_id) WHERE status='issued'` contra duplo clique. Um worker no Cloud Run renderiza o PDF em alta fidelidade via Puppeteer, e qualquer edição futura no curso jamais altera certificados já emitidos."
+        },
+        {
+          code: "03",
+          title: "Streaming Protegido Mux & CMS Zero-Deploy",
+          body: "As aulas em vídeo utilizam Mux com Signed Playback e tokens JWT renovados a cada 30 segundos diretamente no player do aluno, impedindo compartilhamento indevido de links. O painel `admin` permite que a equipe pedagógica crie módulos, publique cursos e gerencie matrículas instantaneamente sem necessidade de novo deploy."
+        },
+        {
+          code: "04",
+          title: "Webhooks Idempotentes, Auth Stateless & Conformidade LGPD/CDC",
+          body: "Eventos da Stripe e da Mux passam por validação HMAC e registro na tabela `webhook_events (event_id UNIQUE)`, eliminando concessão duplicada de acesso em retentativas. Autenticação stateless via Firebase ID Tokens com custom claims (`admin`, `instructor`, `student`), exportação completa de dados em JSON, soft-delete com retenção legal dos certificados e reembolso automatizado em 7 dias (Art. 49 do CDC)."
+        }
+      ],
+      results:
+        "Arquitetura cloud-native dimensionada em `southamerica-east1` (São Paulo) para baixa latência no Brasil, custo fixo operacional reduzido graças ao escalonamento sob demanda do Cloud Run e total soberania sobre dados, catálogo e regras de negócio."
+    }
   },
   {
     id: "judicial",
-    tier: "earlier",
-    n: "06",
-    title: { pt: "Administração Judicial", en: "Judicial Administration" },
-    year: "2024",
-    type: { pt: "Site institucional", en: "Institutional site" },
-    role: { pt: "Cliente real", en: "Real client" },
-    blurb: {
-      pt: "Site de assessoria jurídica para escritório real, com captação de leads, área de serviços e identidade institucional sóbria.",
-      en: "Legal-services website for a real law firm, with lead capture, services area and a sober institutional identity."
-    },
-    tags: ["HTML", "CSS", "JavaScript", "SEO"],
-    metric: { pt: "Cliente em produção", en: "Client in production" },
+    slug: "administracao-judicial-advocacia",
+    diagram: "judicial",
+    n: "03",
+    title: "Amanda Silvestre · Advocacia & Administração Judicial",
+    clientType: "Escritório Jurídico & Pericial · Portal de Transparência",
+    year: "2025",
+    domain: "Administração Judicial & Perícia",
+    liveUrl: "https://kayoinreality.github.io/Adminstra-o-Judicial/",
+    repoUrl: "https://github.com/kayoinreality/Adminstra-o-Judicial",
+    previewSrc: "assets/projects/judicial.webp",
+    previewAlt: "Portal institucional e Mural de Transparência de Amanda Silvestre — Administração Judicial",
+    accentColor: "#d4af37",
+    badge: "Portal Jurídico & Mural de Transparência Processual",
+    headline: "Autoridade institucional para magistrados e transparência pública para credores.",
+    summary:
+      "Plataforma digital sob medida desenvolvida para atuação especializada em Administração Judicial (Recuperação Judicial e Falências), Perícia Grafotécnica/Documentoscópica e Consultoria Jurídica. Une posicionamento de alta sobriedade forense a um Mural de Transparência Processual para consulta rápida de peças, editais e Relatórios Mensais de Atividades (RMA).",
+    metrics: [
+      { value: "Mural RMA", label: "Consulta pública estruturada de processos e peças judiciais" },
+      { value: "3 Frentes", label: "Administração Judicial, Perícia Grafotécnica e Consultoria" },
+      { value: "100% Forense", label: "Identidade sóbria pensada para juízos, bancas e credores" },
+      { value: "Conversão", label: "Fluxo de contato segmentado por demanda técnica" }
+    ],
+    tags: [
+      "React 18",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Motion (Framer Motion)",
+      "React Router",
+      "Radix UI",
+      "SEO Jurídico",
+      "Vite"
+    ],
+    privateRepo: false,
     links: [
-      { kind: "repo", label: { pt: "Código", en: "Source" }, href: "https://github.com/kayoinreality/Adminstra-o-Judicial" }
+      { kind: "live", label: "Visitar site em produção", href: "https://kayoinreality.github.io/Adminstra-o-Judicial/" },
+      { kind: "repo", label: "Inspecionar repositório", href: "https://github.com/kayoinreality/Adminstra-o-Judicial" }
     ],
     study: {
-      problem: {
-        pt: "Escritório de assessoria jurídica sem presença digital, dependendo só de indicação. Precisava de um site que passasse seriedade institucional e capturasse contato de quem chega pela busca.",
-        en: "A legal-services firm with no digital presence, running purely on referrals. It needed a site that conveyed institutional seriousness and captured contact details from people arriving through search."
-      },
-      build: {
-        pt: [
-          "Site institucional com área de serviços e captação de leads.",
-          "Identidade visual sóbria, adequada ao setor jurídico.",
-          "Estrutura e semântica pensadas para busca orgânica."
-        ],
-        en: [
-          "Institutional site with a services area and lead capture.",
-          "A sober visual identity, appropriate to the legal sector.",
-          "Structure and semantics built for organic search."
-        ]
-      },
-      status: {
-        pt: "Entregue e em produção para cliente real. Primeiro trabalho pago em código.",
-        en: "Delivered and in production for a real client. First paid work in code."
-      }
-    },
-    swatch: "warm"
-  },
-  {
-    id: "puc",
-    tier: "earlier",
-    n: "07",
-    title: "Agenda Aura — PUC",
-    year: "2024",
-    type: { pt: "Projeto Integrador", en: "Capstone project" },
-    role: { pt: "Tech lead acadêmico", en: "Academic tech lead" },
-    blurb: {
-      pt: "Agendador de atividades internas para a Aura Educacional. Entregue com protótipo navegável, backlog no Jira e wireframes no Figma.",
-      en: "Internal activity scheduler for Aura Educacional. Delivered with a clickable prototype, Jira backlog and Figma wireframes."
-    },
-    tags: ["HTML", "CSS", "JavaScript", "Figma", "Jira"],
-    metric: { pt: "Entregue · PUC Goiás", en: "Delivered · PUC Goiás" },
-    links: [
-      { kind: "repo", label: { pt: "Código", en: "Source" }, href: "https://github.com/kayoinreality/projeto-integrador-puc-goias" }
-    ],
-    study: {
-      problem: {
-        pt: "Projeto Integrador do curso: entregar um agendador de atividades internas para a Aura Educacional com o processo completo, não só o código.",
-        en: "Course capstone: deliver an internal activity scheduler for Aura Educacional with the full process behind it, not just the code."
-      },
-      build: {
-        pt: [
-          "Protótipo navegável do agendador de atividades.",
-          "Wireframes no Figma e backlog gerenciado no Jira.",
-          "Documentação de requisitos e modelagem de dados."
-        ],
-        en: [
-          "Clickable prototype of the activity scheduler.",
-          "Figma wireframes and a backlog managed in Jira.",
-          "Requirements documentation and data modeling."
-        ]
-      },
-      status: {
-        pt: "Entregue na PUC Goiás. Virou o ponto de partida conceitual da Aura Educacional.",
-        en: "Delivered at PUC Goiás. It became the conceptual starting point for Aura Educacional."
-      }
-    },
-    swatch: "cool"
-  },
-  {
-    id: "discordbot",
-    tier: "earlier",
-    n: "08",
-    title: "Discord Bot",
-    year: "2023",
-    type: { pt: "Primeiro projeto JS", en: "First JS project" },
-    role: { pt: "Solo · Aprendizado", en: "Solo · Learning" },
-    blurb: {
-      pt: "Meu primeiro bot de Discord em JavaScript. Marco da minha entrada em programação — onde aprendi event-driven, async/await e APIs REST.",
-      en: "My first Discord bot in JavaScript. The milestone of my entry into programming — where I learned event-driven, async/await and REST APIs."
-    },
-    tags: ["JavaScript", "Node.js", "Discord.js"],
-    metric: { pt: "Origem", en: "Origin" },
-    links: [
-      { kind: "repo", label: { pt: "Código", en: "Source" }, href: "https://github.com/kayoinreality/Discordbot" }
-    ],
-    study: {
-      problem: {
-        pt: "Queria automatizar tarefas do servidor de Discord que eu usava com amigos. Não sabia programar — o bot foi a desculpa para aprender.",
-        en: "I wanted to automate chores on the Discord server I used with friends. I couldn't program — the bot was the excuse to learn."
-      },
-      build: {
-        pt: [
-          "Bot em Node.js com Discord.js respondendo a comandos e eventos do servidor.",
-          "Onde aprendi programação orientada a eventos, async/await e consumo de APIs REST."
-        ],
-        en: [
-          "Node.js bot built with Discord.js, responding to server commands and events.",
-          "Where I learned event-driven programming, async/await and consuming REST APIs."
-        ]
-      },
-      status: {
-        pt: "Arquivado. Fica no portfólio como marco de origem — é onde tudo começou.",
-        en: "Archived. It stays in the portfolio as an origin marker — it's where everything started."
-      }
-    },
-    swatch: "neutral"
+      problemTitle: "Dependência de indicações offline e dispersão na consulta de documentos processuais",
+      problem:
+        "Na atuação em Administração Judicial e Perícia Grafotécnica, a confiança técnica é decisiva: juízes, promotores e bancas de advocacia avaliam a estrutura e a transparência do profissional antes de uma nomeação ou contratação como assistente técnico. Ao mesmo tempo, processos de Recuperação Judicial exigem dar publicidade clara a editais, atas de Assembleia Geral de Credores, Quadros de Credores e Relatórios Mensais de Atividades (RMA). Sem uma plataforma própria, o escritório dependia apenas do boca a boca e atendia consultas repetitivas manualmente.",
+      solutionTitle: "Mural de Transparência Processual aliado a uma arquitetura editorial de alta credibilidade",
+      solution:
+        "Construímos uma aplicação web moderna em React, TypeScript, Tailwind CSS e Motion que posiciona a titular como referência técnica em três pilares claros (Administração Judicial, Perícia Grafotécnica/Documentoscópica e Consultoria Cível/Empresarial/LGPD) e incorpora um Mural de Transparência dedicado ao acompanhamento de processos em andamento.",
+      highlights: [
+        {
+          code: "01",
+          title: "Mural de Transparência para Recuperação Judicial & Perícias",
+          body: "Ambiente estruturado onde credores, advogados e partes localizam rapidamente processos por número, juízo/vara e partes envolvidas, com acesso direto aos documentos essenciais: Decisão de Deferimento, Edital do Art. 52 §1º, Relatórios Mensais de Atividades (RMA), Atas da AGC e Laudos Periciais."
+        },
+        {
+          code: "02",
+          title: "Segmentação Técnica de Especialidades Forenses",
+          body: "Organização clara do escopo técnico em Perícia Grafotécnica e Documentoscópica (autenticidade de assinaturas, detecção de falsificações, exame de rasuras e lavagens químicas, pareceres assistenciais) e Administração Judicial (fiscalização do devedor, verificação de créditos e consolidação de quadros)."
+        },
+        {
+          code: "03",
+          title: "Identidade Visual Clássica & Performance Instantânea",
+          body: "Direção de arte em azul-marinho profundo (`#0a1128`) e ouro envelhecido (`#d4af37`) com tipografia editorial Playfair Display e transições suaves em Motion, transmitindo rigor institucional em qualquer dispositivo e facilitando o acionamento imediato por escritórios parceiros."
+        }
+      ],
+      results:
+        "Presença digital institucional entregue e em produção, elevando a percepção de autoridade perante o meio forense, centralizando a transparência documental de processos complexos e abrindo um canal direto de captação para perícias e assistência técnica."
+    }
   }
 ];
 
-const STACK = [
-  "TypeScript", "Next.js", "React", "React Native", "Flutter", "Dart",
-  "Node.js", "Hono", "PostgreSQL", "Drizzle", "Redis", "Python", "pandas",
-  "Power BI", "SQL", "Stripe", "Firebase", "Firestore", "Cloud Run",
-  "Turborepo", "MCP", "Tailwind", "Figma", "Git"
-];
-
-const SOCIAL = [
-  { id: "email", label: "Email", value: "kayorodrigodzn@gmail.com", href: "mailto:kayorodrigodzn@gmail.com", copyable: true },
-  { id: "linkedin", label: "LinkedIn", value: "/in/kayo-santos", href: "https://www.linkedin.com/in/kayo-santos/", copyable: false },
-  { id: "github", label: "GitHub", value: "@kayoinreality", href: "https://github.com/kayoinreality", copyable: false }
-];
-
-window.STRINGS = STRINGS;
+window.COMPANY = COMPANY;
+window.buildWhatsAppUrl = buildWhatsAppUrl;
 window.PROJECTS = PROJECTS;
-window.STACK = STACK;
-window.SOCIAL = SOCIAL;
