@@ -66,10 +66,13 @@ export function Horizon() {
       // O único momento orquestrado da página: o horizonte nasce.
       gsap.from(".horizon__planet", { yPercent: 14, duration: 2.8, ease: "expo.out", delay: 0.1 });
       gsap.from(".horizon__glow", { opacity: 0, scaleX: 0.5, duration: 3, ease: "power3.out", delay: 0.3 });
-      gsap.from(".horizon__sun", { opacity: 0, y: 60, duration: 3.2, ease: "power3.out", delay: 0.6 });
-      // Ao rolar, o sol sobe um pouco mais e o planeta se afasta.
+      gsap.from(".horizon__sun", { opacity: 0, yPercent: 30, duration: 3.2, ease: "power3.out", delay: 0.6 });
+      // Ao rolar, o sol sobe um pouco mais e o planeta se afasta. A entrada usa
+      // yPercent e a rolagem usa y: componentes separados do transform, senão o
+      // tween da rolagem grava o ponto de partida da entrada e, ao voltar ao
+      // topo, devolve o planeta para fora da tela.
       const scroll = { trigger: ref.current, start: "top top", end: "bottom top", scrub: 0.6 };
-      gsap.to(".horizon__planet", { yPercent: -6, ease: "none", scrollTrigger: scroll });
+      gsap.to(".horizon__planet", { y: -220, ease: "none", scrollTrigger: scroll });
       gsap.to(".horizon__sun", { y: -90, scale: 1.25, ease: "none", scrollTrigger: scroll });
       gsap.to(".horizon__sky", { y: 80, ease: "none", scrollTrigger: scroll });
     }, ref);
