@@ -72,6 +72,17 @@ function Trust() {
           </Link>
         </li>
         <li>
+          <Link to="/casos/nos-autos" className="logo logo--autos">
+            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="currentColor" />
+              <path d="M10 7.5h8.5L23.5 12.5V24a1.5 1.5 0 0 1-1.5 1.5H10A1.5 1.5 0 0 1 8.5 24V9A1.5 1.5 0 0 1 10 7.5Z" fill="var(--bg)" />
+              <circle cx="11.75" cy="14" r="1.15" fill="currentColor" />
+              <circle cx="11.75" cy="19" r="1.15" fill="currentColor" />
+            </svg>
+            Nos Autos
+          </Link>
+        </li>
+        <li>
           <Link to="/casos/amanda-silvestre" className="logo logo--judicial">
             <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
               <path d="M13 4v17M7 21h12M5 8h16M8 8l-3.2 7h6.4zM18 8l-3.2 7h6.4z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
