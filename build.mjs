@@ -4,7 +4,13 @@
 //
 // Gera um index.html por rota (com título e descrição próprios) para que links
 // diretos funcionem no Pages, e um 404.html que cai no mesmo app.
+//
+// O Pages serve tudo com max-age=600 e não deixa mudar o cabeçalho. Para um deploy
+// aparecer na hora, o HTML pede o bundle com ?v=<hash do conteúdo>: cada versão é
+// uma URL nova para o navegador. O nome do arquivo não muda, então um HTML antigo
+// ainda em cache continua achando o bundle em vez de pedir um arquivo apagado.
 import * as esbuild from "esbuild";
+import { createHash } from "node:crypto";
 import { cp, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { dirname, extname, join, resolve } from "node:path";
@@ -18,8 +24,13 @@ const ORIGIN = "https://myreality.tech";
 
 const escape = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-async function writePages() {
-  const template = await readFile(resolve(ROOT, "index.html"), "utf8");
+async function writePages(version) {
+  let template = await readFile(resolve(ROOT, "index.html"), "utf8");
+  if (version) {
+    template = template
+      .replace('"/static/app.css"', `"/static/app.css?v=${version}"`)
+      .replace('"/static/app.js"', `"/static/app.js?v=${version}"`);
+  }
   const page = (title, description, canonical, robots = "") =>
     template
       .replaceAll("%TITLE%", escape(title))
@@ -36,6 +47,12 @@ async function writePages() {
     join(OUT, "404.html"),
     page("Página não encontrada — Reality", "Essa página não existe.", `${ORIGIN}/`, '<meta name="robots" content="noindex"/>')
   );
+}
+
+async function bundleVersion() {
+  const hash = createHash("sha256");
+  for (const f of ["app.js", "app.css"]) hash.update(await readFile(join(OUT, "static", f)));
+  return hash.digest("hex").slice(0, 10);
 }
 
 async function copyStatic() {
@@ -62,13 +79,14 @@ const options = {
 await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });
 await copyStatic();
-await writePages();
 
 if (!DEV) {
   await esbuild.build(options);
+  await writePages(await bundleVersion());
   const kb = async (f) => ((await stat(join(OUT, "static", f))).size / 1024).toFixed(1);
   console.log(`_site pronto — app.js ${await kb("app.js")} kB, app.css ${await kb("app.css")} kB, ${ROUTES.length} rotas`);
 } else {
+  await writePages();
   const ctx = await esbuild.context(options);
   await ctx.watch();
 
