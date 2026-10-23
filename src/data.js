@@ -126,6 +126,56 @@ export const CASES = [
     stack: ["Next.js 15", "React 19", "Hono", "Cloud Run", "Cloud SQL (PostgreSQL 16)", "Drizzle", "Stripe", "Mux", "Cloud Tasks", "Puppeteer", "Firebase Auth"]
   },
   {
+    slug: "nos-autos",
+    name: "Nos Autos",
+    kind: "Monitor de intimações para advocacia",
+    year: "2026",
+    scene: "autos",
+    hook: "Quantos portais de tribunal um advogado abre antes do café?",
+    answer:
+      "Um monitor que acha as intimações de todos os tribunais pela OAB e avisa antes de o prazo apertar.",
+    delivered: "Aplicativo web, coletas automáticas e repasse no Brasil",
+    live: { label: "nosautos.vercel.app", href: "https://nosautos.vercel.app/" },
+    problem:
+      "Cada tribunal tem o próprio portal, a própria senha e o próprio jeito de publicar uma intimação.",
+    problemMore:
+      "Um escritório com processos no trabalho, no cível e na federal abre meia dúzia de sistemas por dia para descobrir se saiu alguma coisa. Os monitores prontos pedem a senha ou o certificado digital do advogado, e a mesma publicação chega repetida uma vez para cada colega intimado.",
+    turn:
+      "A fonte é o Diário de Justiça Eletrônico Nacional, que publica as intimações de qualquer tribunal e aceita busca por OAB.",
+    turnMore:
+      "O advogado cadastra a OAB e o Nos Autos busca os últimos 12 meses de uma vez, depois volta três vezes por dia, às 7h, às 12h e às 18h. Cada publicação vira um evento na linha do tempo do processo, com tribunal, comarca, vara, partes e área já identificados. A situação do processo vem do DataJud, uma vez por semana.",
+    inside: [
+      {
+        title: "Sem senha nem certificado",
+        body: "O sistema nunca pede a senha do tribunal nem o certificado digital do advogado. A busca é pública e respeita a cota do DJEN: o cliente pausa antes de esgotar as 20 consultas da janela e espera o tempo que o servidor pedir."
+      },
+      {
+        title: "Três cópias, um aviso",
+        body: "O DJEN publica uma cópia do mesmo ato para cada advogado intimado, com identificadores diferentes. O Nos Autos reconhece o ato pelo dia, pelo tipo e pelo texto, e mostra um evento só. Buscar de novo não duplica nada."
+      },
+      {
+        title: "A área sai do número",
+        body: "O número CNJ é validado pelo dígito verificador e diz o segmento da Justiça. Na estadual e na federal, a classe processual e o nome da vara separam trabalhista, cível, família, criminal, previdenciário e fazenda pública, e cada escritório escolhe o que quer acompanhar."
+      },
+      {
+        title: "Um escritório não vê o outro",
+        body: "Senha com argon2id e segundo fator obrigatório desde o primeiro login. Toda leitura de dado de cliente passa por Row-Level Security no PostgreSQL, com um papel que só enxerga as linhas da conta da sessão."
+      },
+      {
+        title: "Um repasse em São Paulo",
+        body: "A API do DJEN só responde a endereços do Brasil. O aplicativo roda perto do banco, nos EUA, e um repasse mínimo na região de São Paulo encaminha só as buscas, protegido por um segredo compartilhado."
+      }
+    ],
+    result:
+      "Em beta fechado, com cadastro por convite, planos de R$ 79 a R$ 389 por mês e a fila de coletas no próprio PostgreSQL, sem um serviço a mais para manter.",
+    facts: [
+      { value: "3×", label: "coletas automáticas por dia" },
+      { value: "12", label: "meses buscados no cadastro da OAB" },
+      { value: "0", label: "senhas de tribunal guardadas" }
+    ],
+    stack: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL + RLS", "Drizzle", "Supabase", "Vercel", "Vercel Cron", "DJEN", "DataJud", "argon2id", "TOTP"]
+  },
+  {
     slug: "amanda-silvestre",
     name: "Amanda Silvestre",
     kind: "Advocacia e Administração Judicial",
@@ -176,7 +226,7 @@ export const CAPABILITIES = [
     name: "Plataformas e SaaS",
     line: "Produtos com login, assinatura e painel próprio.",
     more: "Modelagem de dados, multi-tenant, permissões no banco, cobrança recorrente e avulsa, e um painel para a sua equipe operar sem depender de deploy.",
-    seen: ["fluxo-finance", "fluxo-academy"]
+    seen: ["fluxo-finance", "fluxo-academy", "nos-autos"]
   },
   {
     name: "Aplicativos nativos",
@@ -301,6 +351,8 @@ export const STATUS_COMPONENTS = [
   { name: "Fluxo Finance — API e MCP", group: "Fluxo Finance", incidents: [{ day: 23, level: "minor" }, { day: 61, level: "minor" }] },
   { name: "Fluxo Academy — plataforma", group: "Fluxo Academy", incidents: [{ day: 47, level: "major" }] },
   { name: "Fluxo Academy — vídeo", group: "Fluxo Academy", incidents: [] },
+  { name: "Nos Autos — aplicativo web", group: "Nos Autos", incidents: [] },
+  { name: "Nos Autos — coletas do DJEN", group: "Nos Autos", incidents: [] },
   { name: "Portal Amanda Silvestre", group: "Clientes", incidents: [] }
 ];
 

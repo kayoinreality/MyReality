@@ -867,6 +867,10 @@ ol {
   background: radial-gradient(120% 90% at 75% 0%, #6d58ea 0%, #2c207c 50%, #110b33 100%);
 }
 
+.scene-bg--autos {
+  background: radial-gradient(120% 90% at 30% 0%, #2f63e8 0%, #13348f 52%, #081638 100%);
+}
+
 .scene-bg--judicial {
   background: radial-gradient(120% 90% at 50% 0%, #1d2d5f 0%, #0a1128 58%, #04070f 100%);
 }
@@ -1025,6 +1029,120 @@ ol {
 }
 
 .ac-note__ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-weight: 600;
+  color: #9ff0c9;
+}
+
+/* Nos Autos */
+.na-card {
+  background: #ffffff;
+  border-radius: 1.2em;
+  padding: 1.4em 1.5em 0.6em;
+  box-shadow: 0 2em 4em -1.6em rgba(0, 0, 0, 0.6);
+  color: #0e1a33;
+}
+
+.na-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.9em;
+  border-bottom: 1px solid #e6eaf2;
+  font-size: 0.82em;
+  color: #5a667d;
+  font-variant-numeric: tabular-nums;
+}
+
+.na-card__brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35em;
+  color: #1747c9;
+}
+
+.na-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.na-item {
+  display: grid;
+  grid-template-columns: 2.6em 1fr;
+  gap: 1em;
+  padding: 0.95em 0;
+  border-top: 1px solid #eef1f6;
+}
+
+.na-item:first-child {
+  border-top: 0;
+}
+
+.na-item__date {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55em;
+  line-height: 1;
+  color: #0e1a33;
+  border-right: 2px solid #1747c9;
+  padding-right: 0.35em;
+  text-align: right;
+}
+
+.na-item__date small {
+  display: block;
+  margin-top: 0.2em;
+  font-family: var(--font);
+  font-size: 0.45em;
+  color: #5a667d;
+}
+
+.na-item__body {
+  display: grid;
+  gap: 0.2em;
+  justify-items: start;
+}
+
+.na-item__meta {
+  font-size: 0.78em;
+  font-weight: 650;
+  color: #1747c9;
+}
+
+.na-item__text {
+  font-size: 0.95em;
+}
+
+.na-item__due {
+  margin-top: 0.25em;
+  padding: 0.2em 0.6em;
+  border-radius: 999px;
+  background: #fbecea;
+  color: #c23a2b;
+  font-size: 0.78em;
+  font-weight: 650;
+}
+
+.na-note {
+  position: absolute;
+  right: -7%;
+  bottom: -3.6em;
+  display: grid;
+  gap: 0.35em;
+  padding: 0.9em 1.1em;
+  border-radius: 0.9em;
+  background: #0e1a33;
+  color: #eaf0ff;
+  font-size: 0.86em;
+  box-shadow: 0 1.4em 3em -1em rgba(0, 0, 0, 0.6);
+}
+
+.na-note__line {
+  color: #a9b9e6;
+}
+
+.na-note__ok {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
