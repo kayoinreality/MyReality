@@ -79,6 +79,62 @@ function AcademyScene({ active }) {
   );
 }
 
+const AUTOS = [
+  { day: "22", month: "out", court: "TRT-18", kind: "Intimação", text: "Prazo de 8 dias para contrarrazões", due: "Prazo 3 nov" },
+  { day: "21", month: "out", court: "TJGO", kind: "Despacho", text: "Designada audiência de conciliação" },
+  { day: "17", month: "out", court: "TRF-1", kind: "Sentença", text: "Julgado procedente o pedido" }
+];
+
+function AutosScene({ active }) {
+  return (
+    <div className="scene__stage">
+      <div className="na-card">
+        <div className="na-card__head">
+          <span className="na-card__brand">Nos Autos</span>
+          <span>OAB 123456/GO</span>
+        </div>
+        <ol className="na-feed">
+          {AUTOS.map((item, i) => (
+            <motion.li
+              className="na-item"
+              key={item.day + item.court}
+              initial={false}
+              animate={active ? { opacity: 1, x: 0 } : { opacity: 0, x: -14 }}
+              transition={{ delay: active ? 0.3 + i * 0.22 : 0, duration: 0.5, ease }}
+            >
+              <span className="na-item__date">
+                {item.day}
+                <small>{item.month}</small>
+              </span>
+              <span className="na-item__body">
+                <span className="na-item__meta">
+                  {item.court} · {item.kind}
+                </span>
+                <span className="na-item__text">{item.text}</span>
+                {item.due && <span className="na-item__due">{item.due}</span>}
+              </span>
+            </motion.li>
+          ))}
+        </ol>
+      </div>
+      <motion.div
+        className="na-note"
+        initial={false}
+        animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+        transition={{ delay: active ? 1.2 : 0, duration: 0.6, ease }}
+      >
+        <span className="na-note__line">DJEN publicou 3 cópias do mesmo ato</span>
+        <span className="na-note__ok">
+          <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          Um aviso só
+        </span>
+      </motion.div>
+    </div>
+  );
+}
+
 const QUERY = "5021334-12.2025.8.09.0051";
 
 function JudicialScene({ active }) {
@@ -150,7 +206,7 @@ function JudicialScene({ active }) {
   );
 }
 
-const SCENES = { fluxo: FluxoScene, academy: AcademyScene, judicial: JudicialScene };
+const SCENES = { fluxo: FluxoScene, academy: AcademyScene, autos: AutosScene, judicial: JudicialScene };
 
 export function Scene({ scene, active = true, className = "" }) {
   const Component = SCENES[scene];

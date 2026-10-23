@@ -218,7 +218,7 @@ function Cases() {
   return (
     <section id="casos" className="cases" aria-labelledby="casos-title">
       <div className="section-head container">
-        <h2 id="casos-title" className="h2">Três sistemas, três perguntas.</h2>
+        <h2 id="casos-title" className="h2">Quatro sistemas, quatro perguntas.</h2>
         <p className="lead">Cada um começou com um problema que nenhuma ferramenta pronta resolvia.</p>
       </div>
       {desktop ? (
@@ -269,7 +269,7 @@ function Capabilities() {
                           const c = CASES.find((x) => x.slug === slug);
                           return (
                             <React.Fragment key={slug}>
-                              {j > 0 && " e "}
+                              {j > 0 && (j === cap.seen.length - 1 ? " e " : ", ")}
                               <Link to={`/casos/${slug}`}>{c.name}</Link>
                             </React.Fragment>
                           );
