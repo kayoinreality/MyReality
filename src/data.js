@@ -5,6 +5,10 @@
 // Dados comerciais.
 export const COMPANY = {
   name: "Reality",
+  // Como consta no cartão CNPJ. A verificação de empresa da Meta procura a razão
+  // social no site: não abreviar nem trocar por "Reality".
+  legalName: "69.639.159 Kayo Rodrigo Nascimento dos Santos",
+  cnpj: "69.639.159/0001-57",
   domain: "myreality.tech",
   city: "Goiânia, GO",
   whatsappNumber: "5562993538028",

@@ -15,6 +15,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="theme-color" content="#03050a"/>
 %ROBOTS%
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Reality","legalName":"%LEGAL_NAME%","taxID":"%CNPJ%","url":"https://myreality.tech/","email":"%EMAIL%"}</script>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
 <link rel="preload" href="/assets/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin/>
 <script>try{var t=localStorage.getItem("reality-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}</script>
@@ -22,14 +23,18 @@
 <script defer src="/static/app.js"></script>
 </head>
 <body>
-<div id="root"></div>
+<!-- Tudo dentro de #root é trocado pelo React ao montar. A razão social fica aqui
+     também porque robôs que não rodam JS, como o da verificação da Meta, só leem este HTML. -->
+<div id="root">
 <noscript>
-  <main style="font-family:system-ui,sans-serif;padding:48px 24px;max-width:720px;margin:auto;color:#eef1f7;background:#03050a;min-height:100vh">
+  <main style="font-family:system-ui,sans-serif;padding:48px 24px;max-width:720px;margin:auto;color:#eef1f7;background:#03050a">
     <h1>Reality — Software sob medida</h1>
     <p>Projetamos e construímos sistemas próprios: plataformas, aplicativos nativos, portais institucionais e IA, do primeiro rascunho à produção.</p>
     <p>Casos: Fluxo Finance, Fluxo Academy e Amanda Silvestre — Administração Judicial.</p>
     <p><a style="color:#9cb8ff" href="https://wa.me/5562993538028">Falar no WhatsApp</a> · <a style="color:#9cb8ff" href="mailto:kayo@myreality.tech">kayo@myreality.tech</a></p>
   </main>
 </noscript>
+<footer style="font-family:system-ui,sans-serif;font-size:14px;padding:24px;max-width:720px;margin:auto;color:#9aa3b5">Reality · %LEGAL_NAME% · CNPJ %CNPJ%</footer>
+</div>
 </body>
 </html>

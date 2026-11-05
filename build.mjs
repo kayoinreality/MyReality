@@ -15,7 +15,7 @@ import { cp, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { dirname, extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ROUTES } from "./src/data.js";
+import { COMPANY, ROUTES } from "./src/data.js";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const OUT = resolve(ROOT, "_site");
@@ -36,6 +36,9 @@ async function writePages(version) {
       .replaceAll("%TITLE%", escape(title))
       .replaceAll("%DESCRIPTION%", escape(description))
       .replaceAll("%CANONICAL%", canonical)
+      .replaceAll("%LEGAL_NAME%", escape(COMPANY.legalName))
+      .replaceAll("%CNPJ%", escape(COMPANY.cnpj))
+      .replaceAll("%EMAIL%", escape(COMPANY.email))
       .replace("%ROBOTS%", robots);
 
   for (const r of ROUTES) {

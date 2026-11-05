@@ -217,7 +217,9 @@ export function Footer() {
         </div>
       </div>
       <div className="footer__bottom container">
-        <span>© {new Date().getFullYear()} Reality</span>
+        <span>
+          © {new Date().getFullYear()} {COMPANY.name} · {COMPANY.legalName} · CNPJ {COMPANY.cnpj}
+        </span>
         <span className="footer__hint" aria-hidden="true">Continue puxando.</span>
       </div>
     </footer>
